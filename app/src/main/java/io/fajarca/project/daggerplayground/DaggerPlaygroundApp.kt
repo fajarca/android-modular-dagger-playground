@@ -9,26 +9,17 @@ import io.fajarca.project.daggerplayground.di.component.DaggerAppComponent
 import javax.inject.Inject
 
 
-class MyPertaminaApp : Application(), HasActivityInjector {
+class DaggerPlaygroundApp : Application(), HasActivityInjector {
 
     @Inject
     lateinit var activityInjector: DispatchingAndroidInjector<Activity>
-
-
-
-
     private lateinit var appComponent: AppComponent
-
-
 
     override fun onCreate() {
         super.onCreate()
         initAppDependencyInjection()
 
     }
-
-
-
     private fun initAppDependencyInjection() {
         appComponent = DaggerAppComponent.builder()
             .application(this)
@@ -36,11 +27,5 @@ class MyPertaminaApp : Application(), HasActivityInjector {
         appComponent.inject(this)
     }
 
-
-
     override fun activityInjector() = activityInjector
-
-
-
-
 }

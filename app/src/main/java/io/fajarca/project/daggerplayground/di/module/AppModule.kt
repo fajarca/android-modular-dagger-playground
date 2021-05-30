@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
-import io.fajarca.project.daggerplayground.MyPertaminaApp
+import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
 import javax.inject.Singleton
 
 @Module
@@ -12,12 +12,12 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideContext(app: MyPertaminaApp): Context = app
+    fun provideContext(app: DaggerPlaygroundApp): Context = app
 
 
     @Provides
     @Singleton
-    fun providesPreference(app: MyPertaminaApp): SharedPreferences = app.getSharedPreferences("file", Context.MODE_PRIVATE)
+    fun providesPreference(app: DaggerPlaygroundApp): SharedPreferences = app.getSharedPreferences("file", Context.MODE_PRIVATE)
 
 
     @Provides
