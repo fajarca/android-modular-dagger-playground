@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import dagger.android.AndroidInjection
+import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
 import io.fajarca.project.daggerplayground.R
 import javax.inject.Inject
 
@@ -21,8 +21,10 @@ class LoginActivity : AppCompatActivity() {
             context.startActivity(starter)
         }
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+        
+        (application as DaggerPlaygroundApp).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

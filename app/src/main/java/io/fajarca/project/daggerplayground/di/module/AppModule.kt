@@ -10,19 +10,7 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
-
     @Provides
     @Singleton
     fun provideContext(app: Application): Context = app
-
-
-    @Provides
-    @Singleton
-    fun providesPreference(context: Context): SharedPreferences = context.getSharedPreferences("file", Context.MODE_PRIVATE)
-
-
-    @Provides
-    @Singleton
-    fun providesSharedPreference(sharedPreferences: SharedPreferences): SharedPreferences.Editor = sharedPreferences.edit()
-
 }

@@ -1,26 +1,25 @@
 package io.fajarca.project.daggerplayground.di.component
 
 import android.app.Application
-import io.fajarca.project.daggerplayground.di.module.ActivityBuilderModule
-import io.fajarca.project.daggerplayground.di.module.AppModule
 import io.fajarca.project.daggerplayground.di.module.NetworkModule
 import io.fajarca.project.daggerplayground.di.module.ViewModelFactoryModule
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.support.AndroidSupportInjectionModule
 import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
+import io.fajarca.project.daggerplayground.di.module.AppModule
+import io.fajarca.project.daggerplayground.di.module.StorageModule
 import io.fajarca.project.daggerplayground.di.module.ViewModelModule
+import io.fajarca.project.daggerplayground.login.LoginActivity
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AndroidSupportInjectionModule::class,
         AppModule::class,
         NetworkModule::class,
-        ActivityBuilderModule::class,
         ViewModelFactoryModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        StorageModule::class
     ]
 )
 
@@ -35,4 +34,5 @@ interface AppComponent {
     }
 
     fun inject(app: DaggerPlaygroundApp)
+    fun inject(activity : LoginActivity)
 }

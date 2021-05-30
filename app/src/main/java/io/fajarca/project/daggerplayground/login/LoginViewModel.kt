@@ -1,12 +1,12 @@
 package io.fajarca.project.daggerplayground.login
 
-import android.content.SharedPreferences
 import androidx.lifecycle.ViewModel
+import io.fajarca.project.daggerplayground.data.SharedPreferenceStorage
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(private val preferences: SharedPreferences, private val loginService: LoginService) : ViewModel() {
+class LoginViewModel @Inject constructor(private val storage: SharedPreferenceStorage, private val loginService: LoginService) : ViewModel() {
 
     fun getPin(): String {
-       return preferences.getString("pin", "Pin is not set") ?: ""
+       return storage.getString("pin")
     }
 }

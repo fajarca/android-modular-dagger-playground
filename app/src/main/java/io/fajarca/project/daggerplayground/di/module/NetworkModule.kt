@@ -8,13 +8,11 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import javax.inject.Singleton
 
 @Module
 class NetworkModule {
 
     @Provides
-    @Singleton
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -23,7 +21,6 @@ class NetworkModule {
 
 
     @Provides
-    @Singleton
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor, ): OkHttpClient {
         val client = OkHttpClient.Builder()
 
@@ -36,7 +33,6 @@ class NetworkModule {
     }
 
     @Provides
-    @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
                 .baseUrl("https://jsonplaceholder.typicode.com/")
