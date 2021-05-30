@@ -13,9 +13,4 @@ import io.fajarca.project.daggerplayground.login.LoginViewModel
 abstract class ViewModelFactoryModule {
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(LoginViewModel::class)
-    internal abstract fun providesLoginViewModel(viewModel: LoginViewModel): ViewModel
 }

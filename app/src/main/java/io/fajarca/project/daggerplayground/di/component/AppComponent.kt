@@ -9,6 +9,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
+import io.fajarca.project.daggerplayground.di.module.ViewModelModule
 import javax.inject.Singleton
 
 @Singleton
@@ -19,6 +20,7 @@ import javax.inject.Singleton
         NetworkModule::class,
         ActivityBuilderModule::class,
         ViewModelFactoryModule::class,
+        ViewModelModule::class
     ]
 )
 
