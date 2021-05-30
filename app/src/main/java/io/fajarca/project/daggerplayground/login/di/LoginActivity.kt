@@ -1,5 +1,7 @@
 package io.fajarca.project.daggerplayground.login.di
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -13,6 +15,13 @@ class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    companion object {
+        @JvmStatic
+        fun start(context: Context) {
+            val starter = Intent(context, LoginActivity::class.java)
+            context.startActivity(starter)
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
 
