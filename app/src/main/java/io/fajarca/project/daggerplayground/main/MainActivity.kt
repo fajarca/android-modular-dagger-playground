@@ -1,9 +1,10 @@
-package io.fajarca.project.daggerplayground
+package io.fajarca.project.daggerplayground.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
+import io.fajarca.project.daggerplayground.R
 import io.fajarca.project.daggerplayground.di.factory.ViewModelFactory
 import javax.inject.Inject
 
@@ -14,11 +15,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
+
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
 
         val viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
-        val pin = viewModel.getPin()
     }
-
 }
