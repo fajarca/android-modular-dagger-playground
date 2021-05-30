@@ -1,24 +1,23 @@
 package io.fajarca.project.daggerplayground.di.component
 
-import io.fajarca.project.daggerplayground.di.module.ActivityBuilder
+import android.app.Application
+import io.fajarca.project.daggerplayground.di.module.ActivityBuilderModule
 import io.fajarca.project.daggerplayground.di.module.AppModule
 import io.fajarca.project.daggerplayground.di.module.NetworkModule
 import io.fajarca.project.daggerplayground.di.module.ViewModelFactoryModule
-import io.fajarca.project.daggerplayground.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
-import dagger.android.AndroidInjectionModule
+import dagger.android.support.AndroidSupportInjectionModule
 import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AndroidInjectionModule::class,
+        AndroidSupportInjectionModule::class,
         AppModule::class,
         NetworkModule::class,
-        ActivityBuilder::class,
-        ViewModelModule::class,
+        ActivityBuilderModule::class,
         ViewModelFactoryModule::class,
     ]
 )
@@ -28,7 +27,7 @@ interface AppComponent {
     @Component.Builder
     interface Builder {
         @BindsInstance
-        fun application(application: DaggerPlaygroundApp): Builder
+        fun application(application: Application): Builder
 
         fun build(): AppComponent
     }

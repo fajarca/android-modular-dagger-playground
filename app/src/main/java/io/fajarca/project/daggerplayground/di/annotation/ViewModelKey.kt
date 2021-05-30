@@ -1,4 +1,4 @@
-package com.dafturn.mypertamina.di.annotation
+package io.fajarca.project.daggerplayground.di.annotation
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

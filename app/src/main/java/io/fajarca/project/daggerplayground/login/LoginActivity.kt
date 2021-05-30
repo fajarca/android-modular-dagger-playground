@@ -1,19 +1,18 @@
-package io.fajarca.project.daggerplayground.login.di
+package io.fajarca.project.daggerplayground.login
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
 import io.fajarca.project.daggerplayground.R
-import io.fajarca.project.daggerplayground.di.factory.ViewModelFactory
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     companion object {
         @JvmStatic

@@ -1,5 +1,6 @@
 package io.fajarca.project.daggerplayground.di.module
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import dagger.Module
@@ -12,12 +13,12 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideContext(app: DaggerPlaygroundApp): Context = app
+    fun provideContext(app: Application): Context = app
 
 
     @Provides
     @Singleton
-    fun providesPreference(app: DaggerPlaygroundApp): SharedPreferences = app.getSharedPreferences("file", Context.MODE_PRIVATE)
+    fun providesPreference(context: Context): SharedPreferences = context.getSharedPreferences("file", Context.MODE_PRIVATE)
 
 
     @Provides

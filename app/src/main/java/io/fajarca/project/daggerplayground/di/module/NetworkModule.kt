@@ -3,6 +3,7 @@ package io.fajarca.project.daggerplayground.di.module
 import dagger.Module
 import dagger.Provides
 import io.fajarca.project.daggerplayground.BuildConfig
+import io.fajarca.project.daggerplayground.login.LoginService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -38,9 +39,13 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-                .baseUrl("http://www.baseurl.co.id")
+                .baseUrl("https://jsonplaceholder.typicode.com/")
                 .addConverterFactory(MoshiConverterFactory.create())
                 .client(okHttpClient)
                 .build()
     }
+
+    @Provides
+    fun provideLoginServiceApi(retrofit: Retrofit) = retrofit.create(LoginService::class.java)
+
 }
