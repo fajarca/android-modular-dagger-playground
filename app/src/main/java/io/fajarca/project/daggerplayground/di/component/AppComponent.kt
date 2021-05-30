@@ -1,38 +1,36 @@
 package io.fajarca.project.daggerplayground.di.component
 
-import android.app.Application
-import io.fajarca.project.daggerplayground.di.module.NetworkModule
-import io.fajarca.project.daggerplayground.di.module.ViewModelFactoryModule
+import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
-import io.fajarca.project.daggerplayground.di.module.AppModule
+import io.fajarca.project.daggerplayground.di.module.ApiServiceModule
+import io.fajarca.project.daggerplayground.di.module.NetworkModule
 import io.fajarca.project.daggerplayground.di.module.StorageModule
+import io.fajarca.project.daggerplayground.di.module.SubcomponentModule
+import io.fajarca.project.daggerplayground.di.module.ViewModelFactoryModule
 import io.fajarca.project.daggerplayground.di.module.ViewModelModule
-import io.fajarca.project.daggerplayground.login.LoginActivity
+import io.fajarca.project.daggerplayground.login.di.LoginComponent
 import javax.inject.Singleton
 
 @Singleton
 @Component(
     modules = [
-        AppModule::class,
-        NetworkModule::class,
         ViewModelFactoryModule::class,
         ViewModelModule::class,
-        StorageModule::class
+        StorageModule::class,
+        NetworkModule::class,
+        ApiServiceModule::class,
+        SubcomponentModule::class
     ]
 )
 
 interface AppComponent {
 
-    @Component.Builder
-    interface Builder {
-        @BindsInstance
-        fun application(application: Application): Builder
-
-        fun build(): AppComponent
+    @Component.Factory
+    interface Factory {
+        // With @BindsInstance, the Context passed in will be available in the graph
+        fun create(@BindsInstance context: Context): AppComponent
     }
 
-    fun inject(app: DaggerPlaygroundApp)
-    fun inject(activity : LoginActivity)
+    fun loginComponent() : LoginComponent.Factory
 }

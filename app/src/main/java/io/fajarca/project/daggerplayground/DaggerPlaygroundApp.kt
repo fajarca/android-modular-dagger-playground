@@ -8,19 +8,14 @@ import io.fajarca.project.daggerplayground.di.component.DaggerAppComponent
 class DaggerPlaygroundApp : Application() {
 
 
-    lateinit var appComponent: AppComponent
-
-    override fun onCreate() {
-        super.onCreate()
-        initAppDependencyInjection()
-
+    // Instance of the AppComponent that will be used by all the Activities in the project
+    val appComponent: AppComponent by lazy {
+        // Creates an instance of AppComponent using its Factory constructor
+        // We pass the applicationContext that will be used as Context in the graph
+        DaggerAppComponent.factory().create(applicationContext)
     }
-    private fun initAppDependencyInjection() {
-        appComponent = DaggerAppComponent.builder()
-            .application(this)
-            .build()
-        appComponent.inject(this)
-    }
+
+
 
 
 }

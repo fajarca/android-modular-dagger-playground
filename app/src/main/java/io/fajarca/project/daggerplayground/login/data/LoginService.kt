@@ -1,6 +1,5 @@
-package io.fajarca.project.daggerplayground.login
+package io.fajarca.project.daggerplayground.login.data
 
-import io.fajarca.project.daggerplayground.login.GetUserDto
 import retrofit2.Call
 import retrofit2.http.GET
 

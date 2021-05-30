@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import io.fajarca.project.daggerplayground.di.annotation.ViewModelKey
-import io.fajarca.project.daggerplayground.login.LoginViewModel
+import io.fajarca.project.daggerplayground.login.presentation.LoginViewModel
 
 @Module
 abstract class ViewModelModule {

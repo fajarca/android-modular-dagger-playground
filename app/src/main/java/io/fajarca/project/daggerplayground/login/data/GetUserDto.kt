@@ -1,4 +1,4 @@
-package io.fajarca.project.daggerplayground.login
+package io.fajarca.project.daggerplayground.login.data
 
 
 import com.squareup.moshi.Json

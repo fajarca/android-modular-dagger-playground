@@ -1,4 +1,4 @@
-package io.fajarca.project.daggerplayground.login
+package io.fajarca.project.daggerplayground.login.presentation
 
 import android.content.Context
 import android.content.Intent
@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         
-        (application as DaggerPlaygroundApp).appComponent.inject(this)
+        (application as DaggerPlaygroundApp).appComponent.loginComponent().create().inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
