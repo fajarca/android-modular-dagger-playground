@@ -6,9 +6,11 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class ApiClientManager {
+@Singleton
+class ApiClientManager @Inject constructor(){
 
     suspend fun <T> call(apiCall: suspend () -> T): Result<T> {
         return try {

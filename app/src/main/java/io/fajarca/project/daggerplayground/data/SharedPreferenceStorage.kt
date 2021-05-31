@@ -3,9 +3,10 @@ package io.fajarca.project.daggerplayground.data
 import android.content.Context
 import io.fajarca.project.base.abstraction.Storage
 import javax.inject.Inject
+import javax.inject.Singleton
 
 
-// @Inject tells Dagger how to provide instances of this type
+@Singleton
 class SharedPreferenceStorage @Inject constructor(context: Context) : Storage {
 
     private val sharedPreferences = context.getSharedPreferences("Dagger", Context.MODE_PRIVATE)

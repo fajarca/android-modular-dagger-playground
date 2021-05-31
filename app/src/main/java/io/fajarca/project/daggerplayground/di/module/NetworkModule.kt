@@ -32,8 +32,4 @@ class NetworkModule {
         return client.build()
     }
 
-    @Provides
-    @Singleton
-    fun provideApiClientManager() = ApiClientManager()
-
 }
