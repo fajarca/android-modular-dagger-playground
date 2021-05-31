@@ -1,10 +1,10 @@
 package io.fajarca.project.login.data
 
-
 import com.squareup.moshi.Json
 
-class GetUserDto : ArrayList<GetUserDto.GetUserDtoItem>(){
-    data class GetUserDtoItem(
+
+class GetUsersDto : ArrayList<GetUsersDto.GetUsersDtoItem>(){
+    data class GetUsersDtoItem(
         @field:Json(name = "address")
         val address: Address? = null,
         @field:Json(name = "company")

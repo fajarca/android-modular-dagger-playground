@@ -2,6 +2,7 @@ package io.fajarca.project.daggerplayground.di.module
 
 import dagger.Module
 import dagger.Provides
+import io.fajarca.project.base.network.ApiClientManager
 import io.fajarca.project.daggerplayground.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,7 +21,7 @@ class NetworkModule {
 
 
     @Provides
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor, ): OkHttpClient {
+    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         val client = OkHttpClient.Builder()
         if (BuildConfig.DEBUG) {
             client.addInterceptor(loggingInterceptor)
@@ -28,5 +29,7 @@ class NetworkModule {
         return client.build()
     }
 
+    @Provides
+    fun provideApiClientManager() = ApiClientManager()
 
 }

@@ -44,7 +44,11 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-
+    //Coroutine
+    def coroutine_core = "1.3.2"
+    def coroutine_android = "1.3.9"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_core"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_android"
 
     //Dagger2
     def dagger_version = "2.24"

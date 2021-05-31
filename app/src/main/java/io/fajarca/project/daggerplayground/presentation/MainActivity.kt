@@ -1,10 +1,8 @@
 package io.fajarca.project.daggerplayground.presentation
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.google.android.material.button.MaterialButton
+import androidx.appcompat.app.AppCompatActivity
 import io.fajarca.project.daggerplayground.R
 import io.fajarca.project.login.presentation.LoginActivity
 
@@ -15,8 +13,7 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            LoginActivity.start(this)
         }
     }
 }

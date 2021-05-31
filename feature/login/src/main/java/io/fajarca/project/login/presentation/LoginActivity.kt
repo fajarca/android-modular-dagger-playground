@@ -25,8 +25,11 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        DaggerLoginComponent.builder().baseComponent((application as BaseApplication).getBaseComponent()).build().inject(this)
-
+        DaggerLoginComponent
+            .builder()
+            .baseComponent((application as BaseApplication).getBaseComponent())
+            .build()
+            .inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -35,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
         viewModel.setPin("123456")
         val pin = viewModel.getPin()
+
+        viewModel.getUsers()
     }
 
 
