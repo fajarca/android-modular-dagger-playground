@@ -11,4 +11,8 @@ class LoginViewModel @Inject constructor(private val storage: Storage, private v
     fun getPin(): String {
        return storage.getString("pin")
     }
+
+    fun setPin(pin : String) {
+        storage.setString("pin", pin)
+    }
 }

@@ -20,6 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="io.fajarca.project.login.presentation.LoginActivity"/>
     </application>
 
 </manifest>

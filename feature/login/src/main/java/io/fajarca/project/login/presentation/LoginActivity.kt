@@ -5,7 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.login.R
+import io.fajarca.project.login.di.component.DaggerLoginComponent
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
@@ -23,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        DaggerLoginComponent.builder().baseComponent((application as BaseApplication).getBaseComponent()).build().inject(this)
 
 
         super.onCreate(savedInstanceState)
@@ -30,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         val viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+        viewModel.setPin("123456")
         val pin = viewModel.getPin()
     }
 

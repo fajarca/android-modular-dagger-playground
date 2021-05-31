@@ -49,6 +49,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation project(':base')
+    implementation project(':feature:login')
     
     //Dagger2
     def dagger_version = "2.24"

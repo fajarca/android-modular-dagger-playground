@@ -1,13 +1,12 @@
 package io.fajarca.project.daggerplayground
 
-import android.app.Application
+import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.di.component.BaseComponent
-import io.fajarca.project.base.di.component.BaseComponentProvider
 import io.fajarca.project.daggerplayground.di.component.AppComponent
 import io.fajarca.project.daggerplayground.di.component.DaggerAppComponent
 
 
-class DaggerPlaygroundApp : Application(), BaseComponentProvider {
+class DaggerPlaygroundApp : BaseApplication() {
 
 
     // Instance of the AppComponent that will be used by all the Activities in the project
@@ -17,14 +16,15 @@ class DaggerPlaygroundApp : Application(), BaseComponentProvider {
         DaggerAppComponent.factory().create(applicationContext)
     }
 
+    override fun getBaseComponent(): BaseComponent {
+        return appComponent.baseComponent().create()
+    }
+
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
     }
 
-    override fun provideBaseComponent(): BaseComponent.Factory {
-        return appComponent.baseComponent()
-    }
 
 
 }
