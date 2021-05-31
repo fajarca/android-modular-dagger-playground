@@ -2,7 +2,7 @@ package io.fajarca.project.login.data.repository
 
 import io.fajarca.project.base.ModuleScope
 import io.fajarca.project.base.network.ApiClientManager
-import io.fajarca.project.login.data.LoginService
+import io.fajarca.project.login.data.service.LoginService
 import io.fajarca.project.login.data.mapper.UserMapper
 import io.fajarca.project.login.domain.entity.User
 import javax.inject.Inject

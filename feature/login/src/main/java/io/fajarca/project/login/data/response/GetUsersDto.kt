@@ -1,4 +1,4 @@
-package io.fajarca.project.login.data
+package io.fajarca.project.login.data.response
 
 import com.squareup.moshi.Json
 

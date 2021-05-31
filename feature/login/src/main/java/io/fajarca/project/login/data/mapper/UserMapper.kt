@@ -2,7 +2,7 @@ package io.fajarca.project.login.data.mapper
 
 import io.fajarca.project.base.ModuleScope
 import io.fajarca.project.base.abstraction.Mapper
-import io.fajarca.project.login.data.GetUsersDto
+import io.fajarca.project.login.data.response.GetUsersDto
 import io.fajarca.project.login.domain.entity.User
 import javax.inject.Inject
 

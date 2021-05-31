@@ -3,7 +3,7 @@ package io.fajarca.project.login.di.module
 import dagger.Module
 import dagger.Provides
 import io.fajarca.project.base.ModuleScope
-import io.fajarca.project.login.data.LoginService
+import io.fajarca.project.login.data.service.LoginService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

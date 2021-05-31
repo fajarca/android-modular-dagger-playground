@@ -1,5 +1,6 @@
-package io.fajarca.project.login.data
+package io.fajarca.project.login.data.service
 
+import io.fajarca.project.login.data.response.GetUsersDto
 import retrofit2.http.GET
 
 interface LoginService {
