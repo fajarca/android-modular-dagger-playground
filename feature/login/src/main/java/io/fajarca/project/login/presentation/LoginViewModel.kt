@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.fajarca.project.base.ModuleScope
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.login.domain.entity.User
 import io.fajarca.project.login.domain.usecase.GetUsersUseCase
@@ -13,6 +14,7 @@ import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import kotlinx.coroutines.launch
 
+@ModuleScope
 class LoginViewModel @Inject constructor(
     private val storage: Storage,
     private val getUsersUseCase: GetUsersUseCase,

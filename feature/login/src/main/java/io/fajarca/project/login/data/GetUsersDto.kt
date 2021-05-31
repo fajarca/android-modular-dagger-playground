@@ -3,7 +3,7 @@ package io.fajarca.project.login.data
 import com.squareup.moshi.Json
 
 
-data class GetUsersDtoItem(
+data class GetUsersDto(
     @field:Json(name = "address")
     val address: Address? = null,
     @field:Json(name = "company")

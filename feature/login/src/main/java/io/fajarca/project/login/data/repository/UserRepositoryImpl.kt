@@ -1,5 +1,6 @@
 package io.fajarca.project.login.data.repository
 
+import io.fajarca.project.base.ModuleScope
 import io.fajarca.project.base.network.ApiClientManager
 import io.fajarca.project.login.data.LoginService
 import io.fajarca.project.login.data.mapper.UserMapper
@@ -8,6 +9,7 @@ import javax.inject.Inject
 import io.fajarca.project.base.Result
 import io.fajarca.project.login.domain.repository.UserRepository
 
+@ModuleScope
 class UserRepositoryImpl @Inject constructor(
     private val mapper: UserMapper,
     private val apiClientManager: ApiClientManager,
