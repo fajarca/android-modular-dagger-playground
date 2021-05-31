@@ -13,6 +13,7 @@ import io.fajarca.project.base.Result
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @ModuleScope
 class LoginViewModel @Inject constructor(
@@ -21,11 +22,11 @@ class LoginViewModel @Inject constructor(
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
-    fun getPin(): String {
-        return storage.getString("pin")
+    fun getPin(): String = runBlocking {
+         storage.getString("pin")
     }
 
-    fun setPin(pin: String) {
+    fun setPin(pin: String) = runBlocking {
         storage.setString("pin", pin)
     }
 
