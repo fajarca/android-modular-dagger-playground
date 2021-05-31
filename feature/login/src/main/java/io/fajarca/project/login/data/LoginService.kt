@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface LoginService {
     @GET("users")
-    suspend fun getUsers() : GetUsersDto
+    suspend fun getUsers() : List<GetUsersDtoItem>
 }
