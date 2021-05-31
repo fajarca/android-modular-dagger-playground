@@ -3,7 +3,6 @@ package io.fajarca.project.daggerplayground.di.module
 import dagger.Module
 import dagger.Provides
 import io.fajarca.project.daggerplayground.BuildConfig
-import io.fajarca.project.daggerplayground.login.data.LoginService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,21 +22,11 @@ class NetworkModule {
     @Provides
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor, ): OkHttpClient {
         val client = OkHttpClient.Builder()
-
         if (BuildConfig.DEBUG) {
             client.addInterceptor(loggingInterceptor)
-
         }
-
         return client.build()
     }
 
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl("https://jsonplaceholder.typicode.com/")
-                .addConverterFactory(MoshiConverterFactory.create())
-                .client(okHttpClient)
-                .build()
-    }
+
 }

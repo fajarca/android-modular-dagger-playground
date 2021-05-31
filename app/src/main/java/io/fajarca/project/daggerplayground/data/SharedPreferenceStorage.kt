@@ -1,7 +1,7 @@
 package io.fajarca.project.daggerplayground.data
 
 import android.content.Context
-import io.fajarca.project.daggerplayground.abstraction.Storage
+import io.fajarca.project.base.abstraction.Storage
 import javax.inject.Inject
 
 
@@ -18,6 +18,6 @@ class SharedPreferenceStorage @Inject constructor(context: Context) : Storage {
     }
 
     override fun getString(key: String): String {
-        return sharedPreferences.getString(key, "")!!
+        return sharedPreferences.getString(key, "") ?: ""
     }
 }

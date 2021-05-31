@@ -1,11 +1,11 @@
 package io.fajarca.project.daggerplayground.di.module
 
 import dagger.Module
-import io.fajarca.project.daggerplayground.login.di.LoginComponent
+import io.fajarca.project.base.di.component.BaseComponent
 
 @Module(
     subcomponents = [
-        LoginComponent::class
+        BaseComponent::class
     ]
 )
 class SubcomponentModule
