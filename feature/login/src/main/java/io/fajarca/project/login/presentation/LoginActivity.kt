@@ -40,6 +40,9 @@ class LoginActivity : AppCompatActivity() {
         val pin = viewModel.getPin()
 
         viewModel.getUsers()
+        viewModel.users.observe(this){
+
+        }
     }
 
 
