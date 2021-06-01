@@ -2,15 +2,17 @@ package io.fajarca.project.user.presentation
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseApplication
+import io.fajarca.project.base.extension.gone
+import io.fajarca.project.base.extension.visible
 import io.fajarca.project.base.network.exception.NoInternetConnection
-import io.fajarca.project.user.R
+import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
 import javax.inject.Inject
 
@@ -20,6 +22,7 @@ class UserActivity : AppCompatActivity() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private val viewModel by viewModels<UserViewModel> {  viewModelFactory }
+    private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
 
     companion object {
         @JvmStatic
@@ -38,23 +41,25 @@ class UserActivity : AppCompatActivity() {
             .inject(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user)
+        setContentView(binding.root)
 
-        viewModel.setPin("123456")
-        val pin = viewModel.getPin()
-
-
-
+        observeUsers()
         viewModel.getUsers()
+    }
+
+    private fun observeUsers() {
         viewModel.users.observe(this){
             when (it) {
                 ViewState.Loading -> {
-
+                    binding.progressBar.visible()
                 }
                 is ViewState.Success -> {
-
+                    binding.tvUsers.text = it.data.toString()
+                    binding.progressBar.gone()
                 }
                 is ViewState.Error -> {
+                    binding.progressBar.gone()
+
                     when (it.cause) {
                         is NoInternetConnection -> {
                             Toast.makeText(this, "No connection", Toast.LENGTH_LONG).show()
