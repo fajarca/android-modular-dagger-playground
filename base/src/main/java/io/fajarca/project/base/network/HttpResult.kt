@@ -1,4 +1,4 @@
-package co.id.telkom.base.network
+package io.fajarca.project.base.network
 
 /**
  * various error status to know what happened if something goes wrong with a repository call

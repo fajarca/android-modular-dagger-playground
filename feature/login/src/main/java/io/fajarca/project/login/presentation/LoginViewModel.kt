@@ -4,16 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.fajarca.project.base.di.scope.ModuleScope
+import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.Storage
-import io.fajarca.project.login.domain.entity.User
-import io.fajarca.project.login.domain.usecase.GetUsersUseCase
-import javax.inject.Inject
-import io.fajarca.project.base.Result
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
+import io.fajarca.project.base.di.scope.ModuleScope
+import io.fajarca.project.base.unwrap
+import io.fajarca.project.login.domain.entity.User
+import io.fajarca.project.login.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import javax.inject.Inject
 
 @ModuleScope
 class LoginViewModel @Inject constructor(
@@ -30,14 +31,19 @@ class LoginViewModel @Inject constructor(
         storage.setString("pin", pin)
     }
 
-    private val _users = MutableLiveData<Result<List<User>>>()
-    val users: LiveData<Result<List<User>>>
+    private val _users = MutableLiveData<ViewState<List<User>>>()
+    val users: LiveData<ViewState<List<User>>>
         get() = _users
 
     fun getUsers() {
-        _users.value = Result.Loading
+        _users.value = ViewState.Loading
         viewModelScope.launch(dispatcherProvider.io) {
-            _users.postValue(getUsersUseCase.execute(UseCase.None))
+            val result = getUsersUseCase.execute(UseCase.None)
+            result.unwrap({ data ->
+                _users.postValue(ViewState.Success(data))
+            }, { exception ->
+                _users.postValue(ViewState.Error(exception))
+            })
         }
     }
 }
