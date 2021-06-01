@@ -11,7 +11,6 @@ import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import io.fajarca.project.base.di.scope.ModuleScope
 import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
-import io.fajarca.project.base.extension.unwrap
 import io.fajarca.project.login.domain.entity.User
 import io.fajarca.project.login.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.launch
@@ -41,7 +40,7 @@ class LoginViewModel @Inject constructor(
         _users.value = ViewState.Loading
         viewModelScope.launch(dispatcherProvider.io) {
             getUsersUseCase
-                .execute(UseCase.None)
+                .execute(UseCase.NoParams)
                 .onSuccess { users -> _users.postValue(ViewState.Success(users)) }
                 .onError { cause -> _users.postValue(ViewState.Error(cause)) }
         }

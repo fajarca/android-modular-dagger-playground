@@ -7,9 +7,9 @@ import io.fajarca.project.base.Either
 import io.fajarca.project.base.abstraction.UseCase
 
 class GetUsersUseCase @Inject constructor(private val repository: UserRepository) :
-    UseCase<UseCase.None, Either<List<User>>>() {
+    UseCase<UseCase.NoParams, Either<List<User>>>() {
 
-    override suspend fun execute(params: None): Either<List<User>> {
+    override suspend fun execute(params: NoParams): Either<List<User>> {
         return repository.getUsers()
     }
 
