@@ -9,7 +9,9 @@ import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import io.fajarca.project.base.di.scope.ModuleScope
-import io.fajarca.project.base.unwrap
+import io.fajarca.project.base.extension.onError
+import io.fajarca.project.base.extension.onSuccess
+import io.fajarca.project.base.extension.unwrap
 import io.fajarca.project.login.domain.entity.User
 import io.fajarca.project.login.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.launch
@@ -38,12 +40,10 @@ class LoginViewModel @Inject constructor(
     fun getUsers() {
         _users.value = ViewState.Loading
         viewModelScope.launch(dispatcherProvider.io) {
-            val result = getUsersUseCase.execute(UseCase.None)
-            result.unwrap({ data ->
-                _users.postValue(ViewState.Success(data))
-            }, { exception ->
-                _users.postValue(ViewState.Error(exception))
-            })
+            getUsersUseCase
+                .execute(UseCase.None)
+                .onSuccess { users -> _users.postValue(ViewState.Success(users)) }
+                .onError { cause -> _users.postValue(ViewState.Error(cause)) }
         }
     }
 }

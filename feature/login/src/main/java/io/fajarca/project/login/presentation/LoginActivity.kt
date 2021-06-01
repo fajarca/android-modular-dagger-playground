@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.base.ViewState
@@ -20,6 +21,8 @@ class LoginActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<LoginViewModel> {  viewModelFactory }
 
     companion object {
         @JvmStatic
@@ -40,8 +43,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
-        val viewModel = ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
         viewModel.setPin("123456")
         val pin = viewModel.getPin()
 
