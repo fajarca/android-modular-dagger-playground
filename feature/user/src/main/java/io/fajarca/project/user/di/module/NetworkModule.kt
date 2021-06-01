@@ -4,7 +4,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import io.fajarca.project.base.di.scope.ModuleScope
-import io.fajarca.project.user.data.service.LoginService
+import io.fajarca.project.user.data.service.UserService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -24,5 +24,5 @@ class NetworkModule {
 
     @Provides
     @ModuleScope
-    fun provideLoginServiceApi(retrofit: Retrofit) = retrofit.create(LoginService::class.java)
+    fun provideLoginServiceApi(retrofit: Retrofit) = retrofit.create(UserService::class.java)
 }
