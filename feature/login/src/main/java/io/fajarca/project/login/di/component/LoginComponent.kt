@@ -1,7 +1,7 @@
 package io.fajarca.project.login.di.component
 
 import dagger.Component
-import io.fajarca.project.base.ModuleScope
+import io.fajarca.project.base.di.scope.ModuleScope
 import io.fajarca.project.base.di.component.BaseComponent
 import io.fajarca.project.login.di.module.NetworkModule
 import io.fajarca.project.login.di.module.RepositoryModule

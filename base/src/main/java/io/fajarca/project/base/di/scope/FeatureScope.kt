@@ -1,4 +1,4 @@
-package io.fajarca.project.base
+package io.fajarca.project.base.di.scope
 
 import javax.inject.Scope
 
@@ -6,4 +6,4 @@ import javax.inject.Scope
 @Scope
 @MustBeDocumented
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-annotation class ModuleScope
+annotation class FeatureScope
