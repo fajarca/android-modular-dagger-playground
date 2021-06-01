@@ -1,5 +1,6 @@
 package io.fajarca.project.daggerplayground.di.module
 
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import io.fajarca.project.daggerplayground.BuildConfig
@@ -18,7 +19,6 @@ class NetworkModule {
         return loggingInterceptor
     }
 
-
     @Provides
     @Singleton
     fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
@@ -27,6 +27,12 @@ class NetworkModule {
             client.addInterceptor(loggingInterceptor)
         }
         return client.build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi {
+        return Moshi.Builder().build()
     }
 
 }

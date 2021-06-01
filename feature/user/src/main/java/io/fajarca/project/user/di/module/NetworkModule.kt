@@ -1,5 +1,6 @@
 package io.fajarca.project.user.di.module
 
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import io.fajarca.project.base.di.scope.ModuleScope
@@ -13,10 +14,10 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 class NetworkModule {
     @Provides
     @ModuleScope
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
     }
