@@ -28,7 +28,7 @@ class SharedPreferenceStorage @Inject constructor(
 
     override  fun getString(key: String): String = runBlocking {
          withContext(dispatcherProvider.io) {
-            sharedPreferences.getString(key, "") ?: ""
+            sharedPreferences.getString(key, null) ?: ""
         }
     }
 }

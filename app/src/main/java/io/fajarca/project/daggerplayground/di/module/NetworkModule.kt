@@ -2,12 +2,9 @@ package io.fajarca.project.daggerplayground.di.module
 
 import dagger.Module
 import dagger.Provides
-import io.fajarca.project.base.network.ApiClientManager
 import io.fajarca.project.daggerplayground.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 @Module
