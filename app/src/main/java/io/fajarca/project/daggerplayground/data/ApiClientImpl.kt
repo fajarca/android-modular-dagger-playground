@@ -16,27 +16,27 @@ import javax.inject.Inject
 
 class ApiClientImpl @Inject constructor() : ApiClient {
 
-    override suspend fun <T> call(api: suspend () -> Response<T>): Either<T> {
+    override suspend fun <T> call(api: suspend () -> Response<T>): Either<Exception, T> {
         return try {
             val response = api()
             when {
-                response.isSuccessful && response.body() == null -> Either.Error(EmptyResponseException())
+                response.isSuccessful && response.body() == null -> Either.Failure(EmptyResponseException())
                 response.isSuccessful && response.body() != null -> Either.Success(response.body()!!)
-                response.code() in 400..499 -> Either.Error(ClientErrorException(response.code(), response.errorBody().toString()))
-                response.code() in 500..599 -> Either.Error(ServerErrorException(response.code()))
-                else -> Either.Error(UnknownNetworkErrorException(response.errorBody().toString()))
+                response.code() in 400..499 -> Either.Failure(ClientErrorException(response.code(), response.errorBody().toString()))
+                response.code() in 500..599 -> Either.Failure(ServerErrorException(response.code()))
+                else -> Either.Failure(UnknownNetworkErrorException(response.errorBody().toString()))
             }
         } catch (exception: Exception) {
             handleError(exception)
         }
     }
 
-    private fun handleError(exception: Exception): Either.Error {
+    private fun <T> handleError(exception: Exception): Either.Failure<Exception, T> {
         return when (exception) {
-            is UnknownHostException -> Either.Error(NoInternetConnection())
-            is SocketTimeoutException -> Either.Error(TimeoutException())
-            is IOException -> Either.Error(UnknownNetworkErrorException(exception.message ?: "Unknown IO Exception error"))
-            else -> Either.Error(UnknownNetworkErrorException(exception.localizedMessage ?: "Unknown error"))
+            is UnknownHostException -> Either.Failure(NoInternetConnection())
+            is SocketTimeoutException -> Either.Failure(TimeoutException())
+            is IOException -> Either.Failure(UnknownNetworkErrorException(exception.message ?: "Unknown IO Exception error"))
+            else -> Either.Failure(UnknownNetworkErrorException(exception.localizedMessage ?: "Unknown error"))
         }
     }
 

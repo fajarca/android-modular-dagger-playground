@@ -9,7 +9,7 @@ import javax.inject.Inject
  * Provide coroutines context.
  */
 class DispatcherProviderImpl @Inject constructor() : DispatcherProvider {
-    override val ui: CoroutineDispatcher
+    override val main: CoroutineDispatcher
         get() = Dispatchers.Main
     override val io: CoroutineDispatcher
         get() = Dispatchers.IO

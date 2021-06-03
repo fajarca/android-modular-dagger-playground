@@ -28,8 +28,10 @@ class UserViewModel @Inject constructor(
          storage.getString("pin")
     }
 
-    fun setPin(pin: String) = runBlocking {
-        storage.setString("pin", pin)
+    fun setPin(pin: String) {
+        viewModelScope.launch {
+            storage.setString("pin", pin)
+        }
     }
 
     private val _users = MutableLiveData<ViewState<List<User>>>()

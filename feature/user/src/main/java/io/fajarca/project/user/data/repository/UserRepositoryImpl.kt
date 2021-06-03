@@ -8,6 +8,7 @@ import javax.inject.Inject
 import io.fajarca.project.base.Either
 import io.fajarca.project.base.abstraction.ApiClient
 import io.fajarca.project.user.domain.repository.UserRepository
+import java.lang.Exception
 
 @ModuleScope
 class UserRepositoryImpl @Inject constructor(
@@ -16,11 +17,11 @@ class UserRepositoryImpl @Inject constructor(
     private val userService: UserService
 ) : UserRepository {
 
-    override suspend fun getUsers(): Either<List<User>> {
+    override suspend fun getUsers(): Either<Exception, List<User>> {
         val apiResult = apiClient.call { userService.getUsers() }
         return when (apiResult) {
+            is Either.Failure -> Either.Failure(apiResult.cause)
             is Either.Success -> Either.Success(mapper.map(apiResult.data))
-            is Either.Error -> Either.Error(apiResult.cause)
         }
     }
 
