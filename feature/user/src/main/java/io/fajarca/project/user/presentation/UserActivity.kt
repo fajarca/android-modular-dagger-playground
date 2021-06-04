@@ -11,7 +11,9 @@ import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
+import io.fajarca.project.base.network.exception.ClientErrorException
 import io.fajarca.project.base.network.exception.NoInternetConnection
+import io.fajarca.project.base.network.exception.ServerErrorException
 import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
 import javax.inject.Inject
@@ -59,12 +61,19 @@ class UserActivity : AppCompatActivity() {
                 }
                 is ViewState.Error -> {
                     binding.progressBar.gone()
-
-                    when (it.cause) {
+                    when(val cause = it.cause) {
+                        is ClientErrorException -> {
+                            val code = cause.code
+                            val message = cause.errorMessage
+                        }
+                        is ServerErrorException -> {
+                            val code = cause.code
+                        }
                         is NoInternetConnection -> {
                             Toast.makeText(this, "No connection", Toast.LENGTH_LONG).show()
                         }
                     }
+
                 }
             }
         }

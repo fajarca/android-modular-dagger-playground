@@ -3,7 +3,9 @@
     package="io.fajarca.project.user">
 
     <application>
-        <activity android:name=".presentation.UserActivity" />
+        <activity
+            android:name=".presentation.UserActivity"
+            android:label="Users" />
     </application>
 
 </manifest>

@@ -5,4 +5,6 @@ import io.fajarca.project.user.domain.entity.User
 
 interface UserRepository {
     suspend fun getUsers(): Either<Exception, List<User>>
+    suspend fun setPin(pin : String)
+    suspend fun getPin() : String
 }
