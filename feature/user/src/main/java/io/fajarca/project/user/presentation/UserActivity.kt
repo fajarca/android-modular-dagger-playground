@@ -64,7 +64,6 @@ class UserActivity : AppCompatActivity() {
                     when(val cause = it.cause) {
                         is ClientErrorException -> {
                             val code = cause.code
-                            val message = cause.errorMessage
                         }
                         is ServerErrorException -> {
                             val code = cause.code

@@ -22,7 +22,7 @@ class ApiClientImpl @Inject constructor() : ApiClient {
             when {
                 response.isSuccessful && response.body() == null -> Either.Failure(EmptyResponseException())
                 response.isSuccessful && response.body() != null -> Either.Success(response.body()!!)
-                response.code() in 400..499 -> Either.Failure(ClientErrorException(response.code(), response.errorBody().toString()))
+                response.code() in 400..499 -> Either.Failure(ClientErrorException(response.code()))
                 response.code() in 500..599 -> Either.Failure(ServerErrorException(response.code()))
                 else -> Either.Failure(UnknownNetworkErrorException(response.errorBody().toString()))
             }
