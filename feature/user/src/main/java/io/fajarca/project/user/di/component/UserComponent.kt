@@ -12,7 +12,12 @@ import io.fajarca.project.user.presentation.UserActivity
 @ModuleScope
 @Component(
     dependencies = [BaseComponent::class],
-    modules = [NetworkModule::class, ViewModelFactoryModule::class, ViewModelModule::class, RepositoryModule::class]
+    modules = [
+        NetworkModule::class,
+        ViewModelFactoryModule::class,
+        ViewModelModule::class,
+        RepositoryModule::class
+    ]
 )
 interface UserComponent {
     fun inject(activity: UserActivity)

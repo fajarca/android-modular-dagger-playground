@@ -24,5 +24,5 @@ class NetworkModule {
 
     @Provides
     @ModuleScope
-    fun provideLoginServiceApi(retrofit: Retrofit) = retrofit.create(UserService::class.java)
+    fun provideLoginServiceApi(retrofit: Retrofit): UserService = retrofit.create(UserService::class.java)
 }
