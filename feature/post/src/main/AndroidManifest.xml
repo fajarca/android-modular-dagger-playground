@@ -32,7 +32,7 @@
             android:label="Post">
             <intent-filter
                 android:autoVerify="true"
-                android:label="@string/app_nagitme"
+                android:label="@string/app_name"
                 tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
 
