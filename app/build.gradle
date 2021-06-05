@@ -52,6 +52,7 @@ dependencies {
     implementation project(':base')
     implementation project(':feature:user')
     implementation project(':feature:post')
+    implementation project(':common')
 
     //Dagger2
     def dagger_version = "2.24"

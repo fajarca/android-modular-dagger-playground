@@ -5,6 +5,7 @@ import dagger.Subcomponent
 import io.fajarca.project.base.abstraction.ApiClient
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
+import io.fajarca.project.base.router.Router
 import okhttp3.OkHttpClient
 
 @Subcomponent
@@ -20,4 +21,5 @@ interface BaseComponent {
     fun coroutineDispatcher() : DispatcherProvider
     fun apiClient() : ApiClient
     fun moshi() : Moshi
+    fun router() : Router
 }

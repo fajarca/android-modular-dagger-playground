@@ -14,7 +14,8 @@ class PostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val extras = intent.extras
-        val data = extras?.getParcelable(Routable.ROUTE_DATA) as? PostRouterData ?: return
+        val data = extras?.getParcelable(Routable.ROUTE_DATA) as? io.fajarca.project.common.route.PostRouterData
+            ?: return
         val postId = data.postId
 
         binding.tvPostId.text = "I received post id $postId"

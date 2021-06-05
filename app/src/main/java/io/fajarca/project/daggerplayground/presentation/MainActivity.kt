@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import io.fajarca.project.base.router.Router
 import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
 import io.fajarca.project.daggerplayground.databinding.ActivityMainBinding
-import io.fajarca.project.post.PostRouterData
-import io.fajarca.project.user.presentation.UserRouterData
+import io.fajarca.project.common.route.PostRouterData
+import io.fajarca.project.common.route.UserRouterData
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

@@ -3,10 +3,11 @@ package io.fajarca.project.base.router
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Parcelable
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 
-interface Routable<Route : AppCompatActivity, Data : RouterData> {
+interface Routable<Route : AppCompatActivity, Data : Parcelable> {
 
     companion object {
         const val ROUTE_DATA = "RouteData"
@@ -22,7 +23,8 @@ interface Routable<Route : AppCompatActivity, Data : RouterData> {
             context.startActivity(it)
         }
     }
-    fun startActivity(context : Context, data : RouterData?) {
+
+    fun startActivity(context : Context, data : Parcelable?) {
         data.takeIf { it?.javaClass == routerDataClass }?.let { routerData ->
             buildIntent(context).putExtra(ROUTE_DATA, routerData ).also { intent -> context.startActivity(intent) }
         } ?: kotlin.run {

@@ -15,6 +15,9 @@ import io.fajarca.project.base.network.exception.ClientErrorException
 import io.fajarca.project.base.network.exception.NoInternetConnection
 import io.fajarca.project.base.network.exception.ServerErrorException
 import io.fajarca.project.base.router.Routable
+import io.fajarca.project.base.router.Router
+import io.fajarca.project.common.route.PostRouterData
+import io.fajarca.project.common.route.UserRouterData
 import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
 import javax.inject.Inject
@@ -24,6 +27,9 @@ class UserActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+
+    @Inject
+    lateinit var router: Router
 
     private val viewModel by viewModels<UserViewModel> {  viewModelFactory }
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
@@ -46,22 +52,21 @@ class UserActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        setupView()
         observeUsers()
         viewModel.getUsers()
-        binding.btnGoToPostModule.setOnClickListener {
 
-            /*router.routeToActivity(
-                this,
-                UserRouterData.ROUTER_ID,
-                UserRouterData(1)
-            )*/
-            //userRouter.navigateToPost(this, "3")
-        }
 
         val extras = intent.extras
-        val data = extras?.getParcelable(Routable.ROUTE_DATA) as? UserRouterData ?: return
+        val data = extras?.getParcelable(Routable.ROUTE_DATA) as? UserRouterData
+            ?: return
         val userId = data.userId
+    }
+
+    private fun setupView() {
+        binding.btnGoToPostModule.setOnClickListener {
+            router.routeToActivity(this, PostRouterData(2))
+        }
     }
 
     private fun observeUsers() {

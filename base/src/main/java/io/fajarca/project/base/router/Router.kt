@@ -2,6 +2,7 @@ package io.fajarca.project.base.router
 
 import android.content.Context
 import android.net.Uri
+import android.os.Parcelable
 import android.util.SparseArray
 import androidx.core.util.forEach
 import javax.inject.Inject
@@ -23,7 +24,7 @@ class Router @Inject constructor(
      * with given rotuer
      * O(1) time complexity way
      */
-    fun routeToActivity(context: Context, code: Int, data: RouterData?) {
+    fun routeToActivity(context: Context, code: Int, data: Parcelable?) {
         routes.get(code)?.startActivity(context, data)
     }
 
@@ -32,7 +33,7 @@ class Router @Inject constructor(
      * which contains the given data class type as router data
      * O(n) time complexity way
      */
-    fun routeToActivity(context: Context, data: RouterData?) {
+    fun routeToActivity(context: Context, data: Parcelable?) {
         routes.forEach { _, routable ->
             routable.takeIf { it.routerDataClass == data?.javaClass }?.startActivity(context, data)
         }
