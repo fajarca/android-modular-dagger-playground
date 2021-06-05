@@ -11,6 +11,7 @@ import io.fajarca.project.daggerplayground.di.module.NetworkModule
 import io.fajarca.project.daggerplayground.di.module.RouterModule
 import io.fajarca.project.daggerplayground.di.module.StorageModule
 import io.fajarca.project.daggerplayground.di.module.SubcomponentModule
+import io.fajarca.project.daggerplayground.presentation.MainActivity
 import javax.inject.Singleton
 
 @Singleton
@@ -34,6 +35,7 @@ interface AppComponent {
     }
 
     fun inject(app : Application)
+    fun inject(activity : MainActivity)
     fun baseComponent() : BaseComponent.Factory
 
 }
