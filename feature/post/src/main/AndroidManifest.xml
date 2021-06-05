@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="io.fajarca.project.post">
 
     <application>
-        <activity android:name=".PostActivity"></activity>
+        <activity android:name=".PostActivity"
+            android:label="Post">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name"
+                tools:targetApi="m">
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Accepts URIs that begin with "app://links/post” -->
+                <data
+                    android:host="links"
+                    android:path="/post"
+                    android:scheme="app" />
+                <!-- note that the leading "/" is required for pathPrefix-->
+
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>

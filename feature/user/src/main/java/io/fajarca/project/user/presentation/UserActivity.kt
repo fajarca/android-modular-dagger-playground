@@ -1,5 +1,6 @@
 package io.fajarca.project.user.presentation
 
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -56,7 +57,9 @@ class UserActivity : AppCompatActivity() {
 
     private fun setupView() {
         binding.btnGoToPostModule.setOnClickListener {
-            router.routeToActivity(this, PostRouterData(2))
+            router.routeToLink(this, 1, Uri.parse("app://links/post?id=100"))
+            //router.routeToActivity(this, 1, PostRouterData(1))
+            //router.routeToActivity(this, PostRouterData(2))
         }
     }
 

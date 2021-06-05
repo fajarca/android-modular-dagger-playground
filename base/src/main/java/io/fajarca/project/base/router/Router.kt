@@ -14,8 +14,8 @@ class Router @Inject constructor(
      * Routes with given code & bundle to the route
      * which contains the given code as deep link code
      */
-    fun routeToLink(context: Context, code: Int, data: Uri?) {
-        val route = routes.get(code)
+    fun routeToLink(context: Context, deeplinkCode: Int, data: Uri?) {
+        val route = routes.get(deeplinkCode)
         route.startDeeplink(context, data)
     }
 
@@ -25,8 +25,8 @@ class Router @Inject constructor(
      * with given router
      * O(1) time complexity way
      */
-    fun routeToActivity(context: Context, code: Int, data: Parcelable?) {
-        val route = routes.get(code)
+    fun routeToActivity(context: Context, deeplinkCode: Int, data: Parcelable?) {
+        val route = routes.get(deeplinkCode)
         route.startActivity(context, data)
     }
 

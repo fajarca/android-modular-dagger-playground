@@ -26,10 +26,9 @@ interface Routable<Route : AppCompatActivity, Data : Parcelable> {
      * Triggers when context comes from deep link navigation
      */
     fun startDeeplink(context: Context, data: Uri?) {
-        buildIntent(context)
-            .putExtra(DEEPLINK_DATA, data).also {
-            context.startActivity(it)
-        }
+        val intent = buildIntent(context)
+        intent.putExtra(DEEPLINK_DATA, data)
+        context.startActivity(intent)
     }
 
     /**
@@ -39,7 +38,7 @@ interface Routable<Route : AppCompatActivity, Data : Parcelable> {
         data.takeIf { it?.javaClass == routerDataClass }?.let { routerData ->
             buildIntent(context).putExtra(ROUTE_DATA, routerData).also { intent -> context.startActivity(intent) }
         } ?: kotlin.run {
-            Log.e(javaClass.simpleName, "router data is not valid!")
+            Log.e(javaClass.simpleName, "Router data is not valid!")
         }
     }
 
