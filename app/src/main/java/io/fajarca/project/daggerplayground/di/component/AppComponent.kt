@@ -8,6 +8,7 @@ import io.fajarca.project.base.di.component.BaseComponent
 import io.fajarca.project.daggerplayground.di.module.ApiModule
 import io.fajarca.project.daggerplayground.di.module.CoroutineDispatcherModule
 import io.fajarca.project.daggerplayground.di.module.NetworkModule
+import io.fajarca.project.daggerplayground.di.module.RouterModule
 import io.fajarca.project.daggerplayground.di.module.StorageModule
 import io.fajarca.project.daggerplayground.di.module.SubcomponentModule
 import javax.inject.Singleton
@@ -19,7 +20,8 @@ import javax.inject.Singleton
         NetworkModule::class,
         SubcomponentModule::class,
         CoroutineDispatcherModule::class,
-        ApiModule::class
+        ApiModule::class,
+        RouterModule::class
     ]
 )
 

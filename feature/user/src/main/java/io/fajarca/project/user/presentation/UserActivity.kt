@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import io.fajarca.project.base.router.UserRouter
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
@@ -22,6 +23,9 @@ class UserActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var userRouter: UserRouter
 
     private val viewModel by viewModels<UserViewModel> {  viewModelFactory }
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
@@ -47,6 +51,7 @@ class UserActivity : AppCompatActivity() {
 
         observeUsers()
         viewModel.getUsers()
+        binding.btnGoToPostModule.setOnClickListener { userRouter.navigateToPost(this, "3") }
     }
 
     private fun observeUsers() {

@@ -19,4 +19,12 @@
         tools:text="Lorem ipsum"
         android:layout_height="wrap_content" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoToPostModule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center"
+        android:text="Go to post module"/>
+
 </LinearLayout>
