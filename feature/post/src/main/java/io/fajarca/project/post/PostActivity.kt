@@ -2,6 +2,7 @@ package io.fajarca.project.post
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.fajarca.project.base.router.Routable
 import io.fajarca.project.post.databinding.ActivityPostBinding
 
 class PostActivity : AppCompatActivity() {
@@ -13,7 +14,9 @@ class PostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val extras = intent.extras
-        val id = extras?.getString("id")
-        binding.tvPostId.text = "I received id $id"
+        val data = extras?.getParcelable(Routable.ROUTE_DATA) as? PostRouterData ?: return
+        val postId = data.postId
+
+        binding.tvPostId.text = "I received post id $postId"
     }
 }

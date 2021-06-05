@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import io.fajarca.project.base.router.Router
 import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
 import io.fajarca.project.daggerplayground.databinding.ActivityMainBinding
+import io.fajarca.project.post.PostRouterData
 import io.fajarca.project.user.presentation.UserRouterData
 import javax.inject.Inject
 
@@ -20,8 +21,15 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        binding.button.setOnClickListener {
+        setupView()
+    }
+
+    private fun setupView() {
+        binding.btnGoToUserModule.setOnClickListener {
             router.routeToActivity(this, UserRouterData(4))
+        }
+        binding.btnGoToPostModule.setOnClickListener {
+            router.routeToActivity(this, PostRouterData(4))
         }
     }
 
