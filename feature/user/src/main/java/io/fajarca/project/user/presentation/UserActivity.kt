@@ -1,7 +1,5 @@
 package io.fajarca.project.user.presentation
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -34,16 +32,7 @@ class UserActivity : AppCompatActivity() {
     private val viewModel by viewModels<UserViewModel> {  viewModelFactory }
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
 
-    companion object {
-        @JvmStatic
-        fun start(context: Context) {
-            val starter = Intent(context, UserActivity::class.java)
-            context.startActivity(starter)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
         DaggerUserComponent
             .builder()
             .baseComponent((application as BaseApplication).getBaseComponent())
@@ -52,11 +41,13 @@ class UserActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        handleIntentArguments()
         setupView()
         observeUsers()
         viewModel.getUsers()
+    }
 
-
+    private fun handleIntentArguments() {
         val extras = intent.extras
         val data = extras?.getParcelable(Routable.ROUTE_DATA) as? UserRouterData
             ?: return

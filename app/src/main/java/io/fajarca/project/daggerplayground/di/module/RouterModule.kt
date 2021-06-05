@@ -10,12 +10,11 @@ import io.fajarca.project.user.presentation.UserRouter
 @Module
 class RouterModule {
 
-    private fun provideRouters(): SparseArray<Routable<*, *>> =
-        SparseArray<Routable<*, *>>().apply {
+    @Provides
+    fun provideRouterData(): SparseArray<Routable<*, *>>  {
+        return SparseArray<Routable<*, *>>().apply {
             put(PostRouter.deepLinkCode, PostRouter)
             put(UserRouter.deepLinkCode, UserRouter)
         }
-
-    @Provides
-    fun provideRouterData(): SparseArray<Routable<*, *>> = provideRouters()
+    }
 }
