@@ -4,27 +4,49 @@
     package="io.fajarca.project.post">
 
     <application>
-        <activity android:name=".PostActivity"
-            android:label="Post">
+
+        <activity
+            android:name=".detail.PostDetailActivity"
+            android:label="Post detail">
             <intent-filter
                 android:autoVerify="true"
                 android:label="@string/app_name"
                 tools:targetApi="m">
-
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- Accepts URIs that begin with "app://links/post” -->
+                <!-- Accepts URIs that begin with "app://post/detail” -->
                 <data
-                    android:host="links"
-                    android:path="/post"
+                    android:host="post"
+                    android:pathPrefix="/detail"
                     android:scheme="app" />
-                <!-- note that the leading "/" is required for pathPrefix-->
+                <!-- note that the leading "/" is required for pathPrefix -->
 
             </intent-filter>
+        </activity>
 
+        <activity
+            android:name=".PostActivity"
+            android:label="Post">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Accepts URIs that begin with "app://post” -->
+                <data
+                    android:host="post"
+                    android:path="/"
+                    android:scheme="app" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+
+            </intent-filter>
         </activity>
     </application>
 

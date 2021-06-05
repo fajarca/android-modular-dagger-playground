@@ -15,7 +15,6 @@ import io.fajarca.project.base.network.exception.NoInternetConnection
 import io.fajarca.project.base.network.exception.ServerErrorException
 import io.fajarca.project.base.router.Routable
 import io.fajarca.project.base.router.Router
-import io.fajarca.project.common.route.PostRouterData
 import io.fajarca.project.common.route.UserRouterData
 import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
