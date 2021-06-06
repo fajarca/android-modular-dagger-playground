@@ -1,17 +1,17 @@
 package io.fajarca.project.user.data.repository
 
 import io.fajarca.project.base.Either
-import io.fajarca.project.base.di.scope.ModuleScope
 import io.fajarca.project.user.data.mapper.UserMapper
+import io.fajarca.project.user.data.mapper.UsersMapper
 import io.fajarca.project.user.data.source.UserLocalDataSource
 import io.fajarca.project.user.data.source.UserRemoteDataSource
 import io.fajarca.project.user.domain.entity.User
 import io.fajarca.project.user.domain.repository.UserRepository
 import javax.inject.Inject
 
-@ModuleScope
 class UserRepositoryImpl @Inject constructor(
-    private val mapper: UserMapper,
+    private val usersMapper: UsersMapper,
+    private val userMapper: UserMapper,
     private val userLocalDataSource: UserLocalDataSource,
     private val userRemoteDataSource: UserRemoteDataSource
 ) : UserRepository {
@@ -20,7 +20,15 @@ class UserRepositoryImpl @Inject constructor(
         val apiResult = userRemoteDataSource.getUsers()
         return when (apiResult) {
             is Either.Failure -> Either.Failure(apiResult.cause)
-            is Either.Success -> Either.Success(mapper.map(apiResult.data))
+            is Either.Success -> Either.Success(usersMapper.map(apiResult.data))
+        }
+    }
+
+    override suspend fun getUserDetail(userId : Int): Either<Exception, User> {
+        val apiResult = userRemoteDataSource.getUserDetail(userId)
+        return when (apiResult) {
+            is Either.Failure -> Either.Failure(apiResult.cause)
+            is Either.Success -> Either.Success(userMapper.map(apiResult.data))
         }
     }
 

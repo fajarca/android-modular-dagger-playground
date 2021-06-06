@@ -19,6 +19,7 @@ import io.fajarca.project.base.router.Router
 import io.fajarca.project.common.route.UserRouterData
 import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
+import io.fajarca.project.user.presentation.detail.UserDetailActivity
 import javax.inject.Inject
 
 class UserActivity : AppCompatActivity() {
@@ -52,8 +53,7 @@ class UserActivity : AppCompatActivity() {
     private fun handleIntentArguments() {
         val extras = intent.extras
         val data = extras?.getParcelable(Routable.ROUTE_DATA) as? UserRouterData
-            ?: return
-        val userId = data.userId
+        val userId = data?.userId
     }
 
     private fun setupView() {
@@ -68,7 +68,9 @@ class UserActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
-        adapter.setOnUserSelected {  }
+        adapter.setOnUserSelected { user ->
+            UserDetailActivity.start(this, user.id)
+        }
     }
 
     
