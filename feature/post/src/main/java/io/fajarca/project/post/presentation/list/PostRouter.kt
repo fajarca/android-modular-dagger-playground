@@ -1,4 +1,4 @@
-package io.fajarca.project.post
+package io.fajarca.project.post.presentation.list
 
 import android.content.Context
 import android.net.Uri

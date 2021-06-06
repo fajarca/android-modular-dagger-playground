@@ -1,9 +1,8 @@
-package io.fajarca.project.user.presentation.main.di
+package io.fajarca.project.user.presentation.list.di
 
 import dagger.Subcomponent
 import io.fajarca.project.base.di.scope.FeatureScope
-import io.fajarca.project.user.presentation.detail.UserDetailActivity
-import io.fajarca.project.user.presentation.main.UserActivity
+import io.fajarca.project.user.presentation.list.UserActivity
 
 @FeatureScope
 @Subcomponent(

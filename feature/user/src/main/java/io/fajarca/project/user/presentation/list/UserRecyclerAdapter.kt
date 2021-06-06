@@ -1,4 +1,4 @@
-package io.fajarca.project.user.presentation.main
+package io.fajarca.project.user.presentation.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

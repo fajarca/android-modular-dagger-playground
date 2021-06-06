@@ -1,4 +1,4 @@
-package io.fajarca.project.user.presentation.main
+package io.fajarca.project.user.presentation.list
 
 import android.net.Uri
 import android.os.Bundle

@@ -8,7 +8,7 @@ import io.fajarca.project.user.di.module.RepositoryModule
 import io.fajarca.project.user.di.module.SubcomponentModule
 import io.fajarca.project.user.di.module.ViewModelFactoryModule
 import io.fajarca.project.user.presentation.detail.di.UserDetailComponent
-import io.fajarca.project.user.presentation.main.di.UserActivityComponent
+import io.fajarca.project.user.presentation.list.di.UserActivityComponent
 
 @ModuleScope
 @Component(

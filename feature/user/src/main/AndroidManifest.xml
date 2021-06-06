@@ -6,7 +6,7 @@
         <activity
             android:name="io.fajarca.project.user.presentation.detail.UserDetailActivity"
             android:label="User Detail"
-            android:parentActivityName="io.fajarca.project.user.presentation.main.UserActivity" />
+            android:parentActivityName="io.fajarca.project.user.presentation.list.UserActivity" />
     </application>
 
 </manifest>

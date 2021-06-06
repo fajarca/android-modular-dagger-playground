@@ -24,35 +24,12 @@
         </activity>
 
         <activity
-            android:name="io.fajarca.project.user.presentation.main.UserActivity"
+            android:name="io.fajarca.project.user.presentation.list.UserActivity"
             android:label="Users"
             android:parentActivityName=".presentation.MainActivity" />
 
         <activity
-            android:name="io.fajarca.project.post.detail.PostDetailActivity"
-            android:label="Post detail"
-            android:parentActivityName=".presentation.MainActivity">
-            <intent-filter
-                android:autoVerify="true"
-                android:label="@string/app_name"
-                tools:targetApi="m">
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <!-- Accepts URIs that begin with "app://post/7” -->
-                <data
-                    android:host="post"
-                    android:pathPattern="/..*"
-                    android:scheme="app" />
-                <!-- note that the leading "/" is required for pathPattern -->
-
-            </intent-filter>
-        </activity>
-
-        <activity
-            android:name="io.fajarca.project.post.PostActivity"
+            android:name="io.fajarca.project.post.presentation.list.PostActivity"
             android:label="Post"
             android:parentActivityName=".presentation.MainActivity">
             <intent-filter
