@@ -7,9 +7,8 @@ import io.fajarca.project.user.di.module.NetworkModule
 import io.fajarca.project.user.di.module.RepositoryModule
 import io.fajarca.project.user.di.module.SubcomponentModule
 import io.fajarca.project.user.di.module.ViewModelFactoryModule
-import io.fajarca.project.user.di.module.ViewModelModule
 import io.fajarca.project.user.presentation.detail.di.UserDetailComponent
-import io.fajarca.project.user.presentation.main.UserActivity
+import io.fajarca.project.user.presentation.main.di.UserActivityComponent
 
 @ModuleScope
 @Component(
@@ -17,12 +16,11 @@ import io.fajarca.project.user.presentation.main.UserActivity
     modules = [
         NetworkModule::class,
         ViewModelFactoryModule::class,
-        ViewModelModule::class,
         RepositoryModule::class,
         SubcomponentModule::class
     ]
 )
 interface UserComponent {
-    fun inject(activity: UserActivity)
+    fun userActivityComponent() : UserActivityComponent.Factory
     fun userDetailComponent() : UserDetailComponent.Factory
 }

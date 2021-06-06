@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.fajarca.project.user.databinding.ItemUserBinding
 import io.fajarca.project.user.domain.entity.User
 
-class UserRecyclerAdapter() : ListAdapter<User, UserRecyclerAdapter.ViewHolder>(diffCallback) {
+class UserRecyclerAdapter : ListAdapter<User, UserRecyclerAdapter.ViewHolder>(diffCallback) {
     
     private var onUserSelected: (User) -> Unit = {}
     

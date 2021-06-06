@@ -35,11 +35,12 @@ class UserActivity : AppCompatActivity() {
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        DaggerUserComponent
+        val userComponent = DaggerUserComponent
             .builder()
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
-            .inject(this)
+
+        userComponent.userActivityComponent().create().inject(this)
 
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

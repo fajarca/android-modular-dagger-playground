@@ -2,18 +2,13 @@ package io.fajarca.project.user.presentation.detail
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.base.abstraction.BaseApplication
-import io.fajarca.project.base.router.Routable
-import io.fajarca.project.common.route.UserRouterData
-import io.fajarca.project.user.R
-import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.databinding.ActivityUserDetailBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
-import io.fajarca.project.user.presentation.main.UserViewModel
 import javax.inject.Inject
 
 class UserDetailActivity : AppCompatActivity() {

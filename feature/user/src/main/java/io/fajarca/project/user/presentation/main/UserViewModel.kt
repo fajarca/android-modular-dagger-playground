@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
+import io.fajarca.project.base.di.scope.FeatureScope
 import io.fajarca.project.base.di.scope.ModuleScope
 import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
@@ -15,7 +16,7 @@ import io.fajarca.project.user.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ModuleScope
+@FeatureScope
 class UserViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val dispatcherProvider: DispatcherProvider
