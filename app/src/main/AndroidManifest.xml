@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.fajarca.project.daggerplayground" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="io.fajarca.project.daggerplayground">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".DaggerPlaygroundApp"
@@ -21,7 +22,57 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="io.fajarca.project.user.presentation.main.UserActivity"/>
+        <activity
+            android:name="io.fajarca.project.user.presentation.main.UserActivity"
+            android:label="Users"
+            android:parentActivityName=".presentation.MainActivity"/>
+
+        <activity
+            android:name="io.fajarca.project.post.detail.PostDetailActivity"
+            android:parentActivityName=".presentation.MainActivity"
+            android:label="Post detail">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Accepts URIs that begin with "app://post/7” -->
+                <data
+                    android:host="post"
+                    android:pathPattern="/..*"
+                    android:scheme="app" />
+                <!-- note that the leading "/" is required for pathPattern -->
+
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.fajarca.project.post.PostActivity"
+            android:parentActivityName=".presentation.MainActivity"
+            android:label="Post">
+            <intent-filter
+                android:autoVerify="true"
+                android:label="@string/app_name"
+                tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <!-- Accepts URIs that begin with "app://post/” -->
+                <data
+                    android:host="post"
+                    android:path="/"
+                    android:scheme="app" />
+                <!-- note that the leading "/" is required for pathPrefix -->
+
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>
