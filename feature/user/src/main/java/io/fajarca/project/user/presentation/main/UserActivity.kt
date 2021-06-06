@@ -31,7 +31,7 @@ class UserActivity : AppCompatActivity() {
     lateinit var router: Router
 
     private val adapter by lazy { UserRecyclerAdapter() }
-    private val viewModel by viewModels<UserViewModel> {  viewModelFactory }
+    private val viewModel by viewModels<UserViewModel> { viewModelFactory }
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,9 +74,9 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
-    
+
     private fun observeUsers() {
-        viewModel.users.observe(this){
+        viewModel.users.observe(this) {
             when (it) {
                 ViewState.Loading -> {
                     binding.progressBar.visible()
@@ -87,7 +87,7 @@ class UserActivity : AppCompatActivity() {
                 }
                 is ViewState.Error -> {
                     binding.progressBar.gone()
-                    when(val cause = it.cause) {
+                    when (val cause = it.cause) {
                         is ClientErrorException -> {
                             val code = cause.code
                         }

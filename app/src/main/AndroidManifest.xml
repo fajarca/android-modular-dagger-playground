@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="io.fajarca.project.daggerplayground">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".DaggerPlaygroundApp"
@@ -10,11 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DaggerPlayGround" >
+        android:theme="@style/Theme.DaggerPlayGround">
 
         <activity
             android:name=".presentation.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +26,12 @@
         <activity
             android:name="io.fajarca.project.user.presentation.main.UserActivity"
             android:label="Users"
-            android:parentActivityName=".presentation.MainActivity"/>
+            android:parentActivityName=".presentation.MainActivity" />
 
         <activity
             android:name="io.fajarca.project.post.detail.PostDetailActivity"
-            android:parentActivityName=".presentation.MainActivity"
-            android:label="Post detail">
+            android:label="Post detail"
+            android:parentActivityName=".presentation.MainActivity">
             <intent-filter
                 android:autoVerify="true"
                 android:label="@string/app_name"
@@ -52,8 +53,8 @@
 
         <activity
             android:name="io.fajarca.project.post.PostActivity"
-            android:parentActivityName=".presentation.MainActivity"
-            android:label="Post">
+            android:label="Post"
+            android:parentActivityName=".presentation.MainActivity">
             <intent-filter
                 android:autoVerify="true"
                 android:label="@string/app_name"
