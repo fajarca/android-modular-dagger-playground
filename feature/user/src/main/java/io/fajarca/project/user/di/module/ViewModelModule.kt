@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import io.fajarca.project.base.di.scope.ModuleScope
 import io.fajarca.project.base.di.annotation.ViewModelKey
-import io.fajarca.project.user.presentation.UserViewModel
+import io.fajarca.project.user.presentation.main.UserViewModel
 
 @Module
 abstract class ViewModelModule {
@@ -15,6 +15,6 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(UserViewModel::class)
     @ModuleScope
-    internal abstract fun providesLoginViewModel(viewModel: UserViewModel): ViewModel
+    internal abstract fun providesUserViewModel(viewModel: UserViewModel): ViewModel
 
 }

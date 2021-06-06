@@ -1,4 +1,4 @@
-package io.fajarca.project.user.presentation
+package io.fajarca.project.user.presentation.main
 
 import android.net.Uri
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
@@ -25,10 +26,10 @@ class UserActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-
     @Inject
     lateinit var router: Router
 
+    private val adapter by lazy { UserRecyclerAdapter() }
     private val viewModel by viewModels<UserViewModel> {  viewModelFactory }
     private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
 
@@ -42,6 +43,7 @@ class UserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         handleIntentArguments()
+        setupRecyclerView()
         setupView()
         observeUsers()
         viewModel.getUsers()
@@ -62,6 +64,14 @@ class UserActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupRecyclerView() {
+        val layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.adapter = adapter
+        adapter.setOnUserSelected {  }
+    }
+
+    
     private fun observeUsers() {
         viewModel.users.observe(this){
             when (it) {
@@ -69,8 +79,8 @@ class UserActivity : AppCompatActivity() {
                     binding.progressBar.visible()
                 }
                 is ViewState.Success -> {
-                    binding.tvUsers.text = it.data.toString()
                     binding.progressBar.gone()
+                    adapter.submitList(it.data)
                 }
                 is ViewState.Error -> {
                     binding.progressBar.gone()

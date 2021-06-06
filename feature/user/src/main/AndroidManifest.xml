@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".presentation.UserActivity"
+            android:name=".presentation.main.UserActivity"
             android:label="Users" />
     </application>
 

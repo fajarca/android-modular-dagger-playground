@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import io.fajarca.project.base.router.Routable
 import io.fajarca.project.post.PostRouter
-import io.fajarca.project.user.presentation.UserRouter
+import io.fajarca.project.user.presentation.main.UserRouter
 
 @Module
 class RouterModule {

@@ -1,4 +1,4 @@
-package io.fajarca.project.user.presentation
+package io.fajarca.project.user.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

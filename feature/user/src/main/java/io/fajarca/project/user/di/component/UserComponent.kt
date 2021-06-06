@@ -7,7 +7,7 @@ import io.fajarca.project.user.di.module.NetworkModule
 import io.fajarca.project.user.di.module.RepositoryModule
 import io.fajarca.project.user.di.module.ViewModelFactoryModule
 import io.fajarca.project.user.di.module.ViewModelModule
-import io.fajarca.project.user.presentation.UserActivity
+import io.fajarca.project.user.presentation.main.UserActivity
 
 @ModuleScope
 @Component(

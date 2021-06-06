@@ -17,12 +17,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- Accepts URIs that begin with "app://post/detail” -->
+                <!-- Accepts URIs that begin with "app://post/7” -->
                 <data
                     android:host="post"
                     android:pathPattern="/..*"
                     android:scheme="app" />
-                <!-- note that the leading "/" is required for pathPrefix -->
+                <!-- note that the leading "/" is required for pathPattern -->
 
             </intent-filter>
         </activity>
@@ -39,7 +39,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <!-- Accepts URIs that begin with "app://post” -->
+                <!-- Accepts URIs that begin with "app://post/” -->
                 <data
                     android:host="post"
                     android:path="/"

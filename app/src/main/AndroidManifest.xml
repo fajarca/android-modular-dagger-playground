@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="io.fajarca.project.user.presentation.UserActivity"/>
+        <activity android:name="io.fajarca.project.user.presentation.main.UserActivity"/>
     </application>
 
 </manifest>

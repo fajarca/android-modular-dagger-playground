@@ -1,4 +1,4 @@
-package io.fajarca.project.user.presentation
+package io.fajarca.project.user.presentation.main
 
 import io.fajarca.project.base.router.Routable
 import io.fajarca.project.common.route.UserRouterData
