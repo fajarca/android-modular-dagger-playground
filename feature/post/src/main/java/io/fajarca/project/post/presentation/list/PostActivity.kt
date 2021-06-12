@@ -1,12 +1,14 @@
 package io.fajarca.project.post.presentation.list
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.base.ViewState
+import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
@@ -21,7 +23,7 @@ import io.fajarca.project.post.di.component.DaggerPostComponent
 import io.fajarca.project.post.presentation.detail.PostDetailActivity
 import javax.inject.Inject
 
-class PostActivity : AppCompatActivity() {
+class PostActivity : BaseActivity<ActivityPostBinding>() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -29,9 +31,12 @@ class PostActivity : AppCompatActivity() {
     @Inject
     lateinit var router: Router
 
+    override fun getViewBinding(): (LayoutInflater) -> ActivityPostBinding {
+        return ActivityPostBinding::inflate
+    }
+
     private val adapter by lazy { PostRecyclerAdapter() }
     private val viewModel by viewModels<PostViewModel> { viewModelFactory }
-    private val binding by lazy { ActivityPostBinding.inflate(layoutInflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val postComponent = DaggerPostComponent
@@ -94,4 +99,5 @@ class PostActivity : AppCompatActivity() {
             }
         }
     }
+
 }
