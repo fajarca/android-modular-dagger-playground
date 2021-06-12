@@ -3,11 +3,12 @@ package io.fajarca.project.post.presentation.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.base.ViewState
+import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
@@ -19,12 +20,14 @@ import io.fajarca.project.post.di.component.DaggerPostComponent
 import io.fajarca.project.post.domain.entity.Post
 import javax.inject.Inject
 
-class PostDetailActivity : AppCompatActivity() {
+class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<PostDetailViewModel> { viewModelFactory }
 
-    private val binding by lazy { ActivityPostDetailBinding.inflate(layoutInflater) }
+    override val getViewBinding: (LayoutInflater) -> ActivityPostDetailBinding
+        get() = ActivityPostDetailBinding::inflate
+
     private var postId: Int = 0
 
     companion object {

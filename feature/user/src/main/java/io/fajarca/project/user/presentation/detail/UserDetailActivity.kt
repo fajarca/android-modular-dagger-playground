@@ -3,11 +3,12 @@ package io.fajarca.project.user.presentation.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.base.ViewState
+import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
@@ -19,14 +20,16 @@ import io.fajarca.project.user.di.component.DaggerUserComponent
 import io.fajarca.project.user.domain.entity.User
 import javax.inject.Inject
 
-class UserDetailActivity : AppCompatActivity() {
+class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<UserDetailViewModel> { viewModelFactory }
 
-    private val binding by lazy { ActivityUserDetailBinding.inflate(layoutInflater) }
     private var userId: Int = 0
+
+    override val getViewBinding: (LayoutInflater) -> ActivityUserDetailBinding
+        get() = ActivityUserDetailBinding::inflate
 
     companion object {
         private const val INTENT_KEY_USER_ID = "userId"

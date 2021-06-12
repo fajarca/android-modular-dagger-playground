@@ -9,13 +9,18 @@ abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
 
     private var _binding: V? = null
     protected val binding: V
-        get() = _binding!!
+        get() {
+            if (_binding == null) {
+                throw IllegalArgumentException("View binding is not initialized yet")
+            }
+            return _binding!!
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         if (_binding == null) {
-            _binding = getViewBinding().invoke(layoutInflater)
+            _binding = getViewBinding(layoutInflater)
         }
 
         setContentView(_binding?.root)
@@ -26,5 +31,5 @@ abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
         _binding = null
     }
 
-    abstract fun getViewBinding(): (LayoutInflater) -> V
+    abstract val getViewBinding: (LayoutInflater) -> V
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.base.ViewState
@@ -31,9 +30,8 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
     @Inject
     lateinit var router: Router
 
-    override fun getViewBinding(): (LayoutInflater) -> ActivityPostBinding {
-        return ActivityPostBinding::inflate
-    }
+    override val getViewBinding: (LayoutInflater) -> ActivityPostBinding
+        get() = ActivityPostBinding::inflate
 
     private val adapter by lazy { PostRecyclerAdapter() }
     private val viewModel by viewModels<PostViewModel> { viewModelFactory }

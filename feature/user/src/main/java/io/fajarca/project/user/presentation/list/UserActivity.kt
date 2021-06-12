@@ -2,12 +2,13 @@ package io.fajarca.project.user.presentation.list
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.base.ViewState
+import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
@@ -22,7 +23,7 @@ import io.fajarca.project.user.di.component.DaggerUserComponent
 import io.fajarca.project.user.presentation.detail.UserDetailActivity
 import javax.inject.Inject
 
-class UserActivity : AppCompatActivity() {
+class UserActivity : BaseActivity<ActivityUserBinding>() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,7 +33,8 @@ class UserActivity : AppCompatActivity() {
 
     private val adapter by lazy { UserRecyclerAdapter() }
     private val viewModel by viewModels<UserViewModel> { viewModelFactory }
-    private val binding by lazy { ActivityUserBinding.inflate(layoutInflater) }
+    override val getViewBinding: (LayoutInflater) -> ActivityUserBinding
+        get() = ActivityUserBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val userComponent = DaggerUserComponent
