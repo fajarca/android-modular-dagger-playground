@@ -12,7 +12,7 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 import retrofit2.Response
 
-class ApiClientImpl @Inject constructor(): ApiClient {
+internal class ApiClientImpl @Inject constructor(): ApiClient {
 
     override suspend fun <T> call(api: suspend () -> Response<T>): ApiResponse<Exception, T> {
         return try {

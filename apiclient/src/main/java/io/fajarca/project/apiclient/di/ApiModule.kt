@@ -9,6 +9,6 @@ import io.fajarca.project.apiclient.ApiClientImpl
 abstract class ApiModule {
 
     @Binds
-    abstract fun provideApi(apiClientImpl: ApiClientImpl) : ApiClient
+    internal abstract fun provideApi(apiClientImpl: ApiClientImpl) : ApiClient
 
 }
