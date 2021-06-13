@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
@@ -37,8 +38,12 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
     private val viewModel by viewModels<PostViewModel> { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val apiClientComponent = DaggerApiClientComponent.factory().create()
+
         val postComponent = DaggerPostComponent
             .builder()
+            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

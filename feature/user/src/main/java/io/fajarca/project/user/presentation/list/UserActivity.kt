@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
@@ -37,8 +38,11 @@ class UserActivity : BaseActivity<ActivityUserBinding>() {
         get() = ActivityUserBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val apiClientComponent = DaggerApiClientComponent.factory().create()
+
         val userComponent = DaggerUserComponent
             .builder()
+            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

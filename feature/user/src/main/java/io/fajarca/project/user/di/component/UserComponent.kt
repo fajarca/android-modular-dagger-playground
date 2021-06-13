@@ -1,6 +1,7 @@
 package io.fajarca.project.user.di.component
 
 import dagger.Component
+import io.fajarca.project.apiclient.di.ApiClientComponent
 import io.fajarca.project.base.di.component.BaseComponent
 import io.fajarca.project.base.di.scope.ModuleScope
 import io.fajarca.project.user.di.module.NetworkModule
@@ -12,7 +13,7 @@ import io.fajarca.project.user.presentation.list.di.UserActivityComponent
 
 @ModuleScope
 @Component(
-    dependencies = [BaseComponent::class],
+    dependencies = [BaseComponent::class, ApiClientComponent::class],
     modules = [
         NetworkModule::class,
         ViewModelFactoryModule::class,
