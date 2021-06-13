@@ -1,10 +1,10 @@
-package io.fajarca.project.post.presentation.list
+package io.fajarca.project.movie.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
@@ -15,66 +15,60 @@ import io.fajarca.project.base.extension.visible
 import io.fajarca.project.base.network.exception.ClientErrorException
 import io.fajarca.project.base.network.exception.NoInternetConnection
 import io.fajarca.project.base.network.exception.ServerErrorException
-import io.fajarca.project.base.router.Routable
-import io.fajarca.project.base.router.Router
-import io.fajarca.project.common.route.PostRouterData
-import io.fajarca.project.post.databinding.ActivityPostBinding
-import io.fajarca.project.post.di.component.DaggerPostComponent
-import io.fajarca.project.post.presentation.detail.PostDetailActivity
+import io.fajarca.project.movie.databinding.ActivityMovieListBinding
+import io.fajarca.project.movie.di.component.DaggerMovieComponent
 import javax.inject.Inject
 
-class PostActivity : BaseActivity<ActivityPostBinding>() {
+class MovieListActivity : BaseActivity<ActivityMovieListBinding>() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var router: Router
 
-    override val getViewBinding: (LayoutInflater) -> ActivityPostBinding
-        get() = ActivityPostBinding::inflate
+    override val getViewBinding: (LayoutInflater) -> ActivityMovieListBinding
+        get() = ActivityMovieListBinding::inflate
 
-    private val adapter by lazy { PostRecyclerAdapter() }
-    private val viewModel by viewModels<PostViewModel> { viewModelFactory }
+    private val adapter by lazy { MovieRecyclerAdapter() }
+
+    private val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        )[MovieListViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val apiClientComponent = DaggerApiClientComponent.factory().create()
 
-        val postComponent = DaggerPostComponent
+        val movieComponent = DaggerMovieComponent
             .builder()
             .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 
-        postComponent.postActivityComponent().create().inject(this)
+        movieComponent.movieListActivityComponent().create().inject(this)
 
         super.onCreate(savedInstanceState)
-        handleIntentArguments()
         setupRecyclerView()
-        observePosts()
-        viewModel.getPosts()
+        observePopularMovies()
+        viewModel.getPopularMovies()
     }
 
-    private fun handleIntentArguments() {
-        val extras = intent.extras
-        val data = extras?.getParcelable(Routable.ROUTE_DATA) as? PostRouterData
-        val postId = data?.postId
-    }
-    
+
 
     private fun setupRecyclerView() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = GridLayoutManager(this, 2)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = adapter
-        adapter.setOnPostSelected { post ->
-            PostDetailActivity.start(this, post.id)
+        adapter.setOnMovieSelected { movie ->
+
         }
     }
 
 
-    private fun observePosts() {
-        viewModel.post.observe(this) {
+    private fun observePopularMovies() {
+        viewModel.popularMovies.observe(this) {
             when (it) {
                 ViewState.Loading -> {
                     binding.progressBar.visible()

@@ -14,7 +14,10 @@
     </dist:module>
 
     <application>
-        <activity android:name=".MovieListActivity"></activity>
+        <activity
+            android:parentActivityName="io.fajarca.project.daggerplayground.presentation.MainActivity"
+            android:name=".presentation.MovieListActivity"
+            android:label="Popular Movies"/>
     </application>
 
 </manifest>

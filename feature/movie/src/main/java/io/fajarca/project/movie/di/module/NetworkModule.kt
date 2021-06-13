@@ -1,0 +1,63 @@
+package io.fajarca.project.movie.di.module
+
+import com.squareup.moshi.Moshi
+import dagger.Module
+import dagger.Provides
+import io.fajarca.project.base.di.scope.ModuleScope
+import io.fajarca.project.movie.BuildConfig
+import io.fajarca.project.movie.data.service.MovieService
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.Response
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+
+
+@Module
+class NetworkModule {
+
+    @Provides
+    @ModuleScope
+    fun provideAuthInterceptor(): Interceptor {
+        return object : Interceptor {
+            override fun intercept(chain: Interceptor.Chain): Response {
+                val newRequest = chain
+                    .request()
+                    .newBuilder()
+                    .addHeader(
+                        "Authorization",
+                        "Bearer " + BuildConfig.MOVIE_DB_API_KEY
+                    )
+                    .build()
+
+                return chain.proceed(newRequest)
+            }
+
+        }
+    }
+
+    @Provides
+    @ModuleScope
+    fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        authInterceptor: Interceptor,
+        moshi: Moshi
+    ): Retrofit {
+        val authOkHttpClient = okHttpClient
+            .newBuilder()
+            .addInterceptor(authInterceptor)
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl("https://api.themoviedb.org/3/")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(authOkHttpClient)
+            .build()
+    }
+
+
+    @Provides
+    @ModuleScope
+    fun provideMovieServiceApi(retrofit: Retrofit): MovieService =
+        retrofit.create(MovieService::class.java)
+}

@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun goToMovieScreen() {
         if (splitInstallManager.installedModules.contains("movie")) {
             val intent = Intent()
-            intent.setClassName(BuildConfig.APPLICATION_ID, "io.fajarca.project.movie.MovieListActivity")
+            intent.setClassName(BuildConfig.APPLICATION_ID, "io.fajarca.project.movie.presentation.MovieListActivity")
             startActivity(intent)
         } else {
             Log.e("", "Registration feature is not installed")
