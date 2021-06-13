@@ -20,7 +20,8 @@ ext {
     junitAndroidVersion = '1.1.2'
     espressoVersion = '3.3.0'
     lifecycleVersion = '2.3.1'
-    fragmentKtx = '1.1.0'
+    fragmentKtxVersion = '1.1.0'
+    androidGradlePluginVersion = '4.2.1'
 
     libraries = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib:" + kotlinVersion,
@@ -48,7 +49,7 @@ ext {
             livedata              : 'androidx.lifecycle:lifecycle-livedata-ktx:' + lifecycleVersion,
             lifecycleRuntime      : 'androidx.lifecycle:lifecycle-runtime-ktx:' + lifecycleVersion,
 
-            fragmentKtx           : "androidx.fragment:fragment-ktx:" + fragmentKtx
+            fragmentKtx           : "androidx.fragment:fragment-ktx:" + fragmentKtxVersion
     ]
 
     kaptLibraries = [
