@@ -1,5 +1,7 @@
 package io.fajarca.project.daggerplayground
 
+import android.content.Context
+import com.google.android.play.core.splitcompat.SplitCompat
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.di.component.BaseComponent
 import io.fajarca.project.daggerplayground.di.component.AppComponent
@@ -26,5 +28,9 @@ class DaggerPlaygroundApp : BaseApplication() {
     }
 
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        SplitCompat.install(this)
+    }
 
 }

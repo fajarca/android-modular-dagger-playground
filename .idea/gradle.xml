@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/movie" />
             <option value="$PROJECT_DIR$/feature/post" />
             <option value="$PROJECT_DIR$/feature/user" />
           </set>
