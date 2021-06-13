@@ -2,7 +2,6 @@ package io.fajarca.project.base.di.component
 
 import com.squareup.moshi.Moshi
 import dagger.Subcomponent
-import io.fajarca.project.base.abstraction.ApiClient
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import io.fajarca.project.base.router.Router
@@ -19,7 +18,6 @@ interface BaseComponent {
     fun storage(): Storage
     fun okHttpClient() : OkHttpClient
     fun coroutineDispatcher() : DispatcherProvider
-    fun apiClient() : ApiClient
     fun moshi() : Moshi
     fun router() : Router
 }

@@ -5,7 +5,6 @@ import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import io.fajarca.project.base.di.component.BaseComponent
-import io.fajarca.project.daggerplayground.di.module.ApiModule
 import io.fajarca.project.daggerplayground.di.module.CoroutineDispatcherModule
 import io.fajarca.project.daggerplayground.di.module.NetworkModule
 import io.fajarca.project.daggerplayground.di.module.RouterModule
@@ -21,7 +20,6 @@ import javax.inject.Singleton
         NetworkModule::class,
         SubcomponentModule::class,
         CoroutineDispatcherModule::class,
-        ApiModule::class,
         RouterModule::class
     ]
 )
