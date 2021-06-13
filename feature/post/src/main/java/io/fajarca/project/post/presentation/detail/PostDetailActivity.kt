@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
+import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
@@ -43,8 +44,11 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val apiClientComponent = DaggerApiClientComponent.factory().create()
         val postComponent = DaggerPostComponent
             .builder()
+            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

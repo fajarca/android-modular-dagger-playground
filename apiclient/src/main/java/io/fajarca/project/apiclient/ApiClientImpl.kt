@@ -14,27 +14,27 @@ import retrofit2.Response
 
 class ApiClientImpl @Inject constructor(): ApiClient {
 
-    override suspend fun <T> call(api: suspend () -> Response<T>): ApiResult<Exception, T> {
+    override suspend fun <T> call(api: suspend () -> Response<T>): ApiResponse<Exception, T> {
         return try {
             val response = api()
             when {
-                response.isSuccessful && response.body() == null -> ApiResult.Failure(EmptyResponseException())
-                response.isSuccessful && response.body() != null -> ApiResult.Success(response.body()!!)
-                response.code() in 400..499 -> ApiResult.Failure(ClientErrorException(response.code()))
-                response.code() in 500..599 -> ApiResult.Failure(ServerErrorException(response.code()))
-                else -> ApiResult.Failure(UnknownNetworkErrorException(response.errorBody().toString()))
+                response.isSuccessful && response.body() == null -> ApiResponse.Failure(EmptyResponseException())
+                response.isSuccessful && response.body() != null -> ApiResponse.Success(response.body()!!)
+                response.code() in 400..499 -> ApiResponse.Failure(ClientErrorException(response.code()))
+                response.code() in 500..599 -> ApiResponse.Failure(ServerErrorException(response.code()))
+                else -> ApiResponse.Failure(UnknownNetworkErrorException(response.errorBody().toString()))
             }
         } catch (exception: Exception) {
             handleError(exception)
         }
     }
 
-    private fun <T> handleError(exception: Exception): ApiResult.Failure<Exception, T> {
+    private fun <T> handleError(exception: Exception): ApiResponse.Failure<Exception, T> {
         return when (exception) {
-            is UnknownHostException -> ApiResult.Failure(NoInternetConnection())
-            is SocketTimeoutException -> ApiResult.Failure(TimeoutException())
-            is IOException -> ApiResult.Failure(UnknownNetworkErrorException(exception.message ?: "Unknown IO Exception error"))
-            else -> ApiResult.Failure(UnknownNetworkErrorException(exception.localizedMessage ?: "Unknown error"))
+            is UnknownHostException -> ApiResponse.Failure(NoInternetConnection())
+            is SocketTimeoutException -> ApiResponse.Failure(TimeoutException())
+            is IOException -> ApiResponse.Failure(UnknownNetworkErrorException(exception.message ?: "Unknown IO Exception error"))
+            else -> ApiResponse.Failure(UnknownNetworkErrorException(exception.localizedMessage ?: "Unknown error"))
         }
     }
 
