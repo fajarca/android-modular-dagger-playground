@@ -3,9 +3,7 @@ package io.fajarca.project.movie.presentation
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
@@ -17,45 +15,24 @@ import io.fajarca.project.base.network.exception.NoInternetConnection
 import io.fajarca.project.base.network.exception.ServerErrorException
 import io.fajarca.project.movie.databinding.ActivityMovieListBinding
 import io.fajarca.project.movie.di.component.DaggerMovieComponent
-import javax.inject.Inject
 
-class MovieListActivity : BaseActivity<ActivityMovieListBinding>() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
+class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewModel>() {
 
     override val getViewBinding: (LayoutInflater) -> ActivityMovieListBinding
         get() = ActivityMovieListBinding::inflate
 
+
+    override val getViewModelClass: Class<MovieListViewModel>
+        get() = MovieListViewModel::class.java
+
     private val adapter by lazy { MovieRecyclerAdapter() }
 
-    private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            viewModelFactory
-        )[MovieListViewModel::class.java]
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val apiClientComponent = DaggerApiClientComponent.factory().create()
-
-        val movieComponent = DaggerMovieComponent
-            .builder()
-            .apiClientComponent(apiClientComponent)
-            .baseComponent((application as BaseApplication).getBaseComponent())
-            .build()
-
-        movieComponent.movieListActivityComponent().create().inject(this)
-
         super.onCreate(savedInstanceState)
         setupRecyclerView()
         observePopularMovies()
         viewModel.getPopularMovies()
     }
-
-
 
     private fun setupRecyclerView() {
         val layoutManager = GridLayoutManager(this, 2)
@@ -65,7 +42,6 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding>() {
 
         }
     }
-
 
     private fun observePopularMovies() {
         viewModel.popularMovies.observe(this) {
@@ -95,5 +71,18 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding>() {
             }
         }
     }
+
+    override fun setupDaggerComponent() {
+        val apiClientComponent = DaggerApiClientComponent.factory().create()
+
+        val movieComponent = DaggerMovieComponent
+            .builder()
+            .apiClientComponent(apiClientComponent)
+            .baseComponent((application as BaseApplication).getBaseComponent())
+            .build()
+
+        movieComponent.movieListActivityComponent().create().inject(this)
+    }
+
 
 }

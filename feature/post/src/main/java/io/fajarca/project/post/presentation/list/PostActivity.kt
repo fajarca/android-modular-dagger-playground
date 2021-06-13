@@ -3,8 +3,6 @@ package io.fajarca.project.post.presentation.list
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
@@ -23,10 +21,7 @@ import io.fajarca.project.post.di.component.DaggerPostComponent
 import io.fajarca.project.post.presentation.detail.PostDetailActivity
 import javax.inject.Inject
 
-class PostActivity : BaseActivity<ActivityPostBinding>() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
 
     @Inject
     lateinit var router: Router
@@ -34,11 +29,12 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
     override val getViewBinding: (LayoutInflater) -> ActivityPostBinding
         get() = ActivityPostBinding::inflate
 
+    override val getViewModelClass: Class<PostViewModel>
+        get() = PostViewModel::class.java
+
     private val adapter by lazy { PostRecyclerAdapter() }
-    private val viewModel by viewModels<PostViewModel> { viewModelFactory }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-
+    override fun setupDaggerComponent() {
         val apiClientComponent = DaggerApiClientComponent.factory().create()
 
         val postComponent = DaggerPostComponent
@@ -48,6 +44,10 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
             .build()
 
         postComponent.postActivityComponent().create().inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
 
         super.onCreate(savedInstanceState)
         handleIntentArguments()
@@ -101,5 +101,6 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
             }
         }
     }
+
 
 }

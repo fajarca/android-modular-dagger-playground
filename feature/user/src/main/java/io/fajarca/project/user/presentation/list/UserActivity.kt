@@ -4,8 +4,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
@@ -24,20 +22,20 @@ import io.fajarca.project.user.di.component.DaggerUserComponent
 import io.fajarca.project.user.presentation.detail.UserDetailActivity
 import javax.inject.Inject
 
-class UserActivity : BaseActivity<ActivityUserBinding>() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
+class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
 
     @Inject
     lateinit var router: Router
 
     private val adapter by lazy { UserRecyclerAdapter() }
-    private val viewModel by viewModels<UserViewModel> { viewModelFactory }
+
     override val getViewBinding: (LayoutInflater) -> ActivityUserBinding
         get() = ActivityUserBinding::inflate
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override val getViewModelClass: Class<UserViewModel>
+        get() = UserViewModel::class.java
+
+    override fun setupDaggerComponent() {
         val apiClientComponent = DaggerApiClientComponent.factory().create()
 
         val userComponent = DaggerUserComponent
@@ -47,7 +45,10 @@ class UserActivity : BaseActivity<ActivityUserBinding>() {
             .build()
 
         userComponent.userActivityComponent().create().inject(this)
+    }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         handleIntentArguments()

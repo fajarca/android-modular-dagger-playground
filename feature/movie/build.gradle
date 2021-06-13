@@ -38,6 +38,7 @@ dependencies {
     implementation libraries.appCompat
     implementation libraries.material
     implementation libraries.constraintLayout
+    implementation libraries.fragmentKtx
 
     implementation libraries.dagger
     implementation libraries.daggerAndroid

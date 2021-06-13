@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
@@ -19,18 +17,16 @@ import io.fajarca.project.base.network.exception.ServerErrorException
 import io.fajarca.project.user.databinding.ActivityUserDetailBinding
 import io.fajarca.project.user.di.component.DaggerUserComponent
 import io.fajarca.project.user.domain.entity.User
-import javax.inject.Inject
 
-class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<UserDetailViewModel> { viewModelFactory }
+class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailViewModel>() {
 
     private var userId: Int = 0
 
     override val getViewBinding: (LayoutInflater) -> ActivityUserDetailBinding
         get() = ActivityUserDetailBinding::inflate
+
+    override val getViewModelClass: Class<UserDetailViewModel>
+        get() = TODO("Not yet implemented")
 
     companion object {
         private const val INTENT_KEY_USER_ID = "userId"
@@ -44,7 +40,7 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun setupDaggerComponent() {
         val apiClientComponent = DaggerApiClientComponent.factory().create()
 
         val userComponent = DaggerUserComponent
@@ -54,9 +50,11 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
             .build()
 
         userComponent.userDetailComponent().create().inject(this)
+    }
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         handleIntentArguments()
         observeUserDetail()
         viewModel.getUserDetail(userId)
@@ -103,4 +101,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
             supportActionBar?.title = user.name
         }
     }
+
+
 }

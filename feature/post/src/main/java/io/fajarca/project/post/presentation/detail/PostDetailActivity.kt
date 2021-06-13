@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.lifecycle.ViewModelProvider
 import io.fajarca.project.apiclient.di.DaggerApiClientComponent
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
@@ -19,15 +17,14 @@ import io.fajarca.project.base.network.exception.ServerErrorException
 import io.fajarca.project.post.databinding.ActivityPostDetailBinding
 import io.fajarca.project.post.di.component.DaggerPostComponent
 import io.fajarca.project.post.domain.entity.Post
-import javax.inject.Inject
 
-class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<PostDetailViewModel> { viewModelFactory }
+class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailViewModel>() {
 
     override val getViewBinding: (LayoutInflater) -> ActivityPostDetailBinding
         get() = ActivityPostDetailBinding::inflate
+
+    override val getViewModelClass: Class<PostDetailViewModel>
+        get() = PostDetailViewModel::class.java
 
     private var postId: Int = 0
 
@@ -43,8 +40,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-
+    override fun setupDaggerComponent() {
         val apiClientComponent = DaggerApiClientComponent.factory().create()
         val postComponent = DaggerPostComponent
             .builder()
@@ -53,9 +49,10 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
             .build()
 
         postComponent.postDetailComponent().create().inject(this)
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
         handleIntentArguments()
         observePostDetail()
         viewModel.getPostDetail(postId)
@@ -101,4 +98,6 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
             tvTitle.text = post.title
         }
     }
+
+
 }
