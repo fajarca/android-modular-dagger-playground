@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DaggerPlayGround" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.DaggerPlayGround" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/white</item>
-        <item name="colorPrimaryVariant">@color/white</item>
+        <item name="colorPrimaryVariant">@color/grey_900</item>
         <item name="colorOnPrimary">@color/grey_900</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/grey_500</item>

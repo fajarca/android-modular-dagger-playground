@@ -44,7 +44,6 @@ dependencies {
     implementation libraries.constraintLayout
     implementation libraries.coroutine
     implementation libraries.coroutineAndroid
-    implementation libraries.fragmentKtx
 
     implementation libraries.retrofit
     implementation libraries.retrofitMoshiConverter

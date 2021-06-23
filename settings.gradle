@@ -1,9 +1,8 @@
 rootProject.name = "DaggerPlayGround"
 include ':app'
-include ':feature'
 include ':base'
-include ':feature:user'
-include ':feature:post'
 include ':common'
 include ':apiclient'
 include ':feature:movie'
+include ':feature:user'
+include ':feature:post'

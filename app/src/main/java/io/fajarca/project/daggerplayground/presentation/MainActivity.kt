@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
@@ -15,22 +16,25 @@ import io.fajarca.project.daggerplayground.databinding.ActivityMainBinding
 import io.fajarca.project.common.route.PostRouterData
 import io.fajarca.project.common.route.UserRouterData
 import io.fajarca.project.daggerplayground.BuildConfig
+import io.fajarca.project.daggerplayground.R
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
     private val splitInstallManager by lazy { SplitInstallManagerFactory.create(this) }
+    private lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var router: Router
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (application as DaggerPlaygroundApp).appComponent.inject(this)
-
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
+        setupToolbar()
     }
 
     private fun setupView() {
@@ -43,6 +47,12 @@ class MainActivity : AppCompatActivity() {
         binding.btnGoToMovieModule.setOnClickListener {
             downloadMovieModule()
         }
+    }
+
+    private fun setupToolbar() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "Toolbar"
     }
 
     private val installListener = SplitInstallStateUpdatedListener { state ->

@@ -7,6 +7,20 @@
     android:orientation="vertical"
     tools:context=".presentation.MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGoToUserModule"
         android:layout_width="wrap_content"
