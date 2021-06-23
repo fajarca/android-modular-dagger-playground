@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupToolbar() {
         val toolbarBinding = binding.includedToolbar.toolbar
         setSupportActionBar(toolbarBinding)
-        supportActionBar?.title = "Toolbar"
     }
 
     private val installListener = SplitInstallStateUpdatedListener { state ->
