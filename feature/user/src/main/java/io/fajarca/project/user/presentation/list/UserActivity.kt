@@ -54,6 +54,7 @@ class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
         handleIntentArguments()
         setupRecyclerView()
         setupView()
+        setupToolbar()
         observeUsers()
         viewModel.getUsers()
     }
@@ -70,6 +71,12 @@ class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
             //router.routeToActivity(this, 1, PostRouterData(1))
             //router.routeToActivity(this, PostRouterData(2))
         }
+    }
+
+    private fun setupToolbar() {
+        val toolbar = binding.includedToolbar.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun setupRecyclerView() {

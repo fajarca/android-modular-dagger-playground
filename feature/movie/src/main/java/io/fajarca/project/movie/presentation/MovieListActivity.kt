@@ -30,6 +30,7 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupRecyclerView()
+        setupToolbar()
         observePopularMovies()
         viewModel.getPopularMovies()
     }
@@ -41,6 +42,12 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
         adapter.setOnMovieSelected { movie ->
 
         }
+    }
+
+    private fun setupToolbar() {
+        val toolbar = binding.includedToolbar.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun observePopularMovies() {

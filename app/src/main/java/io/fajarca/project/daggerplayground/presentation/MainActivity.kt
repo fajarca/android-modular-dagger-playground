@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
 
     private val splitInstallManager by lazy { SplitInstallManagerFactory.create(this) }
-    private lateinit var binding: ActivityMainBinding
+    private var binding: ActivityMainBinding? = null
 
     @Inject
     lateinit var router: Router
@@ -30,25 +30,25 @@ class MainActivity : AppCompatActivity() {
         (application as DaggerPlaygroundApp).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(binding?.root)
         setupView()
         setupToolbar()
     }
 
     private fun setupView() {
-        binding.btnGoToUserModule.setOnClickListener {
+        binding?.btnGoToUserModule?.setOnClickListener {
             router.routeToActivity(this, UserRouterData(4))
         }
-        binding.btnGoToPostModule.setOnClickListener {
+        binding?.btnGoToPostModule?.setOnClickListener {
             router.routeToActivity(this, PostRouterData(4))
         }
-        binding.btnGoToMovieModule.setOnClickListener {
+        binding?.btnGoToMovieModule?.setOnClickListener {
             downloadMovieModule()
         }
     }
 
     private fun setupToolbar() {
-        val toolbarBinding = binding.includedToolbar.toolbar
+        val toolbarBinding = binding?.includedToolbar?.toolbar
         setSupportActionBar(toolbarBinding)
     }
 
@@ -95,8 +95,8 @@ class MainActivity : AppCompatActivity() {
         splitInstallManager.registerListener(installListener)
 
         splitInstallManager.startInstall(splitInstallRequest)
-            .addOnSuccessListener { sessionId -> goToMovieScreen() }
-            .addOnFailureListener { exception -> }
+            .addOnSuccessListener { goToMovieScreen() }
+            .addOnFailureListener { }
     }
 
     private fun goToMovieScreen() {
@@ -109,4 +109,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
 }

@@ -26,7 +26,7 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailVie
         get() = ActivityUserDetailBinding::inflate
 
     override val getViewModelClass: Class<UserDetailViewModel>
-        get() = TODO("Not yet implemented")
+        get() = UserDetailViewModel::class.java
 
     companion object {
         private const val INTENT_KEY_USER_ID = "userId"
@@ -57,12 +57,19 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailVie
         super.onCreate(savedInstanceState)
         handleIntentArguments()
         observeUserDetail()
+        setupToolbar()
         viewModel.getUserDetail(userId)
     }
 
     private fun handleIntentArguments() {
         val extras = intent.extras
         userId = extras?.getInt(INTENT_KEY_USER_ID, 0) ?: 0
+    }
+
+    private fun setupToolbar() {
+        val toolbar = binding.includedToolbar.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun observeUserDetail() {

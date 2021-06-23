@@ -47,14 +47,20 @@ class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         handleIntentArguments()
         setupRecyclerView()
+        setupToolbar()
         observePosts()
         viewModel.getPosts()
     }
+
+    private fun setupToolbar() {
+        val toolbar = binding.toolbar.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
 
     private fun handleIntentArguments() {
         val extras = intent.extras

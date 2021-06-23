@@ -54,6 +54,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailVie
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         handleIntentArguments()
+        setupToolbar()
         observePostDetail()
         viewModel.getPostDetail(postId)
     }
@@ -62,6 +63,13 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailVie
         val extras = intent.extras
         postId = extras?.getInt(INTENT_KEY_POST_ID, 0) ?: 0
     }
+
+    private fun setupToolbar() {
+        val toolbar = binding.includedToolbar.toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
 
     private fun observePostDetail() {
         viewModel.post.observe(this) {

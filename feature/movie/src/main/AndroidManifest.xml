@@ -15,8 +15,8 @@
 
     <application>
         <activity
-            android:parentActivityName="io.fajarca.project.daggerplayground.presentation.MainActivity"
             android:name=".presentation.MovieListActivity"
+            android:parentActivityName="io.fajarca.project.daggerplayground.presentation.MainActivity"
             android:label="Popular Movies"/>
     </application>
 
