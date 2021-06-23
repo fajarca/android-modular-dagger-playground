@@ -5,18 +5,16 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import io.fajarca.project.base.router.Router
-import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
-import io.fajarca.project.daggerplayground.databinding.ActivityMainBinding
 import io.fajarca.project.common.route.PostRouterData
 import io.fajarca.project.common.route.UserRouterData
 import io.fajarca.project.daggerplayground.BuildConfig
-import io.fajarca.project.daggerplayground.R
+import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
+import io.fajarca.project.daggerplayground.databinding.ActivityMainBinding
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -50,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        val toolbarBinding = binding.includedToolbar.toolbar
+        setSupportActionBar(toolbarBinding)
         supportActionBar?.title = "Toolbar"
     }
 
