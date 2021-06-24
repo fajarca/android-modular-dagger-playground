@@ -37,7 +37,7 @@ android {
 
 dependencies {
     api project(':apiclient')
-    api project(':persistance')
+    api project(':persistence')
 
     implementation libraries.kotlin
     implementation libraries.coreKtx
