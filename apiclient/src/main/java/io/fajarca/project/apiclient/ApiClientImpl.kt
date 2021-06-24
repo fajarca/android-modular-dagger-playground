@@ -1,11 +1,11 @@
 package io.fajarca.project.apiclient
 
-import io.fajarca.project.base.network.exception.ClientErrorException
-import io.fajarca.project.base.network.exception.EmptyResponseException
-import io.fajarca.project.base.network.exception.NoInternetConnection
-import io.fajarca.project.base.network.exception.ServerErrorException
-import io.fajarca.project.base.network.exception.TimeoutException
-import io.fajarca.project.base.network.exception.UnknownNetworkErrorException
+import io.fajarca.project.apiclient.exception.ClientErrorException
+import io.fajarca.project.apiclient.exception.EmptyResponseException
+import io.fajarca.project.apiclient.exception.NoInternetConnection
+import io.fajarca.project.apiclient.exception.ServerErrorException
+import io.fajarca.project.apiclient.exception.TimeoutException
+import io.fajarca.project.apiclient.exception.UnknownNetworkErrorException
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException

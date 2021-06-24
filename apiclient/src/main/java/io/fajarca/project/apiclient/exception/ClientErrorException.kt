@@ -1,3 +1,3 @@
-package io.fajarca.project.base.network.exception
+package io.fajarca.project.apiclient.exception
 
 data class ClientErrorException(val code : Int) : Exception()

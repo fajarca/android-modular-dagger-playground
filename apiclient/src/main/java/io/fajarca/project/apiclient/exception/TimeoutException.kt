@@ -1,3 +1,3 @@
-package io.fajarca.project.base.network.exception
+package io.fajarca.project.apiclient.exception
 
 class TimeoutException : Exception()

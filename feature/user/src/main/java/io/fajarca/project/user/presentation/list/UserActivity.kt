@@ -10,9 +10,9 @@ import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
-import io.fajarca.project.base.network.exception.ClientErrorException
-import io.fajarca.project.base.network.exception.NoInternetConnection
-import io.fajarca.project.base.network.exception.ServerErrorException
+import io.fajarca.project.apiclient.exception.ClientErrorException
+import io.fajarca.project.apiclient.exception.NoInternetConnection
+import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.base.router.Routable
 import io.fajarca.project.base.router.Router
 import io.fajarca.project.common.navigation.UserRouterData
