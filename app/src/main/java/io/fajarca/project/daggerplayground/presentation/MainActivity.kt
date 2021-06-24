@@ -3,8 +3,8 @@ package io.fajarca.project.daggerplayground.presentation
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
@@ -61,16 +61,28 @@ class MainActivity : AppCompatActivity() {
 
             }
             SplitInstallSessionStatus.DOWNLOADED -> {
-                Toast.makeText(this, "Downloaded", Toast.LENGTH_LONG).show()
+                Snackbar.make(
+                    binding?.root ?: return@SplitInstallStateUpdatedListener,
+                    "Downloaded",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
             SplitInstallSessionStatus.DOWNLOADING -> {
-                Toast.makeText(this, "Downloading movie module", Toast.LENGTH_LONG).show()
+                Snackbar.make(
+                    binding?.root ?: return@SplitInstallStateUpdatedListener,
+                    "Downloading movie module",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
             SplitInstallSessionStatus.FAILED -> {
 
             }
             SplitInstallSessionStatus.INSTALLED -> {
-                Toast.makeText(this, "Movie module downloaded", Toast.LENGTH_LONG).show()
+                Snackbar.make(
+                    binding?.root ?: return@SplitInstallStateUpdatedListener,
+                    "Movie module installed",
+                    Snackbar.LENGTH_LONG
+                ).show()
             }
             SplitInstallSessionStatus.INSTALLING -> {
 
@@ -102,7 +114,10 @@ class MainActivity : AppCompatActivity() {
     private fun goToMovieScreen() {
         if (splitInstallManager.installedModules.contains("movie")) {
             val intent = Intent()
-            intent.setClassName(BuildConfig.APPLICATION_ID, "io.fajarca.project.movie.presentation.MovieListActivity")
+            intent.setClassName(
+                BuildConfig.APPLICATION_ID,
+                "io.fajarca.project.movie.presentation.MovieListActivity"
+            )
             startActivity(intent)
         } else {
             Log.e("", "Registration feature is not installed")

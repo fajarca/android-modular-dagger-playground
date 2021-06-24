@@ -2,9 +2,8 @@ package io.fajarca.project.movie.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import io.fajarca.project.apiclient.di.DaggerApiClientComponent
+import com.google.android.material.snackbar.Snackbar
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
@@ -70,7 +69,7 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
                             val code = cause.code
                         }
                         is NoInternetConnection -> {
-                            Toast.makeText(this, "No connection", Toast.LENGTH_LONG).show()
+                            Snackbar.make(binding.root, "No connection", Snackbar.LENGTH_LONG).show()
                         }
                     }
 

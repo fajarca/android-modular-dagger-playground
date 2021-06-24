@@ -31,7 +31,6 @@ dependencies {
 
     implementation project(":app")
     implementation project(':base')
-    implementation project(':apiclient')
 
     implementation libraries.kotlin
     implementation libraries.coreKtx

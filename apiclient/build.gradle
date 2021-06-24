@@ -39,6 +39,7 @@ dependencies {
 
     api libraries.retrofit
     api libraries.retrofitMoshiConverter
+    api libraries.okhttp3Interceptor
 
     implementation libraries.dagger
     implementation libraries.daggerAndroid

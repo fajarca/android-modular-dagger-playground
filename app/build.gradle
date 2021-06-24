@@ -41,7 +41,6 @@ dependencies {
     implementation project(':feature:user')
     implementation project(':feature:post')
     implementation project(':common')
-    implementation project(':apiclient')
 
     implementation libraries.kotlin
     implementation libraries.coreKtx
@@ -55,10 +54,6 @@ dependencies {
     implementation libraries.daggerAndroid
     kapt kaptLibraries.dagger
     kapt kaptLibraries.daggerAndroid
-
-    implementation libraries.retrofit
-    implementation libraries.retrofitMoshiConverter
-    implementation libraries.okhttp3Interceptor
 
     implementation libraries.playCore
 

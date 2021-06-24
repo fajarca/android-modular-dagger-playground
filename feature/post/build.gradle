@@ -39,7 +39,6 @@ android {
 dependencies {
 
     implementation project(':base')
-    implementation project(':apiclient')
     implementation project(':common')
 
     implementation libraries.constraintLayout
