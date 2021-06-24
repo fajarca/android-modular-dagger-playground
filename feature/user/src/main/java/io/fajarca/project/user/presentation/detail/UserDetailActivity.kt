@@ -41,12 +41,9 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailVie
     }
 
     override fun setupDaggerComponent() {
-        val apiClientComponent = DaggerApiClientComponent.factory().create()
-
         val userComponent = DaggerUserComponent
             .builder()
             .baseComponent((application as BaseApplication).getBaseComponent())
-            .apiClientComponent(apiClientComponent)
             .build()
 
         userComponent.userDetailComponent().create().inject(this)

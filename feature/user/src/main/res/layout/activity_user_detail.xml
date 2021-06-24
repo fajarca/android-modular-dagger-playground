@@ -32,7 +32,7 @@
         android:layout_marginTop="16dp"
         android:background="#e0e0e0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/includedToolbar" />
 
     <TextView
         android:id="@+id/tvName"

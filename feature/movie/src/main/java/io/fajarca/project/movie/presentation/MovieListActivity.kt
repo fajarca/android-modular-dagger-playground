@@ -80,11 +80,8 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
     }
 
     override fun setupDaggerComponent() {
-        val apiClientComponent = DaggerApiClientComponent.factory().create()
-
         val movieComponent = DaggerMovieComponent
             .builder()
-            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

@@ -12,7 +12,7 @@ import io.fajarca.project.movie.presentation.di.MovieListActivityComponent
 
 @ModuleScope
 @Component(
-    dependencies = [BaseComponent::class, ApiClientComponent::class],
+    dependencies = [BaseComponent::class],
     modules = [
         NetworkModule::class,
         ViewModelFactoryModule::class,

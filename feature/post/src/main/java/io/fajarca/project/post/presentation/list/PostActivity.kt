@@ -35,11 +35,8 @@ class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
     private val adapter by lazy { PostRecyclerAdapter() }
 
     override fun setupDaggerComponent() {
-        val apiClientComponent = DaggerApiClientComponent.factory().create()
-
         val postComponent = DaggerPostComponent
             .builder()
-            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation project(':apiclient')
 
     implementation libraries.room
     implementation libraries.roomRuntime

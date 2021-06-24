@@ -41,6 +41,7 @@ dependencies {
     implementation project(':feature:user')
     implementation project(':feature:post')
     implementation project(':common')
+    implementation project(':apiclient')
 
     implementation libraries.kotlin
     implementation libraries.coreKtx

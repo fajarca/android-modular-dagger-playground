@@ -36,11 +36,8 @@ class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
         get() = UserViewModel::class.java
 
     override fun setupDaggerComponent() {
-        val apiClientComponent = DaggerApiClientComponent.factory().create()
-
         val userComponent = DaggerUserComponent
             .builder()
-            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

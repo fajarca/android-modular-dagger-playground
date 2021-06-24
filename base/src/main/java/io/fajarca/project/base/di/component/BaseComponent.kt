@@ -2,6 +2,7 @@ package io.fajarca.project.base.di.component
 
 import com.squareup.moshi.Moshi
 import dagger.Subcomponent
+import io.fajarca.project.apiclient.ApiClient
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import io.fajarca.project.base.persistence.dao.MovieDao
@@ -22,4 +23,5 @@ interface BaseComponent {
     fun moshi() : Moshi
     fun router() : Router
     fun movieDao() : MovieDao
+    fun apiClient() : ApiClient
 }

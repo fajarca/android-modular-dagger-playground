@@ -41,10 +41,8 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailVie
     }
 
     override fun setupDaggerComponent() {
-        val apiClientComponent = DaggerApiClientComponent.factory().create()
         val postComponent = DaggerPostComponent
             .builder()
-            .apiClientComponent(apiClientComponent)
             .baseComponent((application as BaseApplication).getBaseComponent())
             .build()
 

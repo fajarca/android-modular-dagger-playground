@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
+import io.fajarca.project.apiclient.di.ApiClientComponent
 import io.fajarca.project.base.di.component.BaseComponent
 import io.fajarca.project.daggerplayground.di.module.CoroutineDispatcherModule
 import io.fajarca.project.daggerplayground.di.module.DatabaseModule
@@ -16,6 +17,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
+    dependencies = [ApiClientComponent::class],
     modules = [
         StorageModule::class,
         NetworkModule::class,
@@ -31,7 +33,10 @@ interface AppComponent {
     @Component.Factory
     interface Factory {
         // With @BindsInstance, the Context passed in will be available in the graph
-        fun create(@BindsInstance context: Context): AppComponent
+        fun create(
+            @BindsInstance context: Context,
+            apiClientComponent: ApiClientComponent
+        ): AppComponent
     }
 
     fun inject(app: Application)

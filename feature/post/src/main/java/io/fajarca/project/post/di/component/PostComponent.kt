@@ -13,7 +13,7 @@ import io.fajarca.project.post.presentation.list.di.PostActivityComponent
 
 @ModuleScope
 @Component(
-    dependencies = [BaseComponent::class, ApiClientComponent::class],
+    dependencies = [BaseComponent::class],
     modules = [
         NetworkModule::class,
         ViewModelFactoryModule::class,
