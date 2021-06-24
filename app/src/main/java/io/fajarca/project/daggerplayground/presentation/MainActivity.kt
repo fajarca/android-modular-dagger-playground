@@ -10,8 +10,8 @@ import com.google.android.play.core.splitinstall.SplitInstallRequest
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus
 import io.fajarca.project.base.router.Router
-import io.fajarca.project.common.route.PostRouterData
-import io.fajarca.project.common.route.UserRouterData
+import io.fajarca.project.common.navigation.PostRouterData
+import io.fajarca.project.common.navigation.UserRouterData
 import io.fajarca.project.daggerplayground.BuildConfig
 import io.fajarca.project.daggerplayground.DaggerPlaygroundApp
 import io.fajarca.project.daggerplayground.databinding.ActivityMainBinding

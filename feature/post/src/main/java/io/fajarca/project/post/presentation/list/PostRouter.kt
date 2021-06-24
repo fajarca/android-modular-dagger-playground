@@ -3,7 +3,7 @@ package io.fajarca.project.post.presentation.list
 import android.content.Context
 import android.net.Uri
 import io.fajarca.project.base.router.Routable
-import io.fajarca.project.common.route.PostRouterData
+import io.fajarca.project.common.navigation.PostRouterData
 
 class PostRouter {
 

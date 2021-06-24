@@ -1,4 +1,4 @@
-package io.fajarca.project.daggerplayground.di.module
+package io.fajarca.project.persistance.di
 
 import android.content.Context
 import androidx.room.Room
@@ -9,10 +9,9 @@ import io.fajarca.project.persistance.dao.MovieDao
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule {
+class PersistenceModule {
 
     @Provides
-    @Singleton
     fun provideDatabase(context: Context): DaggerPlaygroundDatabase {
         return Room.databaseBuilder(
             context,
@@ -20,11 +19,5 @@ class DatabaseModule {
             "daggerplayground"
         ).build()
     }
-
-    @Provides
-    fun provideMovieDao(database: DaggerPlaygroundDatabase): MovieDao {
-        return database.movieDao()
-    }
-
 
 }

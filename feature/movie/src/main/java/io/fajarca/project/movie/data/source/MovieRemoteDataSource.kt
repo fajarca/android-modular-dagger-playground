@@ -5,7 +5,6 @@ import io.fajarca.project.apiclient.ApiResponse
 import io.fajarca.project.base.Either
 import io.fajarca.project.movie.data.response.GetPopularMoviesDto
 import io.fajarca.project.movie.data.service.MovieService
-import io.fajarca.project.movie.domain.entity.Movie
 import javax.inject.Inject
 
 class MovieRemoteDataSource @Inject constructor(

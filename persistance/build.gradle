@@ -34,8 +34,13 @@ android {
 }
 
 dependencies {
-    implementation libraries.room
-    implementation libraries.roomRuntime
+    api libraries.room
+    api libraries.roomRuntime
     kapt kaptLibraries.room
     annotationProcessor kaptLibraries.room
+
+    implementation libraries.dagger
+    implementation libraries.daggerAndroid
+    kapt kaptLibraries.dagger
+    kapt kaptLibraries.daggerAndroid
 }

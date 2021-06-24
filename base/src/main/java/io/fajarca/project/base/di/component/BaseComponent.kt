@@ -7,6 +7,7 @@ import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import io.fajarca.project.persistance.dao.MovieDao
 import io.fajarca.project.base.router.Router
+import io.fajarca.project.persistance.DaggerPlaygroundDatabase
 import okhttp3.OkHttpClient
 
 @Subcomponent
@@ -22,6 +23,6 @@ interface BaseComponent {
     fun coroutineDispatcher() : DispatcherProvider
     fun moshi() : Moshi
     fun router() : Router
-    fun movieDao() : MovieDao
+    fun database() : DaggerPlaygroundDatabase
     fun apiClient() : ApiClient
 }
