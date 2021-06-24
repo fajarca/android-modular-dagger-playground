@@ -22,10 +22,13 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getPopularMovies(): Either<Exception, Flow<List<Movie>>> {
         val apiResult = movieRemoteDataSource.getPopularMovies()
         return when (apiResult) {
-            is Either.Failure -> Either.Failure(apiResult.cause)
+            is Either.Failure -> {
+                val movies = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
+                Either.Success(movies)
+            }
             is Either.Success -> {
                 movieLocalDataSource.insertAll(moviesDataMapper.map(apiResult.data))
-                val movies  = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
+                val movies = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
                 Either.Success(movies)
             }
         }
