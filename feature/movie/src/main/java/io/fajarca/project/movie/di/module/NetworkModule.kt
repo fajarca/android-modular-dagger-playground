@@ -8,7 +8,6 @@ import io.fajarca.project.movie.BuildConfig
 import io.fajarca.project.movie.data.service.MovieService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
@@ -19,20 +18,17 @@ class NetworkModule {
     @Provides
     @ModuleScope
     fun provideAuthInterceptor(): Interceptor {
-        return object : Interceptor {
-            override fun intercept(chain: Interceptor.Chain): Response {
-                val newRequest = chain
-                    .request()
-                    .newBuilder()
-                    .addHeader(
-                        "Authorization",
-                        "Bearer " + BuildConfig.MOVIE_DB_API_KEY
-                    )
-                    .build()
+        return Interceptor { chain ->
+            val newRequest = chain
+                .request()
+                .newBuilder()
+                .addHeader(
+                    "Authorization",
+                    "Bearer " + BuildConfig.MOVIE_DB_API_KEY
+                )
+                .build()
 
-                return chain.proceed(newRequest)
-            }
-
+            chain.proceed(newRequest)
         }
     }
 

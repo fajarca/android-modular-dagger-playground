@@ -1,7 +1,7 @@
 package io.fajarca.project.movie.data.repository
 
 import io.fajarca.project.base.Either
-import io.fajarca.project.movie.data.mapper.PopularMoviesDataMapper
+import io.fajarca.project.movie.data.mapper.PopularMoviesEntityMapper
 import io.fajarca.project.movie.data.mapper.PopularMoviesDomainMapper
 import io.fajarca.project.movie.data.source.MovieLocalDataSource
 import io.fajarca.project.movie.data.source.MovieRemoteDataSource
@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 
 class MovieRepositoryImpl @Inject constructor(
     private val moviesDomainMapper: PopularMoviesDomainMapper,
-    private val moviesDataMapper: PopularMoviesDataMapper,
+    private val moviesDataMapper: PopularMoviesEntityMapper,
     private val movieRemoteDataSource: MovieRemoteDataSource,
     private val movieLocalDataSource: MovieLocalDataSource
 ) : MovieRepository {

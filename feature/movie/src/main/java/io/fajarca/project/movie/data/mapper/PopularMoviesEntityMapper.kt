@@ -5,7 +5,7 @@ import io.fajarca.project.base.persistence.entity.MovieEntity
 import io.fajarca.project.movie.data.response.GetPopularMoviesDto
 import javax.inject.Inject
 
-class PopularMoviesDataMapper @Inject constructor() :
+class PopularMoviesEntityMapper @Inject constructor() :
     Mapper<GetPopularMoviesDto, List<MovieEntity>>() {
 
     override fun map(input: GetPopularMoviesDto): List<MovieEntity> {
