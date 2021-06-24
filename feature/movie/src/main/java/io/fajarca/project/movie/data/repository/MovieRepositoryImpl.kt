@@ -1,5 +1,6 @@
 package io.fajarca.project.movie.data.repository
 
+import io.fajarca.project.apiclient.ApiResponse
 import io.fajarca.project.base.Either
 import io.fajarca.project.movie.data.mapper.PopularMoviesDataMapper
 import io.fajarca.project.movie.data.mapper.PopularMoviesDomainMapper
@@ -21,17 +22,13 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getPopularMovies(): Either<Exception, Flow<List<Movie>>> {
         val apiResult = movieRemoteDataSource.getPopularMovies()
-        return when (apiResult) {
-            is Either.Failure -> {
-                val movies = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
-                Either.Success(movies)
-            }
-            is Either.Success -> {
-                movieLocalDataSource.insertAll(moviesDataMapper.map(apiResult.data))
-                val movies = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
-                Either.Success(movies)
-            }
+
+        if (apiResult is Either.Success) {
+            movieLocalDataSource.insertAll(moviesDataMapper.map(apiResult.data))
         }
+
+        val movies = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
+        return Either.Success(movies)
     }
 
 
