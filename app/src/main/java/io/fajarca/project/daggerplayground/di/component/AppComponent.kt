@@ -6,6 +6,7 @@ import dagger.BindsInstance
 import dagger.Component
 import io.fajarca.project.base.di.component.BaseComponent
 import io.fajarca.project.daggerplayground.di.module.CoroutineDispatcherModule
+import io.fajarca.project.daggerplayground.di.module.DatabaseModule
 import io.fajarca.project.daggerplayground.di.module.NetworkModule
 import io.fajarca.project.daggerplayground.di.module.RouterModule
 import io.fajarca.project.daggerplayground.di.module.StorageModule
@@ -20,7 +21,8 @@ import javax.inject.Singleton
         NetworkModule::class,
         SubcomponentModule::class,
         CoroutineDispatcherModule::class,
-        RouterModule::class
+        RouterModule::class,
+        DatabaseModule::class
     ]
 )
 
@@ -32,8 +34,8 @@ interface AppComponent {
         fun create(@BindsInstance context: Context): AppComponent
     }
 
-    fun inject(app : Application)
-    fun inject(activity : MainActivity)
-    fun baseComponent() : BaseComponent.Factory
+    fun inject(app: Application)
+    fun inject(activity: MainActivity)
+    fun baseComponent(): BaseComponent.Factory
 
 }

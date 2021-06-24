@@ -60,4 +60,9 @@ dependencies {
     implementation libraries.okhttp3Interceptor
 
     implementation libraries.playCore
+
+    implementation libraries.room
+    implementation libraries.roomRuntime
+    kapt kaptLibraries.room
+    annotationProcessor kaptLibraries.room
 }

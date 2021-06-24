@@ -37,6 +37,11 @@ android {
 
 dependencies {
 
+    implementation libraries.room
+    implementation libraries.roomRuntime
+    kapt kaptLibraries.room
+    annotationProcessor kaptLibraries.room
+
     implementation libraries.kotlin
     implementation libraries.coreKtx
     implementation libraries.appCompat

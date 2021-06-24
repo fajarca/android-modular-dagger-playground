@@ -23,6 +23,7 @@ ext {
     lifecycleVersion = '2.3.1'
     fragmentKtxVersion = '1.1.0'
     androidGradlePluginVersion = '4.2.1'
+    roomVersion = '2.3.0'
 
     libraries = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib:" + kotlinVersion,
@@ -50,14 +51,18 @@ ext {
             livedata              : 'androidx.lifecycle:lifecycle-livedata-ktx:' + lifecycleVersion,
             lifecycleRuntime      : 'androidx.lifecycle:lifecycle-runtime-ktx:' + lifecycleVersion,
 
-            fragmentKtx           : "androidx.fragment:fragment-ktx:" + fragmentKtxVersion
+            fragmentKtx           : "androidx.fragment:fragment-ktx:" + fragmentKtxVersion,
+
+            roomRuntime           : "androidx.room:room-runtime:" + roomVersion,
+            room                  : "androidx.room:room-ktx:" + roomVersion
     ]
 
     kaptLibraries = [
             glide            : "com.github.bumptech.glide:compiler:" + glideVersion,
             dagger           : "com.google.dagger:dagger-compiler:" + daggerVersion,
             daggerAndroid    : "com.google.dagger:dagger-android-processor:" + daggerVersion,
-            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:" + lifecycleVersion
+            lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:" + lifecycleVersion,
+            room             : "androidx.room:room-compiler:" + roomVersion
     ]
 
     testLibraries = [
