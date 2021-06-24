@@ -1,5 +1,6 @@
 package io.fajarca.project.movie.presentation
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,6 +14,8 @@ import io.fajarca.project.base.extension.onSuccess
 import io.fajarca.project.movie.domain.entity.Movie
 import io.fajarca.project.movie.domain.usecase.GetPopularMoviesUseCase
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @FeatureScope
@@ -30,8 +33,14 @@ class MovieListViewModel @Inject constructor(
         viewModelScope.launch(dispatcherProvider.io) {
             getPopularMoviesUseCase
                 .execute(UseCase.NoParams)
-                .onSuccess { users -> _popularMovies.postValue(ViewState.Success(users)) }
+                .onSuccess { flow -> collectMovies(flow) }
                 .onError { cause -> _popularMovies.postValue(ViewState.Error(cause)) }
+        }
+    }
+
+    private suspend fun collectMovies(flow: Flow<List<Movie>>) {
+        flow.collect { movies ->
+            _popularMovies.postValue(ViewState.Success(movies))
         }
     }
 }

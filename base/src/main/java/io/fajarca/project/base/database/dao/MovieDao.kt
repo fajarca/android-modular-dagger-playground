@@ -6,16 +6,17 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import io.fajarca.project.base.database.entity.MovieEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class MovieDao {
     @Query("SELECT * FROM movies")
-    abstract suspend fun findAll(): List<MovieEntity>
+    abstract fun findAll(): Flow<List<MovieEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertAll(vararg movie: MovieEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insert(movie: MovieEntity)
 
     @Delete
