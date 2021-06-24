@@ -1,7 +1,7 @@
 package io.fajarca.project.movie.data.source
 
-import io.fajarca.project.base.persistence.dao.MovieDao
-import io.fajarca.project.base.persistence.entity.MovieEntity
+import io.fajarca.project.persistance.dao.MovieDao
+import io.fajarca.project.persistance.entity.MovieEntity
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged

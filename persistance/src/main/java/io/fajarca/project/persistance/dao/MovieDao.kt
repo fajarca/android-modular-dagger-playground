@@ -1,11 +1,11 @@
-package io.fajarca.project.base.persistence.dao
+package io.fajarca.project.persistance.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import io.fajarca.project.base.persistence.entity.MovieEntity
+import io.fajarca.project.persistance.entity.MovieEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -17,9 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-    buildFeatures {
-        viewBinding true
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,23 +34,8 @@ android {
 }
 
 dependencies {
-    api project(':apiclient')
-    api project(':persistance')
-
-    implementation libraries.kotlin
-    implementation libraries.coreKtx
-    implementation libraries.appCompat
-    implementation libraries.material
-    implementation libraries.constraintLayout
-    implementation libraries.coroutine
-    implementation libraries.coroutineAndroid
-
-    implementation libraries.dagger
-    implementation libraries.daggerAndroid
-    kapt kaptLibraries.dagger
-    kapt kaptLibraries.daggerAndroid
-
-    testImplementation testLibraries.junit4
-    androidTestImplementation androidTestLibraries.junit
-    androidTestImplementation androidTestLibraries.espresso
+    implementation libraries.room
+    implementation libraries.roomRuntime
+    kapt kaptLibraries.room
+    annotationProcessor kaptLibraries.room
 }

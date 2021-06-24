@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import io.fajarca.project.base.persistence.DaggerPlaygroundDatabase
-import io.fajarca.project.base.persistence.dao.MovieDao
+import io.fajarca.project.persistance.DaggerPlaygroundDatabase
+import io.fajarca.project.persistance.dao.MovieDao
 import javax.inject.Singleton
 
 @Module

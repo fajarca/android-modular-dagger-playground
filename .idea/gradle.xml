@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/feature/movie" />
             <option value="$PROJECT_DIR$/feature/post" />
             <option value="$PROJECT_DIR$/feature/user" />
+            <option value="$PROJECT_DIR$/persistance" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

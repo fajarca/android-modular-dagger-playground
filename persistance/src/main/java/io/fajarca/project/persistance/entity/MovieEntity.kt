@@ -1,4 +1,4 @@
-package io.fajarca.project.base.persistence.entity
+package io.fajarca.project.persistance.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
