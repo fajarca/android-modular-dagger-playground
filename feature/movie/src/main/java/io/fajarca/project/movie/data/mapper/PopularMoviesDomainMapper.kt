@@ -1,7 +1,7 @@
 package io.fajarca.project.movie.data.mapper
 
 import io.fajarca.project.base.abstraction.Mapper
-import io.fajarca.project.base.database.entity.MovieEntity
+import io.fajarca.project.base.persistence.entity.MovieEntity
 import io.fajarca.project.movie.domain.entity.Movie
 import javax.inject.Inject
 

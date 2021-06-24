@@ -1,6 +1,5 @@
 package io.fajarca.project.movie.data.repository
 
-import io.fajarca.project.apiclient.ApiResponse
 import io.fajarca.project.base.Either
 import io.fajarca.project.movie.data.mapper.PopularMoviesDataMapper
 import io.fajarca.project.movie.data.mapper.PopularMoviesDomainMapper

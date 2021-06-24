@@ -4,7 +4,7 @@ import com.squareup.moshi.Moshi
 import dagger.Subcomponent
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
-import io.fajarca.project.base.database.dao.MovieDao
+import io.fajarca.project.base.persistence.dao.MovieDao
 import io.fajarca.project.base.router.Router
 import okhttp3.OkHttpClient
 
