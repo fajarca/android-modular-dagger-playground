@@ -14,13 +14,10 @@ class MovieLocalDataSource @Inject constructor(
 
     fun findAll(): Flow<List<MovieEntity>> {
         return database.movieDao().findAll().distinctUntilChanged()
-        database.movieDao()
     }
 
     suspend fun insertAll(movies : List<MovieEntity>) {
-        movies.forEach { movie ->
-            database.movieDao().insert(movie)
-        }
+        database.movieDao().insertAll(*movies.toTypedArray())
     }
 
 }
