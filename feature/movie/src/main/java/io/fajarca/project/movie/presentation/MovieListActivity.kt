@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import io.fajarca.project.apiclient.exception.ClientErrorException
+import io.fajarca.project.apiclient.exception.NoInternetConnection
+import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
 import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
-import io.fajarca.project.apiclient.exception.ClientErrorException
-import io.fajarca.project.apiclient.exception.NoInternetConnection
-import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.movie.databinding.ActivityMovieListBinding
 import io.fajarca.project.movie.di.component.DaggerMovieComponent
 
@@ -29,7 +29,7 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupRecyclerView()
-        setupToolbar()
+        setupToolbar(binding.toolbar.toolbar)
         observePopularMovies()
         viewModel.getPopularMovies()
     }

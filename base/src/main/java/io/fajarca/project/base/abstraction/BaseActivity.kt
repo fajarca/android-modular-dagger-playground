@@ -49,11 +49,16 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
     abstract val getViewBinding: (LayoutInflater) -> V
     abstract val getViewModelClass: Class<VM>
 
-    fun setupToolbar() {
+    open fun setupToolbar() {
         _toolbar = findViewById(R.id.toolbar)
         if (_toolbar != null) {
             setSupportActionBar(_toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
+    }
+
+    open fun setupToolbar(toolbar: Toolbar) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
