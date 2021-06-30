@@ -23,6 +23,10 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
     protected val viewModel: VM
         get() = _viewModel
 
+    private lateinit var _toolbar: Toolbar
+    protected val toolbar: Toolbar
+        get() = _toolbar
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setupDaggerComponent()
         super.onCreate(savedInstanceState)
@@ -46,9 +50,9 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
     abstract val getViewModelClass: Class<VM>
 
     fun setupToolbar() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        if (toolbar != null) {
-            setSupportActionBar(toolbar)
+        _toolbar = findViewById(R.id.toolbar)
+        if (_toolbar != null) {
+            setSupportActionBar(_toolbar)
         }
     }
 }

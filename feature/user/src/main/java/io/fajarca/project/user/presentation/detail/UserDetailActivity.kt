@@ -72,6 +72,7 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailVie
                 is ViewState.Success -> {
                     binding.progressBar.gone()
                     displayUserDetail(it.data)
+                    toolbar.title = it.data.name
                 }
                 is ViewState.Error -> {
                     binding.progressBar.gone()
