@@ -8,7 +8,6 @@
     tools:context=".presentation.list.PostActivity">
 
     <include
-        android:id="@+id/toolbar"
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -29,7 +29,7 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setupRecyclerView()
-        setupToolbar(binding.toolbar.toolbar)
+        setupToolbar()
         observePopularMovies()
         viewModel.getPopularMovies()
     }

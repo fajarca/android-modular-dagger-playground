@@ -57,8 +57,4 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
         }
     }
 
-    open fun setupToolbar(toolbar: Toolbar) {
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
 }
