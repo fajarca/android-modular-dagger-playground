@@ -8,7 +8,7 @@
     tools:context=".presentation.list.UserActivity">
 
     <include
-        android:id="@+id/includedToolbar"
+        android:id="@+id/toolbar"
         layout="@layout/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

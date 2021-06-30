@@ -62,11 +62,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailVie
         userId = extras?.getInt(INTENT_KEY_USER_ID, 0) ?: 0
     }
 
-    private fun setupToolbar() {
-        val toolbar = binding.includedToolbar.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
 
     private fun observeUserDetail() {
         viewModel.user.observe(this) {

@@ -43,12 +43,6 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
         }
     }
 
-    private fun setupToolbar() {
-        val toolbar = binding.includedToolbar.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
     private fun observePopularMovies() {
         viewModel.popularMovies.observe(this) {
             when (it) {

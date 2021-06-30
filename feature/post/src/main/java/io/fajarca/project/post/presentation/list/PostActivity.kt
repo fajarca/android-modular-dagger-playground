@@ -51,13 +51,6 @@ class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
         viewModel.getPosts()
     }
 
-    private fun setupToolbar() {
-        val toolbar = binding.toolbar.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-
     private fun handleIntentArguments() {
         val extras = intent.extras
         val data = extras?.getParcelable(Routable.ROUTE_DATA) as? PostRouterData

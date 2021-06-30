@@ -3,9 +3,11 @@ package io.fajarca.project.base.abstraction
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import io.fajarca.project.base.R
 import javax.inject.Inject
 
 abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity() {
@@ -29,7 +31,7 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
             _binding = getViewBinding(layoutInflater)
         }
         setContentView(_binding?.root)
-
+        setupToolbar()
         _viewModel = ViewModelProvider(this, viewModelFactory).get(getViewModelClass)
     }
 
@@ -42,4 +44,11 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
 
     abstract val getViewBinding: (LayoutInflater) -> V
     abstract val getViewModelClass: Class<VM>
+
+    fun setupToolbar() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        if (toolbar != null) {
+            setSupportActionBar(toolbar)
+        }
+    }
 }

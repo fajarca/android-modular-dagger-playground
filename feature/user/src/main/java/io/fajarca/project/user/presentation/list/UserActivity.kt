@@ -69,12 +69,6 @@ class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
         }
     }
 
-    private fun setupToolbar() {
-        val toolbar = binding.includedToolbar.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
     private fun setupRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager

@@ -61,13 +61,6 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailVie
         postId = extras?.getInt(INTENT_KEY_POST_ID, 0) ?: 0
     }
 
-    private fun setupToolbar() {
-        val toolbar = binding.includedToolbar.toolbar
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-
     private fun observePostDetail() {
         viewModel.post.observe(this) {
             when (it) {

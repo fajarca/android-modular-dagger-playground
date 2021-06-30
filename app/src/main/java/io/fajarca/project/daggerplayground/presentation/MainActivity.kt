@@ -53,7 +53,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val installListener = SplitInstallStateUpdatedListener { state ->
-        val size = state.totalBytesToDownload()
         when (state.status()) {
             SplitInstallSessionStatus.CANCELED -> {
             }
@@ -68,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
             SplitInstallSessionStatus.DOWNLOADING -> {
+                val downloadSize = state.totalBytesToDownload()
+                val progress = state.bytesDownloaded()
+                Log.v("MainActivity", "Downloading dynamic feature.. $progress of $downloadSize")
+
                 Snackbar.make(
                     binding?.root ?: return@SplitInstallStateUpdatedListener,
                     "Downloading movie module",
