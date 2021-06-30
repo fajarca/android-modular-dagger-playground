@@ -23,8 +23,8 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
     protected val viewModel: VM
         get() = _viewModel
 
-    private lateinit var _toolbar: Toolbar
-    protected val toolbar: Toolbar
+    private var _toolbar: Toolbar? = null
+    protected val toolbar: Toolbar?
         get() = _toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,6 +53,7 @@ abstract class BaseActivity<V : ViewBinding, VM : ViewModel> : AppCompatActivity
         _toolbar = findViewById(R.id.toolbar)
         if (_toolbar != null) {
             setSupportActionBar(_toolbar)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
     }
 }
