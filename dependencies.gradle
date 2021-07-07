@@ -22,9 +22,11 @@ ext {
     espressoVersion = '3.3.0'
     lifecycleVersion = '2.3.1'
     fragmentKtxVersion = '1.1.0'
-    androidGradlePluginVersion = '4.2.1'
     roomVersion = '2.3.0'
     mockkVersion = '1.10.6'
+    hiltVersion = '2.35'
+
+    androidGradlePluginVersion = '4.2.1'
 
     libraries = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib:" + kotlinVersion,
@@ -55,7 +57,9 @@ ext {
             fragmentKtx           : "androidx.fragment:fragment-ktx:" + fragmentKtxVersion,
 
             roomRuntime           : "androidx.room:room-runtime:" + roomVersion,
-            room                  : "androidx.room:room-ktx:" + roomVersion
+            room                  : "androidx.room:room-ktx:" + roomVersion,
+
+            hilt                  : "com.google.dagger:hilt-android:$hiltVersion"
     ]
 
     kaptLibraries = [
@@ -63,12 +67,13 @@ ext {
             dagger           : "com.google.dagger:dagger-compiler:" + daggerVersion,
             daggerAndroid    : "com.google.dagger:dagger-android-processor:" + daggerVersion,
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:" + lifecycleVersion,
-            room             : "androidx.room:room-compiler:" + roomVersion
+            room             : "androidx.room:room-compiler:" + roomVersion,
+            hilt             : "com.google.dagger:hilt-android-compiler:" + hiltVersion
     ]
 
     testLibraries = [
             junit4: "junit:junit:" + junit4Version,
-            mockk:  "io.mockk:mockk:" + mockkVersion
+            mockk : "io.mockk:mockk:" + mockkVersion
     ]
 
     androidTestLibraries = [

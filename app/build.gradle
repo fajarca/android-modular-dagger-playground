@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -61,4 +62,7 @@ dependencies {
     implementation libraries.roomRuntime
     kapt kaptLibraries.room
     annotationProcessor kaptLibraries.room
+
+    implementation libraries.hilt
+    kapt kaptLibraries.hilt
 }
