@@ -24,6 +24,7 @@ ext {
     fragmentKtxVersion = '1.1.0'
     androidGradlePluginVersion = '4.2.1'
     roomVersion = '2.3.0'
+    mockkVersion = '1.10.6'
 
     libraries = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib:" + kotlinVersion,
@@ -66,7 +67,8 @@ ext {
     ]
 
     testLibraries = [
-            junit4: "junit:junit:" + junit4Version
+            junit4: "junit:junit:" + junit4Version,
+            mockk:  "io.mockk:mockk:" + mockkVersion
     ]
 
     androidTestLibraries = [

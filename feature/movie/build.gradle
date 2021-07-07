@@ -52,4 +52,7 @@ dependencies {
     implementation libraries.glide
     kapt kaptLibraries.glide
 
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockk
+
 }
