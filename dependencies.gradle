@@ -25,7 +25,7 @@ ext {
     roomVersion = '2.3.0'
     mockkVersion = '1.10.6'
     hiltVersion = '2.35'
-
+    hiltViewModelVersion = '1.0.0-alpha01'
     androidGradlePluginVersion = '4.2.1'
 
     libraries = [
@@ -59,7 +59,8 @@ ext {
             roomRuntime           : "androidx.room:room-runtime:" + roomVersion,
             room                  : "androidx.room:room-ktx:" + roomVersion,
 
-            hilt                  : "com.google.dagger:hilt-android:$hiltVersion"
+            hilt                  : "com.google.dagger:hilt-android:" + hiltVersion,
+            hiltViewModel : "androidx.hilt:hilt-lifecycle-viewmodel:" + hiltViewModelVersion
     ]
 
     kaptLibraries = [
@@ -68,7 +69,8 @@ ext {
             daggerAndroid    : "com.google.dagger:dagger-android-processor:" + daggerVersion,
             lifecycleCompiler: "androidx.lifecycle:lifecycle-compiler:" + lifecycleVersion,
             room             : "androidx.room:room-compiler:" + roomVersion,
-            hilt             : "com.google.dagger:hilt-android-compiler:" + hiltVersion
+            hilt             : "com.google.dagger:hilt-android-compiler:" + hiltVersion,
+            hiltViewModel : "androidx.hilt:hilt-lifecycle-viewmodel:" + hiltViewModelVersion
     ]
 
     testLibraries = [

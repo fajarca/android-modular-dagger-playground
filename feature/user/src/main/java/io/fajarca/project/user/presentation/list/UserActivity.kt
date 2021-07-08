@@ -4,10 +4,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
-import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
 import io.fajarca.project.apiclient.exception.ClientErrorException
@@ -17,11 +18,11 @@ import io.fajarca.project.base.router.Routable
 import io.fajarca.project.base.router.Router
 import io.fajarca.project.common.navigation.UserRouterData
 import io.fajarca.project.user.databinding.ActivityUserBinding
-import io.fajarca.project.user.di.component.DaggerUserComponent
 import io.fajarca.project.user.presentation.detail.UserDetailActivity
 import javax.inject.Inject
 
-class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
+@AndroidEntryPoint
+class UserActivity : BaseActivity<ActivityUserBinding>() {
 
     @Inject
     lateinit var router: Router
@@ -31,18 +32,7 @@ class UserActivity : BaseActivity<ActivityUserBinding, UserViewModel>() {
     override val getViewBinding: (LayoutInflater) -> ActivityUserBinding
         get() = ActivityUserBinding::inflate
 
-    override val getViewModelClass: Class<UserViewModel>
-        get() = UserViewModel::class.java
-
-    override fun setupDaggerComponent() {
-        val userComponent = DaggerUserComponent
-            .builder()
-            .baseComponent((application as BaseApplication).getBaseComponent())
-            .build()
-
-        userComponent.userActivityComponent().create().inject(this)
-    }
-
+    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

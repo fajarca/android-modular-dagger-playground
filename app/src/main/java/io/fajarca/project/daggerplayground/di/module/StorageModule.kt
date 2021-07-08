@@ -2,12 +2,14 @@ package io.fajarca.project.daggerplayground.di.module
 
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.daggerplayground.data.SharedPreferenceStorage
 
 @Module
-abstract class StorageModule {
-
+@InstallIn(SingletonComponent::class)
+interface StorageModule {
     @Binds
-    abstract fun provideStorage(storage: SharedPreferenceStorage): Storage
+    fun provideStorage(storage: SharedPreferenceStorage): Storage
 }

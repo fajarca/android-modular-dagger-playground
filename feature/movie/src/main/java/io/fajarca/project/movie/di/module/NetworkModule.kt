@@ -3,7 +3,8 @@ package io.fajarca.project.movie.di.module
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import io.fajarca.project.base.di.scope.ModuleScope
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import io.fajarca.project.movie.BuildConfig
 import io.fajarca.project.movie.data.service.MovieService
 import okhttp3.Interceptor
@@ -11,12 +12,11 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 @Module
-class NetworkModule {
+@InstallIn(ActivityComponent::class)
+object NetworkModule {
 
     @Provides
-    @ModuleScope
     fun provideAuthInterceptor(): Interceptor {
         return Interceptor { chain ->
             val newRequest = chain
@@ -33,7 +33,6 @@ class NetworkModule {
     }
 
     @Provides
-    @ModuleScope
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         authInterceptor: Interceptor,
@@ -53,7 +52,6 @@ class NetworkModule {
 
 
     @Provides
-    @ModuleScope
     fun provideMovieServiceApi(retrofit: Retrofit): MovieService =
         retrofit.create(MovieService::class.java)
 }

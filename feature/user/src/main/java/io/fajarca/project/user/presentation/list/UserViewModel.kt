@@ -1,5 +1,6 @@
 package io.fajarca.project.user.presentation.list
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,16 +8,13 @@ import androidx.lifecycle.viewModelScope
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
-import io.fajarca.project.base.di.scope.FeatureScope
 import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
 import io.fajarca.project.user.domain.entity.User
 import io.fajarca.project.user.domain.usecase.GetUsersUseCase
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@FeatureScope
-class UserViewModel @Inject constructor(
+class UserViewModel @ViewModelInject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

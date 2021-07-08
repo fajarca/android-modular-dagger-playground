@@ -3,10 +3,11 @@ package io.fajarca.project.post.presentation.list
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
-import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
 import io.fajarca.project.apiclient.exception.ClientErrorException
@@ -16,11 +17,11 @@ import io.fajarca.project.base.router.Routable
 import io.fajarca.project.base.router.Router
 import io.fajarca.project.common.navigation.PostRouterData
 import io.fajarca.project.post.databinding.ActivityPostBinding
-import io.fajarca.project.post.di.component.DaggerPostComponent
 import io.fajarca.project.post.presentation.detail.PostDetailActivity
 import javax.inject.Inject
 
-class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
+@AndroidEntryPoint
+class PostActivity : BaseActivity<ActivityPostBinding>() {
 
     @Inject
     lateinit var router: Router
@@ -28,19 +29,9 @@ class PostActivity : BaseActivity<ActivityPostBinding, PostViewModel>() {
     override val getViewBinding: (LayoutInflater) -> ActivityPostBinding
         get() = ActivityPostBinding::inflate
 
-    override val getViewModelClass: Class<PostViewModel>
-        get() = PostViewModel::class.java
+    private val viewModel: PostViewModel by viewModels()
 
     private val adapter by lazy { PostRecyclerAdapter() }
-
-    override fun setupDaggerComponent() {
-        val postComponent = DaggerPostComponent
-            .builder()
-            .baseComponent((application as BaseApplication).getBaseComponent())
-            .build()
-
-        postComponent.postActivityComponent().create().inject(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

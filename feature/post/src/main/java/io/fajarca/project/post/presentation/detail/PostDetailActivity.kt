@@ -5,25 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
-import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.BaseActivity
-import io.fajarca.project.base.abstraction.BaseApplication
-import io.fajarca.project.base.extension.gone
-import io.fajarca.project.base.extension.visible
+import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.apiclient.exception.ClientErrorException
 import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
+import io.fajarca.project.base.ViewState
+import io.fajarca.project.base.abstraction.BaseActivity
+import io.fajarca.project.base.extension.gone
+import io.fajarca.project.base.extension.visible
 import io.fajarca.project.post.databinding.ActivityPostDetailBinding
-import io.fajarca.project.post.di.component.DaggerPostComponent
 import io.fajarca.project.post.domain.entity.Post
 
-class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailViewModel>() {
+@AndroidEntryPoint
+class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
 
     override val getViewBinding: (LayoutInflater) -> ActivityPostDetailBinding
         get() = ActivityPostDetailBinding::inflate
 
-    override val getViewModelClass: Class<PostDetailViewModel>
-        get() = PostDetailViewModel::class.java
+    private val viewModel: PostDetailViewModel by viewModels()
 
     private var postId: Int = 0
 
@@ -39,14 +39,6 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding, PostDetailVie
         }
     }
 
-    override fun setupDaggerComponent() {
-        val postComponent = DaggerPostComponent
-            .builder()
-            .baseComponent((application as BaseApplication).getBaseComponent())
-            .build()
-
-        postComponent.postDetailComponent().create().inject(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

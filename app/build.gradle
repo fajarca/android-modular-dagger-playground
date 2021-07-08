@@ -65,4 +65,7 @@ dependencies {
 
     implementation libraries.hilt
     kapt kaptLibraries.hilt
+
+    implementation libraries.hiltViewModel
+    kapt kaptLibraries.hiltViewModel
 }

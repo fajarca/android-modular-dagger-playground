@@ -1,13 +1,14 @@
 package io.fajarca.project.movie.presentation
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
-import io.fajarca.project.base.di.scope.FeatureScope
 import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
 import io.fajarca.project.movie.domain.entity.Movie
@@ -17,8 +18,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-@FeatureScope
-class MovieListViewModel @Inject constructor(
+class MovieListViewModel @ViewModelInject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

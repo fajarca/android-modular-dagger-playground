@@ -3,13 +3,16 @@ package io.fajarca.project.daggerplayground.di.module
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.daggerplayground.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
 @Module
-class NetworkModule {
+@InstallIn(SingletonComponent::class)
+object NetworkModule {
 
     @Provides
     @Singleton

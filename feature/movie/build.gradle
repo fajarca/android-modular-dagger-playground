@@ -2,6 +2,7 @@ plugins {
     id 'com.android.dynamic-feature'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 android {
     compileSdkVersion 30
@@ -55,4 +56,9 @@ dependencies {
     testImplementation testLibraries.junit4
     testImplementation testLibraries.mockk
 
+    implementation libraries.hilt
+    kapt kaptLibraries.hilt
+
+    implementation libraries.hiltViewModel
+    kapt kaptLibraries.hiltViewModel
 }

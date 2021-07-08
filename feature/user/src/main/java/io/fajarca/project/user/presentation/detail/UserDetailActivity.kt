@@ -5,27 +5,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.BaseActivity
-import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
 import io.fajarca.project.apiclient.exception.ClientErrorException
 import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.user.databinding.ActivityUserDetailBinding
-import io.fajarca.project.user.di.component.DaggerUserComponent
 import io.fajarca.project.user.domain.entity.User
 
-class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailViewModel>() {
+@AndroidEntryPoint
+class UserDetailActivity : BaseActivity<ActivityUserDetailBinding>() {
 
     private var userId: Int = 0
 
     override val getViewBinding: (LayoutInflater) -> ActivityUserDetailBinding
         get() = ActivityUserDetailBinding::inflate
 
-    override val getViewModelClass: Class<UserDetailViewModel>
-        get() = UserDetailViewModel::class.java
+    private val viewModel: UserDetailViewModel by viewModels()
 
     companion object {
         private const val INTENT_KEY_USER_ID = "userId"
@@ -38,16 +38,6 @@ class UserDetailActivity : BaseActivity<ActivityUserDetailBinding, UserDetailVie
             context.startActivity(starter)
         }
     }
-
-    override fun setupDaggerComponent() {
-        val userComponent = DaggerUserComponent
-            .builder()
-            .baseComponent((application as BaseApplication).getBaseComponent())
-            .build()
-
-        userComponent.userDetailComponent().create().inject(this)
-    }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

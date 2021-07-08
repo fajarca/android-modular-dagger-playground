@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -47,16 +48,14 @@ dependencies {
     implementation libraries.coreKtx
     implementation libraries.fragmentKtx
 
-    implementation libraries.dagger
-    implementation libraries.daggerAndroid
-    kapt kaptLibraries.dagger
-    kapt kaptLibraries.daggerAndroid
-
     implementation libraries.viewmodel
     implementation libraries.livedata
     implementation libraries.lifecycleRuntime
     kapt kaptLibraries.lifecycleCompiler
 
+    implementation libraries.hilt
+    kapt kaptLibraries.hilt
 
-
+    implementation libraries.hiltViewModel
+    kapt kaptLibraries.hiltViewModel
 }

@@ -1,43 +1,54 @@
 package io.fajarca.project.movie.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import io.fajarca.project.apiclient.exception.ClientErrorException
 import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.BaseActivity
-import io.fajarca.project.base.abstraction.BaseApplication
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
+import io.fajarca.project.daggerplayground.di.module.MovieModuleDependencies
 import io.fajarca.project.movie.databinding.ActivityMovieListBinding
 import io.fajarca.project.movie.di.component.DaggerMovieComponent
 
-class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewModel>() {
-
-    override val getViewBinding: (LayoutInflater) -> ActivityMovieListBinding
-        get() = ActivityMovieListBinding::inflate
-
-
-    override val getViewModelClass: Class<MovieListViewModel>
-        get() = MovieListViewModel::class.java
+@AndroidEntryPoint
+class MovieListActivity : AppCompatActivity() {
 
     private val adapter by lazy { MovieRecyclerAdapter() }
+    private val viewModel: MovieListViewModel by viewModels()
+    private var binding : ActivityMovieListBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        DaggerMovieComponent
+            .builder()
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    applicationContext,
+                    MovieModuleDependencies::class.java
+                )
+            )
+            .build()
+            .inject(this)
+
+        binding = ActivityMovieListBinding.inflate(layoutInflater)
         setupRecyclerView()
-        setupToolbar()
+       // setupToolbar()
         observePopularMovies()
         viewModel.getPopularMovies()
     }
 
     private fun setupRecyclerView() {
         val layoutManager = GridLayoutManager(this, 2)
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = adapter
+        binding?.recyclerView?.layoutManager = layoutManager
+        binding?.recyclerView?.adapter = adapter
         adapter.setOnMovieSelected { movie ->
 
         }
@@ -47,14 +58,14 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
         viewModel.popularMovies.observe(this) {
             when (it) {
                 ViewState.Loading -> {
-                    binding.progressBar.visible()
+                    binding?.progressBar?.visible()
                 }
                 is ViewState.Success -> {
-                    binding.progressBar.gone()
+                    binding?.progressBar?.gone()
                     adapter.submitList(it.data)
                 }
                 is ViewState.Error -> {
-                    binding.progressBar.gone()
+                    binding?.progressBar?.gone()
                     when (val cause = it.cause) {
                         is ClientErrorException -> {
                             val code = cause.code
@@ -63,7 +74,7 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
                             val code = cause.code
                         }
                         is NoInternetConnection -> {
-                            Snackbar.make(binding.root, "No connection", Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(binding?.root ?: return@observe, "No connection", Snackbar.LENGTH_LONG).show()
                         }
                     }
 
@@ -72,14 +83,8 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
         }
     }
 
-    override fun setupDaggerComponent() {
-        val movieComponent = DaggerMovieComponent
-            .builder()
-            .baseComponent((application as BaseApplication).getBaseComponent())
-            .build()
-
-        movieComponent.movieListActivityComponent().create().inject(this)
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
-
-
 }
