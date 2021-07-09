@@ -1,14 +1,12 @@
 package io.fajarca.project.user.domain.usecase
 
-import io.fajarca.project.core.abstraction.usecase.UseCase
 import io.fajarca.project.user.domain.repository.UserRepository
 import javax.inject.Inject
 
 
-class GetPinUseCase @Inject constructor(private val repository: UserRepository) :
-    UseCase<UseCase.NoParams, String>() {
+class GetPinUseCase @Inject constructor(private val repository: UserRepository) {
 
-    override suspend fun execute(params: NoParams): String {
+    fun execute(): String {
         return repository.getPin()
     }
 

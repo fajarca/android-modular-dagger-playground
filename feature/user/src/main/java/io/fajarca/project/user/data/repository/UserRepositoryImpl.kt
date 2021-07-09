@@ -24,7 +24,7 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getUserDetail(userId : Int): Either<Exception, User> {
+    override suspend fun getUserDetail(userId: Int): Either<Exception, User> {
         val apiResult = userRemoteDataSource.getUserDetail(userId)
         return when (apiResult) {
             is Either.Failure -> Either.Failure(apiResult.cause)
@@ -32,11 +32,11 @@ class UserRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun setPin(pin: String) {
+    override fun setPin(pin: String) {
         userLocalDataSource.setPin(pin)
     }
 
-    override suspend fun getPin(): String {
+    override fun getPin(): String {
         return userLocalDataSource.getPin()
     }
 
