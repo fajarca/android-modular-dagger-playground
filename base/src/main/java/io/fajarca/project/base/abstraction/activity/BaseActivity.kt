@@ -23,6 +23,7 @@ abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
         if (_binding == null) {
             _binding = getViewBinding(layoutInflater)
         }
+
         setContentView(_binding?.root)
         setupToolbar()
     }

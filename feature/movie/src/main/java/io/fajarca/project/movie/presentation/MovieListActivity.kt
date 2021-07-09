@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.EntryPointAccessors
 import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.activity.viewmodel.BaseActivity
+import io.fajarca.project.base.abstraction.activity.DynamicFeatureActivity
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
 import io.fajarca.project.daggerplayground.di.dependencies.MovieModuleDependencies
 import io.fajarca.project.movie.databinding.ActivityMovieListBinding
 import io.fajarca.project.movie.di.component.DaggerMovieComponent
 
-class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewModel>() {
+class MovieListActivity : DynamicFeatureActivity<ActivityMovieListBinding, MovieListViewModel>() {
 
     private val adapter by lazy { MovieRecyclerAdapter() }
 
@@ -59,7 +59,7 @@ class MovieListActivity : BaseActivity<ActivityMovieListBinding, MovieListViewMo
     override fun setupDaggerComponent() {
         DaggerMovieComponent
             .builder()
-            .appDependencies(
+            .moduleDependencies(
                 EntryPointAccessors.fromApplication(
                     applicationContext,
                     MovieModuleDependencies::class.java

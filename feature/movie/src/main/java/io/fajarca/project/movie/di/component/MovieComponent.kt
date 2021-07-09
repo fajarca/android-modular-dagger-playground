@@ -22,7 +22,7 @@ interface MovieComponent {
 
     @Component.Builder
     interface Builder {
-        fun appDependencies(movieModuleDependencies: MovieModuleDependencies): Builder
+        fun moduleDependencies(dependencies: MovieModuleDependencies): Builder
         fun build(): MovieComponent
     }
 }
