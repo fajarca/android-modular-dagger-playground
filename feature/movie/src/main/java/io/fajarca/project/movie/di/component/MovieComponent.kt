@@ -4,13 +4,17 @@ import dagger.Component
 import io.fajarca.project.daggerplayground.di.module.MovieModuleDependencies
 import io.fajarca.project.movie.di.module.NetworkModule
 import io.fajarca.project.movie.di.module.RepositoryModule
+import io.fajarca.project.movie.di.module.ViewModelFactoryModule
+import io.fajarca.project.movie.di.module.ViewModelModule
 import io.fajarca.project.movie.presentation.MovieListActivity
 
 @Component(
     dependencies = [MovieModuleDependencies::class],
     modules = [
         NetworkModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        ViewModelFactoryModule::class,
+        ViewModelModule::class
     ]
 )
 interface MovieComponent {

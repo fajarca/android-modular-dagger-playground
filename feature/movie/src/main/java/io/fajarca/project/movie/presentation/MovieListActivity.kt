@@ -1,11 +1,10 @@
 package io.fajarca.project.movie.presentation
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.EntryPointAccessors
 import io.fajarca.project.apiclient.exception.ClientErrorException
 import io.fajarca.project.apiclient.exception.NoInternetConnection
@@ -16,13 +15,16 @@ import io.fajarca.project.base.extension.visible
 import io.fajarca.project.daggerplayground.di.module.MovieModuleDependencies
 import io.fajarca.project.movie.databinding.ActivityMovieListBinding
 import io.fajarca.project.movie.di.component.DaggerMovieComponent
+import javax.inject.Inject
 
-@AndroidEntryPoint
 class MovieListActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
     private val adapter by lazy { MovieRecyclerAdapter() }
-    private val viewModel: MovieListViewModel by viewModels()
-    private var binding : ActivityMovieListBinding? = null
+    private var binding: ActivityMovieListBinding? = null
+    private lateinit var viewModel: MovieListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +40,12 @@ class MovieListActivity : AppCompatActivity() {
             .build()
             .inject(this)
 
+
         binding = ActivityMovieListBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
+
         setupRecyclerView()
-       // setupToolbar()
+        // setupToolbar()
         observePopularMovies()
         viewModel.getPopularMovies()
     }
@@ -74,7 +79,11 @@ class MovieListActivity : AppCompatActivity() {
                             val code = cause.code
                         }
                         is NoInternetConnection -> {
-                            Snackbar.make(binding?.root ?: return@observe, "No connection", Snackbar.LENGTH_LONG).show()
+                            Snackbar.make(
+                                binding?.root ?: return@observe,
+                                "No connection",
+                                Snackbar.LENGTH_LONG
+                            ).show()
                         }
                     }
 
