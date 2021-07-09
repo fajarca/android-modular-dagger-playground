@@ -1,7 +1,7 @@
 package io.fajarca.project.movie.di.component
 
 import dagger.Component
-import io.fajarca.project.daggerplayground.di.module.MovieModuleDependencies
+import io.fajarca.project.daggerplayground.di.dependencies.MovieModuleDependencies
 import io.fajarca.project.movie.di.module.NetworkModule
 import io.fajarca.project.movie.di.module.RepositoryModule
 import io.fajarca.project.movie.di.module.ViewModelFactoryModule

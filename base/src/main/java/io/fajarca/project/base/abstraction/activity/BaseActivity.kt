@@ -1,15 +1,11 @@
-package io.fajarca.project.base.abstraction
+package io.fajarca.project.base.abstraction.activity
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.base.R
-import javax.inject.Inject
 
 abstract class BaseActivity<V : ViewBinding> : AppCompatActivity() {
 

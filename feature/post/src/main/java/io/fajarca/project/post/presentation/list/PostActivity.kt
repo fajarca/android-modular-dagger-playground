@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.BaseActivity
+import io.fajarca.project.base.abstraction.activity.BaseActivity
 import io.fajarca.project.base.extension.gone
 import io.fajarca.project.base.extension.visible
 import io.fajarca.project.apiclient.exception.ClientErrorException

@@ -1,9 +1,8 @@
-package io.fajarca.project.daggerplayground.di.module
+package io.fajarca.project.daggerplayground.di.dependencies
 
 import com.squareup.moshi.Moshi
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.apiclient.ApiClient
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
