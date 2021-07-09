@@ -38,7 +38,6 @@ dependencies {
     api libraries.room
     api libraries.roomRuntime
     kapt kaptLibraries.room
-    annotationProcessor kaptLibraries.room
 
     implementation libraries.hilt
     kapt kaptLibraries.hilt

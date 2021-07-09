@@ -11,8 +11,10 @@ import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
+import javax.inject.Singleton
 import retrofit2.Response
 
+@Singleton
 internal class ApiClientImpl @Inject constructor() : ApiClient {
 
     override suspend fun <T> call(apiCall: suspend () -> Response<T>): ApiResponse<Exception, T> {

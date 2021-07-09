@@ -17,6 +17,7 @@ import javax.inject.Singleton
 object PersistenceModule {
 
     @Provides
+    @Singleton
     fun provideDatabase(@ApplicationContext context: Context): DaggerPlaygroundDatabase {
         return Room.databaseBuilder(
             context,
