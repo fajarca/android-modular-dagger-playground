@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.fajarca.project.base.ViewState
 import io.fajarca.project.base.abstraction.UseCase
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
@@ -12,9 +13,11 @@ import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
 import io.fajarca.project.user.domain.entity.User
 import io.fajarca.project.user.domain.usecase.GetUsersUseCase
+import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class UserViewModel @ViewModelInject constructor(
+@HiltViewModel
+class UserViewModel @Inject constructor(
     private val getUsersUseCase: GetUsersUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

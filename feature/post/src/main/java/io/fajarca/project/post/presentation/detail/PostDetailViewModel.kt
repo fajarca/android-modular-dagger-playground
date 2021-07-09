@@ -16,7 +16,8 @@ import javax.inject.Inject
 import kotlinx.coroutines.launch
 
 
-class PostDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class PostDetailViewModel @Inject constructor(
     private val getPostDetailUseCase: GetPostDetailUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

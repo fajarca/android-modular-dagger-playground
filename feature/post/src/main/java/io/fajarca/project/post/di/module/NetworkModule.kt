@@ -5,17 +5,21 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.post.data.service.PostService
+import io.fajarca.project.post.di.qualifier.PostModuleRetrofit
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 @Module
-@InstallIn(ActivityComponent::class)
-class NetworkModule {
+@InstallIn(ViewModelComponent::class)
+object NetworkModule {
+
     @Provides
+    @PostModuleRetrofit
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://jsonplaceholder.typicode.com/")
@@ -25,5 +29,6 @@ class NetworkModule {
     }
 
     @Provides
-    fun providePostServiceApi(retrofit: Retrofit): PostService = retrofit.create(PostService::class.java)
+    fun providePostServiceApi(@PostModuleRetrofit retrofit: Retrofit): PostService =
+        retrofit.create(PostService::class.java)
 }

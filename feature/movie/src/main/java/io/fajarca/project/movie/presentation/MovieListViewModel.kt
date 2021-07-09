@@ -1,6 +1,5 @@
 package io.fajarca.project.movie.presentation
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,7 +17,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class MovieListViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MovieListViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

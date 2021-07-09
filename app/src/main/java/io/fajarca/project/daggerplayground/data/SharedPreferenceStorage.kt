@@ -1,6 +1,7 @@
 package io.fajarca.project.daggerplayground.data
 
 import android.content.Context
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.fajarca.project.base.abstraction.Storage
 import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
 import kotlinx.coroutines.runBlocking
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class SharedPreferenceStorage @Inject constructor(
-    private val context: Context,
+    @ApplicationContext private val context: Context,
     private val dispatcherProvider: DispatcherProvider
 ) : Storage {
 

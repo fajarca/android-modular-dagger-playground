@@ -16,8 +16,8 @@ import io.fajarca.project.post.domain.usecase.GetPostsUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-
-class PostViewModel @ViewModelInject constructor(
+@HiltViewModel
+class PostViewModel @Inject constructor(
     private val getPostsUseCase: GetPostsUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {

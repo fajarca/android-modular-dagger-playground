@@ -15,7 +15,8 @@ import io.fajarca.project.user.domain.usecase.GetUserDetailUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class UserDetailViewModel @ViewModelInject constructor(
+@HiltViewModel
+class UserDetailViewModel @Inject constructor(
     private val getUserDetailUseCase: GetUserDetailUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
