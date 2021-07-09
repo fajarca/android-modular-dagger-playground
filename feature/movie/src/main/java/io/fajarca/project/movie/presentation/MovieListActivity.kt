@@ -44,6 +44,7 @@ class MovieListActivity : AppCompatActivity() {
         binding = ActivityMovieListBinding.inflate(layoutInflater)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MovieListViewModel::class.java)
 
+        setContentView(binding?.root)
         setupRecyclerView()
         // setupToolbar()
         observePopularMovies()
