@@ -1,14 +1,13 @@
-package io.fajarca.project.daggerplayground.data
+package io.fajarca.project.base.dispatcher
 
-import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
+import javax.inject.Inject
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
-import javax.inject.Inject
 
 /**
  * Provide coroutines context.
  */
-class DispatcherProviderImpl @Inject constructor() : DispatcherProvider {
+class CoroutineDispatcherProviderImpl @Inject constructor() : CoroutineDispatcherProvider {
     override val main: CoroutineDispatcher
         get() = Dispatchers.Main
     override val io: CoroutineDispatcher

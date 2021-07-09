@@ -1,13 +1,12 @@
 package io.fajarca.project.user.presentation.detail
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
+import io.fajarca.project.base.dispatcher.CoroutineDispatcherProvider
 import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
 import io.fajarca.project.user.domain.entity.User
@@ -18,7 +17,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class UserDetailViewModel @Inject constructor(
     private val getUserDetailUseCase: GetUserDetailUseCase,
-    private val dispatcherProvider: DispatcherProvider
+    private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
 
     private val _user = MutableLiveData<ViewState<User>>()
@@ -27,7 +26,7 @@ class UserDetailViewModel @Inject constructor(
 
     fun getUserDetail(userId : Int) {
         _user.value = ViewState.Loading
-        viewModelScope.launch(dispatcherProvider.io) {
+        viewModelScope.launch(coroutineDispatcherProvider.io) {
             getUserDetailUseCase
                 .execute(userId)
                 .onSuccess { users -> _user.postValue(ViewState.Success(users)) }

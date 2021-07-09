@@ -4,10 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.UseCase
-import io.fajarca.project.base.abstraction.dispatcher.DispatcherProvider
+import io.fajarca.project.base.abstraction.usecase.UseCase
+import io.fajarca.project.base.dispatcher.CoroutineDispatcherProvider
 import io.fajarca.project.base.extension.onError
 import io.fajarca.project.base.extension.onSuccess
 import io.fajarca.project.movie.domain.entity.Movie
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 
 class MovieListViewModel @Inject constructor(
     private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
-    private val dispatcherProvider: DispatcherProvider
+    private val coroutineDispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
 
     private val _popularMovies = MutableLiveData<ViewState<List<Movie>>>()
@@ -28,7 +27,7 @@ class MovieListViewModel @Inject constructor(
 
     fun getPopularMovies() {
         _popularMovies.value = ViewState.Loading
-        viewModelScope.launch(dispatcherProvider.io) {
+        viewModelScope.launch(coroutineDispatcherProvider.io) {
             getPopularMoviesUseCase
                 .execute(UseCase.NoParams)
                 .onSuccess { flow -> collectMovies(flow) }

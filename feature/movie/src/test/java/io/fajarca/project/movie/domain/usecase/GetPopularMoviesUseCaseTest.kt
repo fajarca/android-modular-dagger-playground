@@ -2,7 +2,7 @@ package io.fajarca.project.movie.domain.usecase
 
 import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.base.Either
-import io.fajarca.project.base.abstraction.UseCase
+import io.fajarca.project.base.abstraction.usecase.UseCase
 import io.fajarca.project.movie.domain.entity.Movie
 import io.fajarca.project.movie.domain.repository.MovieRepository
 import io.mockk.coEvery

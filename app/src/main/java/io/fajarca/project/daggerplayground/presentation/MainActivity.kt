@@ -20,7 +20,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
     private val splitInstallManager by lazy { SplitInstallManagerFactory.create(this) }
     private var binding: ActivityMainBinding? = null
 
