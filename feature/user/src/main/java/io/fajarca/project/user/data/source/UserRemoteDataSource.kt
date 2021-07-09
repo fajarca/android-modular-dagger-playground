@@ -1,8 +1,8 @@
 package io.fajarca.project.user.data.source
 
 import io.fajarca.project.apiclient.ApiClient
-import io.fajarca.project.apiclient.ApiResponse
-import io.fajarca.project.base.Either
+import io.fajarca.project.apiclient.response.ApiResponse
+import io.fajarca.project.core.Either
 import io.fajarca.project.user.data.response.GetUserDetailDto
 import io.fajarca.project.user.data.response.GetUsersDto
 import io.fajarca.project.user.data.service.UserService

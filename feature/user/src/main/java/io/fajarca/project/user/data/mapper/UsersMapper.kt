@@ -1,6 +1,6 @@
 package io.fajarca.project.user.data.mapper
 
-import io.fajarca.project.base.abstraction.mapper.Mapper
+import io.fajarca.project.core.abstraction.mapper.Mapper
 import io.fajarca.project.user.data.response.GetUsersDto
 import io.fajarca.project.user.domain.entity.User
 import javax.inject.Inject

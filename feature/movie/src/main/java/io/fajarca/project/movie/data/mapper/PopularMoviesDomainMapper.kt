@@ -1,6 +1,6 @@
 package io.fajarca.project.movie.data.mapper
 
-import io.fajarca.project.base.abstraction.mapper.Mapper
+import io.fajarca.project.core.abstraction.mapper.Mapper
 import io.fajarca.project.persistance.entity.MovieEntity
 import io.fajarca.project.movie.domain.entity.Movie
 import javax.inject.Inject

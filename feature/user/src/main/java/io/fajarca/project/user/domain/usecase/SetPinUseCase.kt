@@ -1,6 +1,6 @@
 package io.fajarca.project.user.domain.usecase
 
-import io.fajarca.project.base.abstraction.usecase.UseCase
+import io.fajarca.project.core.abstraction.usecase.UseCase
 import io.fajarca.project.user.domain.repository.UserRepository
 import javax.inject.Inject
 

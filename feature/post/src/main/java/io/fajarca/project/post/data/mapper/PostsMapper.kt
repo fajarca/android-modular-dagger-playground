@@ -1,6 +1,6 @@
 package io.fajarca.project.post.data.mapper
 
-import io.fajarca.project.base.abstraction.mapper.Mapper
+import io.fajarca.project.core.abstraction.mapper.Mapper
 import io.fajarca.project.post.data.response.GetPostsDto
 import io.fajarca.project.post.domain.entity.Post
 import javax.inject.Inject

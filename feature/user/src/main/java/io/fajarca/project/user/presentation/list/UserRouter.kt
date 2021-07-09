@@ -1,6 +1,6 @@
 package io.fajarca.project.user.presentation.list
 
-import io.fajarca.project.base.router.Routable
+import io.fajarca.project.core.router.Routable
 import io.fajarca.project.common.navigation.UserRouterData
 
 class UserRouter {

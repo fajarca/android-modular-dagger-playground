@@ -4,7 +4,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.fajarca.project.base.abstraction.storage.Storage
+import io.fajarca.project.core.abstraction.storage.Storage
 import io.fajarca.project.daggerplayground.data.SharedPreferenceStorage
 
 @Module

@@ -2,8 +2,8 @@ package io.fajarca.project.daggerplayground.data
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import io.fajarca.project.base.abstraction.storage.Storage
-import io.fajarca.project.base.dispatcher.CoroutineDispatcherProvider
+import io.fajarca.project.core.abstraction.storage.Storage
+import io.fajarca.project.core.dispatcher.CoroutineDispatcherProvider
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

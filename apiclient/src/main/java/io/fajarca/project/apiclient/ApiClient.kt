@@ -1,5 +1,6 @@
 package io.fajarca.project.apiclient
 
+import io.fajarca.project.apiclient.response.ApiResponse
 import retrofit2.Response
 
 

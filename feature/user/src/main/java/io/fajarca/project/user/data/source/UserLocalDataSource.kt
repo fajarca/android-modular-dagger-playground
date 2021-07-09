@@ -1,6 +1,6 @@
 package io.fajarca.project.user.data.source
 
-import io.fajarca.project.base.abstraction.storage.Storage
+import io.fajarca.project.core.abstraction.storage.Storage
 import javax.inject.Inject
 
 class UserLocalDataSource @Inject constructor(private val storage: Storage) {

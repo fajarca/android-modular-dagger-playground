@@ -1,6 +1,6 @@
 package io.fajarca.project.user.data.repository
 
-import io.fajarca.project.base.Either
+import io.fajarca.project.core.Either
 import io.fajarca.project.user.data.mapper.UserMapper
 import io.fajarca.project.user.data.mapper.UsersMapper
 import io.fajarca.project.user.data.source.UserLocalDataSource

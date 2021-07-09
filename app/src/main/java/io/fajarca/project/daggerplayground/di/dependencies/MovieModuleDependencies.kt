@@ -5,7 +5,7 @@ import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.apiclient.ApiClient
-import io.fajarca.project.base.dispatcher.CoroutineDispatcherProvider
+import io.fajarca.project.core.dispatcher.CoroutineDispatcherProvider
 import io.fajarca.project.persistance.DaggerPlaygroundDatabase
 import io.fajarca.project.persistance.dao.MovieDao
 import okhttp3.OkHttpClient

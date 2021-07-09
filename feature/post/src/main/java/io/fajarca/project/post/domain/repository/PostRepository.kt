@@ -1,6 +1,6 @@
 package io.fajarca.project.post.domain.repository
 
-import io.fajarca.project.base.Either
+import io.fajarca.project.core.Either
 import io.fajarca.project.post.domain.entity.Post
 
 interface PostRepository {

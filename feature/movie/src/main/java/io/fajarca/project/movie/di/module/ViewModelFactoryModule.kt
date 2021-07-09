@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.migration.DisableInstallInCheck
-import io.fajarca.project.base.factory.ViewModelFactory
+import io.fajarca.project.core.factory.ViewModelFactory
 
 @Module
 @DisableInstallInCheck

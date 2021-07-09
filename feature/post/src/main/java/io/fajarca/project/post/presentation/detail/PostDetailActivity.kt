@@ -10,10 +10,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.apiclient.exception.ClientErrorException
 import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
-import io.fajarca.project.base.ViewState
-import io.fajarca.project.base.abstraction.activity.BaseActivity
-import io.fajarca.project.base.extension.gone
-import io.fajarca.project.base.extension.visible
+import io.fajarca.project.core.ViewState
+import io.fajarca.project.core.abstraction.activity.BaseActivity
+import io.fajarca.project.core.extension.gone
+import io.fajarca.project.core.extension.visible
 import io.fajarca.project.post.databinding.ActivityPostDetailBinding
 import io.fajarca.project.post.domain.entity.Post
 

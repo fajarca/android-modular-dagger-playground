@@ -1,8 +1,8 @@
 package io.fajarca.project.movie.data.source
 
 import io.fajarca.project.apiclient.ApiClient
-import io.fajarca.project.apiclient.ApiResponse
-import io.fajarca.project.base.Either
+import io.fajarca.project.apiclient.response.ApiResponse
+import io.fajarca.project.core.Either
 import io.fajarca.project.movie.data.response.GetPopularMoviesDto
 import io.fajarca.project.movie.data.service.MovieService
 import javax.inject.Inject

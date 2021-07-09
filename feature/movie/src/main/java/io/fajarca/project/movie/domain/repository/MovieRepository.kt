@@ -1,6 +1,6 @@
 package io.fajarca.project.movie.domain.repository
 
-import io.fajarca.project.base.Either
+import io.fajarca.project.core.Either
 import io.fajarca.project.movie.domain.entity.Movie
 import kotlinx.coroutines.flow.Flow
 

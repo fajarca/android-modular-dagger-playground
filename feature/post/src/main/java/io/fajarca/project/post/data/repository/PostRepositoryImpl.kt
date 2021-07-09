@@ -1,6 +1,6 @@
 package io.fajarca.project.post.data.repository
 
-import io.fajarca.project.base.Either
+import io.fajarca.project.core.Either
 import io.fajarca.project.post.data.mapper.PostMapper
 import io.fajarca.project.post.data.mapper.PostsMapper
 import io.fajarca.project.post.data.source.PostRemoteDataSource

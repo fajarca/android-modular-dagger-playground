@@ -5,7 +5,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.migration.DisableInstallInCheck
 import dagger.multibindings.IntoMap
-import io.fajarca.project.base.di.annotation.ViewModelKey
+import io.fajarca.project.core.di.annotation.ViewModelKey
 import io.fajarca.project.movie.presentation.MovieListViewModel
 
 

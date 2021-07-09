@@ -39,7 +39,7 @@ android {
 
 dependencies {
 
-    implementation project(':base')
+    implementation project(':core')
     implementation project(':common')
 
     implementation libraries.constraintLayout

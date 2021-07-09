@@ -1,8 +1,8 @@
 package io.fajarca.project.post.data.source
 
 import io.fajarca.project.apiclient.ApiClient
-import io.fajarca.project.apiclient.ApiResponse
-import io.fajarca.project.base.Either
+import io.fajarca.project.apiclient.response.ApiResponse
+import io.fajarca.project.core.Either
 import io.fajarca.project.post.data.response.GetPostDetailDto
 import io.fajarca.project.post.data.response.GetPostsDto
 import io.fajarca.project.post.data.service.PostService

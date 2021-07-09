@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import io.fajarca.project.base.router.Routable
+import io.fajarca.project.core.router.Routable
 import io.fajarca.project.post.presentation.list.PostRouter
 import io.fajarca.project.user.presentation.list.UserRouter
 

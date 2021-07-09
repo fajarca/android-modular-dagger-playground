@@ -1,6 +1,6 @@
 package io.fajarca.project.movie.data.repository
 
-import io.fajarca.project.base.Either
+import io.fajarca.project.core.Either
 import io.fajarca.project.movie.data.mapper.PopularMoviesEntityMapper
 import io.fajarca.project.movie.data.mapper.PopularMoviesDomainMapper
 import io.fajarca.project.movie.data.source.MovieLocalDataSource
