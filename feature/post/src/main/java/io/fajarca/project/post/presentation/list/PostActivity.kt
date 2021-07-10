@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import io.fajarca.project.analytics.Analytic
 import io.fajarca.project.core.ViewState
 import io.fajarca.project.core.abstraction.activity.BaseActivity
 import io.fajarca.project.core.extension.gone
@@ -19,9 +21,13 @@ import io.fajarca.project.navigation.PostRouterData
 import io.fajarca.project.post.databinding.ActivityPostBinding
 import io.fajarca.project.post.presentation.detail.PostDetailActivity
 import javax.inject.Inject
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PostActivity : BaseActivity<ActivityPostBinding>() {
+
+    @Inject
+    lateinit var analytic: Analytic
 
     @Inject
     lateinit var router: Router
@@ -55,6 +61,7 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
         binding.recyclerView.adapter = adapter
         adapter.setOnPostSelected { post ->
             PostDetailActivity.start(this, post.id)
+            lifecycleScope.launch { analytic.logEvent("Post Detail", post.title) }
         }
     }
 

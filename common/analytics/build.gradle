@@ -2,8 +2,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-parcelize'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -19,9 +17,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-    buildFeatures {
-        viewBinding true
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,25 +34,15 @@ android {
 }
 
 dependencies {
-
-    api project(':core')
-    implementation project(':common:navigation')
-    implementation project(':common:analytics')
-
-    implementation libraries.constraintLayout
-    implementation libraries.appCompat
-    implementation libraries.material
-    implementation libraries.coreKtx
-    implementation libraries.fragmentKtx
-
-    implementation libraries.viewmodel
-    implementation libraries.livedata
-    implementation libraries.lifecycleRuntime
-    kapt kaptLibraries.lifecycleCompiler
-
     implementation libraries.hilt
     kapt kaptLibraries.hilt
 
-    implementation libraries.hiltViewModel
-    kapt kaptLibraries.hiltViewModel
+    implementation libraries.kotlin
+
+    implementation libraries.retrofit
+    implementation libraries.retrofitMoshiConverter
+    implementation libraries.okhttp3Interceptor
+
+
+
 }

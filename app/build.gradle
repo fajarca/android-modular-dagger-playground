@@ -41,6 +41,7 @@ dependencies {
     implementation project(':feature:user')
     implementation project(':feature:post')
     implementation project(':common:navigation')
+    implementation project(':common:analytics')
 
     implementation libraries.kotlin
     implementation libraries.coreKtx
