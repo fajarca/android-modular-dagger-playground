@@ -34,6 +34,8 @@ android {
 }
 
 dependencies {
+    implementation project(':apiclient')
+
     implementation libraries.hilt
     kapt kaptLibraries.hilt
 
@@ -42,7 +44,4 @@ dependencies {
     implementation libraries.retrofit
     implementation libraries.retrofitMoshiConverter
     implementation libraries.okhttp3Interceptor
-
-
-
 }
