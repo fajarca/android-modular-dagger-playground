@@ -16,7 +16,7 @@ import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.core.router.Routable
 import io.fajarca.project.core.router.Router
-import io.fajarca.project.common.navigation.UserRouterData
+import io.fajarca.project.navigation.UserRouterData
 import io.fajarca.project.user.databinding.ActivityUserBinding
 import io.fajarca.project.user.presentation.detail.UserDetailActivity
 import javax.inject.Inject

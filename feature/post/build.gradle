@@ -40,7 +40,7 @@ android {
 dependencies {
 
     api project(':core')
-    implementation project(':common')
+    implementation project(':common:navigation')
 
     implementation libraries.constraintLayout
     implementation libraries.appCompat

@@ -1,4 +1,4 @@
-package io.fajarca.project.common.navigation
+package io.fajarca.project.navigation
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
