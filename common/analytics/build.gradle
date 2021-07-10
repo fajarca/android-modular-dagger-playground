@@ -40,8 +40,4 @@ dependencies {
     kapt kaptLibraries.hilt
 
     implementation libraries.kotlin
-
-    implementation libraries.retrofit
-    implementation libraries.retrofitMoshiConverter
-    implementation libraries.okhttp3Interceptor
 }
