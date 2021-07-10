@@ -3,12 +3,12 @@ package io.fajarca.project.persistance.di
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ActivityComponent
 import io.fajarca.project.persistance.DaggerPlaygroundDatabase
 import io.fajarca.project.persistance.dao.MovieDao
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ActivityComponent::class)
 object DaoModule {
 
     @Provides

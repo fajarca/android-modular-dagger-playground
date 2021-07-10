@@ -7,14 +7,12 @@ import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.apiclient.ApiClient
 import io.fajarca.project.core.dispatcher.CoroutineDispatcherProvider
 import io.fajarca.project.persistance.DaggerPlaygroundDatabase
-import io.fajarca.project.persistance.dao.MovieDao
 import okhttp3.OkHttpClient
 
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface MovieModuleDependencies {
     fun database() : DaggerPlaygroundDatabase
-    fun movieDao(): MovieDao
     fun moshi() : Moshi
     fun okHttpClient(): OkHttpClient
     fun dispatcherProvider() : CoroutineDispatcherProvider
