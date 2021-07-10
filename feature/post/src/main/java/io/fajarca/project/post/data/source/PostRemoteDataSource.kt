@@ -16,16 +16,16 @@ class PostRemoteDataSource @Inject constructor(
     suspend fun getPost(): Either<Exception, List<GetPostsDto>> {
         val response = apiClient.call { postService.getPosts() }
         return when(response) {
-            is ApiResponse.Success -> Either.Success(response.data)
-            is ApiResponse.Failure -> Either.Failure(response.cause)
+            is ApiResponse.Success -> Either.Right(response.data)
+            is ApiResponse.Failure -> Either.Left(response.cause)
         }
     }
 
     suspend fun getPostDetail(postId : Int): Either<Exception, GetPostDetailDto> {
         val response = apiClient.call { postService.getPostDetail(postId) }
         return when(response) {
-            is ApiResponse.Success -> Either.Success(response.data)
-            is ApiResponse.Failure -> Either.Failure(response.cause)
+            is ApiResponse.Success -> Either.Right(response.data)
+            is ApiResponse.Failure -> Either.Left(response.cause)
         }
     }
 

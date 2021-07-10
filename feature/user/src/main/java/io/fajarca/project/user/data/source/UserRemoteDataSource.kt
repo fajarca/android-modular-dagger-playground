@@ -16,16 +16,16 @@ class UserRemoteDataSource @Inject constructor(
     suspend fun getUsers(): Either<Exception, List<GetUsersDto>> {
         val response = apiClient.call { userService.getUsers() }
         return when(response) {
-            is ApiResponse.Success -> Either.Success(response.data)
-            is ApiResponse.Failure -> Either.Failure(response.cause)
+            is ApiResponse.Success -> Either.Right(response.data)
+            is ApiResponse.Failure -> Either.Left(response.cause)
         }
     }
 
     suspend fun getUserDetail(userId : Int): Either<Exception, GetUserDetailDto> {
         val response = apiClient.call { userService.getUserDetail(userId) }
         return when(response) {
-            is ApiResponse.Success -> Either.Success(response.data)
-            is ApiResponse.Failure -> Either.Failure(response.cause)
+            is ApiResponse.Success -> Either.Right(response.data)
+            is ApiResponse.Failure -> Either.Left(response.cause)
         }
     }
 

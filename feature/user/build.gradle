@@ -58,4 +58,9 @@ dependencies {
 
     implementation libraries.hiltViewModel
     kapt kaptLibraries.hiltViewModel
+
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockk
+    androidTestImplementation androidTestLibraries.junit
+    androidTestImplementation androidTestLibraries.espresso
 }

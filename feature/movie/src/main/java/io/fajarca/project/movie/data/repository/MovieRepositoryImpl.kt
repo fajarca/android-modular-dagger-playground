@@ -22,12 +22,12 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getPopularMovies(): Either<Exception, Flow<List<Movie>>> {
         val apiResult = movieRemoteDataSource.getPopularMovies()
 
-        if (apiResult is Either.Success) {
+        if (apiResult is Either.Right) {
             movieLocalDataSource.insertAll(moviesDataMapper.map(apiResult.data))
         }
 
         val movies = movieLocalDataSource.findAll().map { moviesDomainMapper.map(it) }
-        return Either.Success(movies)
+        return Either.Right(movies)
     }
 
 

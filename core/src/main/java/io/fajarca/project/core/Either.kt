@@ -1,6 +1,12 @@
 package io.fajarca.project.core
 
-sealed class Either<A,B> {
-    class Failure<A,B>(val cause : A) : Either<A,B>()
-    class Success<A,B>(val data : B) : Either<A,B>()
+sealed class Either<out L, out R> {
+    data class Left<out L>(val cause: L) : Either<L, Nothing>()
+    data class Right<out R>(val data: R) : Either<Nothing, R>()
+
+    val isLeft get() = this is Left<L>
+    val isRight get() = this is Right<R>
+
+    fun <L> left(cause: L) = Left(cause)
+    fun <R> right(data: R) = Right(data)
 }

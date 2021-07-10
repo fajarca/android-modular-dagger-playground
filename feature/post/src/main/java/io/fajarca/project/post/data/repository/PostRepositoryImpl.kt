@@ -17,16 +17,16 @@ class PostRepositoryImpl @Inject constructor(
     override suspend fun getPosts(): Either<Exception, List<Post>> {
         val apiResult = postRemoteDataSource.getPost()
         return when (apiResult) {
-            is Either.Failure -> Either.Failure(apiResult.cause)
-            is Either.Success -> Either.Success(postsMapper.map(apiResult.data))
+            is Either.Left -> Either.Left(apiResult.cause)
+            is Either.Right -> Either.Right(postsMapper.map(apiResult.data))
         }
     }
 
     override suspend fun getPostDetail(postId : Int): Either<Exception, Post> {
         val apiResult = postRemoteDataSource.getPostDetail(postId)
         return when (apiResult) {
-            is Either.Failure -> Either.Failure(apiResult.cause)
-            is Either.Success -> Either.Success(postMapper.map(apiResult.data))
+            is Either.Left -> Either.Left(apiResult.cause)
+            is Either.Right -> Either.Right(postMapper.map(apiResult.data))
         }
     }
 

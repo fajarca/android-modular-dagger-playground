@@ -15,8 +15,8 @@ class MovieRemoteDataSource @Inject constructor(
     suspend fun getPopularMovies(): Either<Exception, GetPopularMoviesDto> {
         val response = apiClient.call { movieService.getPopularMovies() }
         return when(response) {
-            is ApiResponse.Success -> Either.Success(response.data)
-            is ApiResponse.Failure -> Either.Failure(response.cause)
+            is ApiResponse.Success -> Either.Right(response.data)
+            is ApiResponse.Failure -> Either.Left(response.cause)
         }
     }
 

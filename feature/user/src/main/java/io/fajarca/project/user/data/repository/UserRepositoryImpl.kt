@@ -19,16 +19,16 @@ class UserRepositoryImpl @Inject constructor(
     override suspend fun getUsers(): Either<Exception, List<User>> {
         val apiResult = userRemoteDataSource.getUsers()
         return when (apiResult) {
-            is Either.Failure -> Either.Failure(apiResult.cause)
-            is Either.Success -> Either.Success(usersMapper.map(apiResult.data))
+            is Either.Left -> Either.Left(apiResult.cause)
+            is Either.Right -> Either.Right(usersMapper.map(apiResult.data))
         }
     }
 
     override suspend fun getUserDetail(userId: Int): Either<Exception, User> {
         val apiResult = userRemoteDataSource.getUserDetail(userId)
         return when (apiResult) {
-            is Either.Failure -> Either.Failure(apiResult.cause)
-            is Either.Success -> Either.Success(userMapper.map(apiResult.data))
+            is Either.Left -> Either.Left(apiResult.cause)
+            is Either.Right -> Either.Right(userMapper.map(apiResult.data))
         }
     }
 
