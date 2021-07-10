@@ -8,13 +8,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.analytics.Analytic
+import io.fajarca.project.apiclient.exception.ClientErrorException
+import io.fajarca.project.apiclient.exception.NoInternetConnection
+import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.core.ViewState
 import io.fajarca.project.core.abstraction.activity.BaseActivity
 import io.fajarca.project.core.extension.gone
 import io.fajarca.project.core.extension.visible
-import io.fajarca.project.apiclient.exception.ClientErrorException
-import io.fajarca.project.apiclient.exception.NoInternetConnection
-import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.core.router.Routable
 import io.fajarca.project.core.router.Router
 import io.fajarca.project.navigation.PostRouterData
@@ -61,7 +61,9 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
         binding.recyclerView.adapter = adapter
         adapter.setOnPostSelected { post ->
             PostDetailActivity.start(this, post.id)
-            lifecycleScope.launch { analytic.logEvent("Post Detail", post.title) }
+            lifecycleScope.launch {
+                val result = analytic.logEvent("Post Detail", post.title)
+            }
         }
     }
 
