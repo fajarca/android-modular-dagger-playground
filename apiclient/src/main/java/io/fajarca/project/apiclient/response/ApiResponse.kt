@@ -1,6 +1,6 @@
 package io.fajarca.project.apiclient.response
 
-sealed class ApiResponse<A,B> {
-    class Failure<A,B>(val cause : A) : ApiResponse<A, B>()
-    class Success<A,B>(val data : B) : ApiResponse<A, B>()
+sealed class ApiResponse<out L,out R> {
+    data class Failure<out L,out R>(val cause : L) : ApiResponse<L, R>()
+    data class Success<out L,out R>(val data : R) : ApiResponse<L, R>()
 }
