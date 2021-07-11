@@ -3,8 +3,6 @@ package io.fajarca.project.movie.di.module
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import io.fajarca.project.movie.BuildConfig
 import io.fajarca.project.movie.data.service.MovieService
 import okhttp3.Interceptor
@@ -13,7 +11,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-@InstallIn(ActivityComponent::class)
 object NetworkModule {
 
     @Provides
