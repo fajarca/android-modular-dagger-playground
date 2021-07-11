@@ -27,7 +27,6 @@ class MovieListActivity : DynamicFeatureActivity<ActivityMovieListBinding, Movie
         setupRecyclerView()
         setupToolbar()
         observePopularMovies()
-        viewModel.getPopularMovies()
     }
 
     private fun setupRecyclerView() {

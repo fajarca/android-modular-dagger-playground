@@ -25,7 +25,11 @@ class MovieListViewModel @Inject constructor(
     val popularMovies: LiveData<ViewState<List<Movie>>>
         get() = _popularMovies
 
-    fun getPopularMovies() {
+    init {
+        getPopularMovies()
+    }
+
+    private fun getPopularMovies() {
         _popularMovies.value = ViewState.Loading
         viewModelScope.launch(coroutineDispatcherProvider.io) {
             getPopularMoviesUseCase
