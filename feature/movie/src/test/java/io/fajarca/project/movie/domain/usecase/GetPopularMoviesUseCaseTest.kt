@@ -51,8 +51,8 @@ class GetPopularMoviesUseCaseTest {
     @Test
     fun shouldReturnExceptionWhenGetMoviesError() = runBlocking {
         //Given
-        val error = ServerErrorException(500)
-        val expected = Either.Left(error)
+        val exception = ServerErrorException(500)
+        val expected = Either.Left(exception)
         coEvery { repository.getPopularMovies() } returns expected
 
         //when
@@ -60,6 +60,6 @@ class GetPopularMoviesUseCaseTest {
 
         //Then
         assert(actual is Either.Left)
-        assertEquals(error, actual.getLeftOrElse(null))
+        assertEquals(exception, actual.getLeftOrElse(null))
     }
 }

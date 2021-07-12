@@ -54,9 +54,21 @@ dependencies {
     implementation libraries.glide
     kapt kaptLibraries.glide
 
-    testImplementation testLibraries.junit4
-    testImplementation testLibraries.mockk
 
     implementation libraries.hilt
     kapt kaptLibraries.hilt
+
+
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockk
+
+    //Hilt test suite
+    androidTestImplementation testLibraries.hilt
+    kaptAndroidTest testLibraries.hilt
+
+    //Coroutine test suite
+    testImplementation testLibraries.coroutine
+
+    //Core testing
+    testImplementation testLibraries.core
 }

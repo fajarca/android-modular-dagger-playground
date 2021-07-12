@@ -27,6 +27,8 @@ ext {
     hiltVersion = '2.35'
     hiltViewModelVersion = '1.0.0-alpha01'
     androidGradlePluginVersion = '4.2.1'
+    coroutineTestVersion = '1.4.2'
+    coreTestVersion = '2.1.0'
 
     libraries = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib:" + kotlinVersion,
@@ -75,7 +77,10 @@ ext {
 
     testLibraries = [
             junit4: "junit:junit:" + junit4Version,
-            mockk : "io.mockk:mockk:" + mockkVersion
+            mockk : "io.mockk:mockk:" + mockkVersion,
+            coroutine : "org.jetbrains.kotlinx:kotlinx-coroutines-test:" + coroutineTestVersion,
+            hilt : "com.google.dagger:hilt-android-testing:" + hiltVersion,
+            core : "androidx.arch.core:core-testing:" + coreTestVersion
     ]
 
     androidTestLibraries = [
