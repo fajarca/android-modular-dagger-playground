@@ -2,6 +2,7 @@ package io.fajarca.project.movie.presentation
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import io.fajarca.project.apiclient.exception.ClientErrorException
 import io.fajarca.project.core.Either
 import io.fajarca.project.core.ViewState
 import io.fajarca.project.core.abstraction.usecase.UseCase
@@ -18,7 +19,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -61,28 +61,48 @@ class MovieListViewModelTest {
 
     @Test
     fun getPopularMovies_whenFetchSuccess_shouldPostSuccessToObserver() = runBlocking {
-            //Given
-            lifecycleOwner.onResume()
+        //Given
+        lifecycleOwner.onResume()
 
-            val expected = Either.Right(flowOf(MovieGenerator.generateMovies(2)))
+        val expected = Either.Right(flowOf(MovieGenerator.generateMovies(2)))
 
-            coEvery { getPopularMoviesUseCase.execute(UseCase.NoParams) } returns expected
+        coEvery { getPopularMoviesUseCase.execute(UseCase.NoParams) } returns expected
 
-            //When
-            viewModel.getPopularMovies()
+        //When
+        viewModel.getPopularMovies()
 
-            val movies = mutableListOf<Movie>()
-            expected.data.collect {
-                for (movie in it) {
-                    movies.add(Movie(movie.id, movie.title, movie.imageUrl))
-                }
+        val movies = mutableListOf<Movie>()
+        expected.data.collect {
+            for (movie in it) {
+                movies.add(Movie(movie.id, movie.title, movie.imageUrl))
             }
-
-            //Then
-            verify {
-                popularMoviesObserver.onChanged(ViewState.Loading)
-                popularMoviesObserver.onChanged(ViewState.Success(movies))
-            }
-
         }
+
+        //Then
+        verify {
+            popularMoviesObserver.onChanged(ViewState.Loading)
+            popularMoviesObserver.onChanged(ViewState.Success(movies))
+        }
+
+    }
+
+    @Test
+    fun getPopularMovies_whenFetchError_shouldPostErrorToObserver() = runBlocking {
+        //Given
+        lifecycleOwner.onResume()
+
+        val expected = Either.Left(ClientErrorException(403))
+
+        coEvery { getPopularMoviesUseCase.execute(UseCase.NoParams) } returns expected
+
+        //When
+        viewModel.getPopularMovies()
+
+        //Then
+        verify {
+            popularMoviesObserver.onChanged(ViewState.Loading)
+            popularMoviesObserver.onChanged(ViewState.Error(expected.cause))
+        }
+
+    }
 }
