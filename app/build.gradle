@@ -69,4 +69,11 @@ dependencies {
 
     implementation libraries.hiltViewModel
     kapt kaptLibraries.hiltViewModel
+
+    androidTestImplementation androidTestLibraries.espresso
+    androidTestImplementation androidTestLibraries.junit
+    androidTestImplementation androidTestLibraries.testRunner
+    androidTestImplementation androidTestLibraries.hilt
+
+
 }

@@ -71,4 +71,8 @@ dependencies {
 
     //Core testing
     testImplementation testLibraries.core
+
+    androidTestImplementation androidTestLibraries.espresso
+    androidTestImplementation androidTestLibraries.junit
+    androidTestImplementation androidTestLibraries.testRunner
 }
