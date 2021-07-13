@@ -59,20 +59,16 @@ dependencies {
     kapt kaptLibraries.hilt
 
 
+    //Unit test
     testImplementation testLibraries.junit4
     testImplementation testLibraries.mockk
-
-    //Hilt test suite
-    androidTestImplementation testLibraries.hilt
-    kaptAndroidTest testLibraries.hilt
-
-    //Coroutine test suite
     testImplementation testLibraries.coroutine
-
-    //Core testing
     testImplementation testLibraries.core
 
+    //Instrumented test
     androidTestImplementation androidTestLibraries.espresso
     androidTestImplementation androidTestLibraries.junit
     androidTestImplementation androidTestLibraries.testRunner
+    androidTestImplementation testLibraries.hilt
+    kaptAndroidTest testLibraries.hilt
 }
