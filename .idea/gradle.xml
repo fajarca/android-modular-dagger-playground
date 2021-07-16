@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/common/analytics" />
             <option value="$PROJECT_DIR$/common/navigation" />
+            <option value="$PROJECT_DIR$/common/resources" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/movie" />

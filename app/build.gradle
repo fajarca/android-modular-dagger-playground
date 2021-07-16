@@ -42,6 +42,7 @@ dependencies {
     implementation project(':feature:post')
     implementation project(':common:navigation')
     implementation project(':common:analytics')
+    implementation project(':common:resources')
     implementation project(':persistence')
 
     implementation libraries.kotlin

@@ -41,6 +41,7 @@ dependencies {
 
     api project(':core')
     implementation project(':common:navigation')
+    implementation project(':common:resources')
 
     implementation libraries.constraintLayout
     implementation libraries.appCompat

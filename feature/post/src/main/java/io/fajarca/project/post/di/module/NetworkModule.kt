@@ -4,9 +4,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.components.SingletonComponent
 import io.fajarca.project.post.data.service.PostService
 import io.fajarca.project.post.di.qualifier.PostModuleRetrofit
 import okhttp3.OkHttpClient

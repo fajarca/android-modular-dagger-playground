@@ -16,7 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "io.fajarca.project.post.helper.HiltTestRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
     buildFeatures {
@@ -42,6 +42,7 @@ dependencies {
     api project(':core')
     implementation project(':common:navigation')
     implementation project(':common:analytics')
+    implementation project(':common:resources')
 
     implementation libraries.constraintLayout
     implementation libraries.appCompat
@@ -59,4 +60,17 @@ dependencies {
 
     implementation libraries.hiltViewModel
     kapt kaptLibraries.hiltViewModel
+
+    //Unit test
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockk
+    testImplementation testLibraries.coroutine
+    testImplementation testLibraries.core
+
+    //Instrumented test
+    androidTestImplementation androidTestLibraries.espresso
+    androidTestImplementation androidTestLibraries.junit
+    androidTestImplementation androidTestLibraries.testRunner
+    androidTestImplementation testLibraries.hilt
+    kaptAndroidTest testLibraries.hilt
 }
