@@ -4,9 +4,11 @@
     package="io.fajarca.project.post">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:theme="@style/Theme.DaggerPlayGround">
+        android:theme="@style/Theme.DaggerPlayGround"
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name="io.fajarca.project.post.presentation.list.PostActivity"

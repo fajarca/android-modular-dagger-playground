@@ -72,13 +72,16 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
         viewModel.post.observe(this) {
             when (it) {
                 ViewState.Loading -> {
+                    binding.recyclerView.gone()
                     binding.progressBar.visible()
                 }
                 is ViewState.Success -> {
+                    binding.recyclerView.visible()
                     binding.progressBar.gone()
                     adapter.submitList(it.data)
                 }
                 is ViewState.Error -> {
+                    binding.recyclerView.gone()
                     binding.progressBar.gone()
                     when (val cause = it.cause) {
                         is ClientErrorException -> {

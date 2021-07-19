@@ -32,6 +32,7 @@ ext {
     coroutineTestVersion = '1.4.2'
     coreTestVersion = '2.1.0'
     espressoVersion = '3.1.0'
+    mockWebServerVersion = '4.3.1'
 
     libraries = [
             kotlin                : "org.jetbrains.kotlin:kotlin-stdlib:" + kotlinVersion,
@@ -91,7 +92,7 @@ ext {
             espresso: "androidx.test.espresso:espresso-core:" + espressoVersion,
             testRunner : "androidx.test:runner:" + testRunnerVersion,
             coreKtx : "androidx.test:core-ktx:" + coreTestVersion,
-            hilt : "com.google.dagger:hilt-android-testing:" + hiltVersion
-
+            hilt : "com.google.dagger:hilt-android-testing:" + hiltVersion,
+            mockWebServer : "com.squareup.okhttp3:mockwebserver:" + mockWebServerVersion
     ]
 }

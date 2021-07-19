@@ -47,7 +47,7 @@ object FakeNetworkModule {
     @PostModuleRetrofit
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .baseUrl("http://localhost:8080/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()

@@ -71,6 +71,7 @@ dependencies {
     androidTestImplementation androidTestLibraries.espresso
     androidTestImplementation androidTestLibraries.junit
     androidTestImplementation androidTestLibraries.testRunner
+    androidTestImplementation androidTestLibraries.mockWebServer
     androidTestImplementation testLibraries.hilt
     kaptAndroidTest testLibraries.hilt
 }
