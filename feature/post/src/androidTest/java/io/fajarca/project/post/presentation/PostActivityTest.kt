@@ -10,9 +10,9 @@ import androidx.test.filters.LargeTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.fajarca.project.post.R
-import io.fajarca.project.post.helper.MockWebServerDispatcher
-import io.fajarca.project.post.helper.MockWebServerRule
 import io.fajarca.project.post.presentation.list.PostActivity
+import io.fajarca.project.test_shared.webserver.MockWebServerDispatcher
+import io.fajarca.project.test_shared.webserver.MockWebServerRule
 import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule

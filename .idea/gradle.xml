@@ -22,6 +22,7 @@
             <option value="$PROJECT_DIR$/feature/post" />
             <option value="$PROJECT_DIR$/feature/user" />
             <option value="$PROJECT_DIR$/persistence" />
+            <option value="$PROJECT_DIR$/test-shared" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

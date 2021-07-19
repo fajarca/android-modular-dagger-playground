@@ -2,8 +2,6 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'kotlin-parcelize'
-    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -16,12 +14,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "io.fajarca.project.test_shared.runner.HiltTestRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
-    buildFeatures {
-        viewBinding true
-    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -35,37 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    sourceSets {
-        androidTest {
-            java.srcDir project(":test-shared").file("src/androidTest/java")
-        }
-    }
 }
 
 dependencies {
-
-    api project(':core')
-    implementation project(':common:navigation')
-    implementation project(':common:analytics')
-    implementation project(':common:resources')
-
-    implementation libraries.constraintLayout
-    implementation libraries.appCompat
-    implementation libraries.material
-    implementation libraries.coreKtx
-    implementation libraries.fragmentKtx
-
-    implementation libraries.viewmodel
-    implementation libraries.livedata
-    implementation libraries.lifecycleRuntime
-    kapt kaptLibraries.lifecycleCompiler
-
-    implementation libraries.hilt
-    kapt kaptLibraries.hilt
-
-    implementation libraries.hiltViewModel
-    kapt kaptLibraries.hiltViewModel
-
     //Unit test
     testImplementation testLibraries.junit4
     testImplementation testLibraries.mockk

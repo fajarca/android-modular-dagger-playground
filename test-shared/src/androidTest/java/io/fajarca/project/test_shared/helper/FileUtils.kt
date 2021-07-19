@@ -1,4 +1,4 @@
-package io.fajarca.project.post.helper
+package io.fajarca.project.test_shared.helper
 
 object FileUtils {
     fun readTestResourceFile(fileName: String): String {

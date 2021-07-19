@@ -1,4 +1,4 @@
-package io.fajarca.project.post.helper
+package io.fajarca.project.test_shared.webserver
 
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.rules.TestWatcher
