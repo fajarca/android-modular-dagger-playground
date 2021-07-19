@@ -13,6 +13,7 @@ import io.fajarca.project.post.R
 import io.fajarca.project.post.helper.MockWebServerDispatcher
 import io.fajarca.project.post.helper.MockWebServerRule
 import io.fajarca.project.post.presentation.list.PostActivity
+import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -37,12 +38,26 @@ class PostActivityTest {
         hiltRule.inject()
     }
 
+    @Test
+    fun progressBarShouldBeDisplayedAtInitial() {
+        onView(withId(R.id.progressBar))
+            .check(matches(isDisplayed()))
+    }
 
     @Test
-    fun test() {
+    fun whenFetchPostsSuccessRecyclerViewShouldBeDisplayed() {
         mockWebServerRule.server.dispatcher = MockWebServerDispatcher().SuccessDispatcher(200)
 
         onView(withId(R.id.recyclerView))
             .check(matches(isDisplayed()))
     }
+
+    @Test
+    fun whenFetchPostsFailedRecyclerViewShouldBeGone() {
+        mockWebServerRule.server.dispatcher = MockWebServerDispatcher().ErrorDispatcher(404)
+
+        onView(withId(R.id.recyclerView))
+            .check(matches(not(isDisplayed())))
+    }
+
 }
