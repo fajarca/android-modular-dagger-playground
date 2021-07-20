@@ -89,6 +89,7 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
                         }
                         is ServerErrorException -> {
                             val code = cause.code
+                            Toast.makeText(this, "Server Error", Toast.LENGTH_LONG).show()
                         }
                         is NoInternetConnection -> {
                             Toast.makeText(this, "No connection", Toast.LENGTH_LONG).show()
