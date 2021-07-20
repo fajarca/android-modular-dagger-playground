@@ -2,10 +2,10 @@ package io.fajarca.project.post.presentation.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.fajarca.project.analytics.Analytic
 import io.fajarca.project.apiclient.exception.ClientErrorException
@@ -86,13 +86,14 @@ class PostActivity : BaseActivity<ActivityPostBinding>() {
                     when (val cause = it.cause) {
                         is ClientErrorException -> {
                             val code = cause.code
+                            Snackbar.make(binding.root, "Client Error", Snackbar.LENGTH_LONG).show()
                         }
                         is ServerErrorException -> {
                             val code = cause.code
-                            Toast.makeText(this, "Server Error", Toast.LENGTH_LONG).show()
+                            Snackbar.make(binding.root, "Server Error", Snackbar.LENGTH_LONG).show()
                         }
                         is NoInternetConnection -> {
-                            Toast.makeText(this, "No connection", Toast.LENGTH_LONG).show()
+                            Snackbar.make(binding.root, "No connection", Snackbar.LENGTH_LONG).show()
                         }
                     }
 

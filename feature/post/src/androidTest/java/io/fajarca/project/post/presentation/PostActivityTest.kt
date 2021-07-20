@@ -1,6 +1,5 @@
 package io.fajarca.project.post.presentation
 
-import androidx.annotation.StringRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
@@ -15,7 +14,6 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import io.fajarca.project.post.R
 import io.fajarca.project.post.presentation.list.PostActivity
-import io.fajarca.project.test_shared.matcher.ToastMatcher.Companion.onToast
 import io.fajarca.project.test_shared.webserver.MockWebServerDispatcher
 import io.fajarca.project.test_shared.webserver.MockWebServerRule
 import org.hamcrest.Matchers.not
@@ -23,7 +21,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -60,21 +57,29 @@ class PostActivityTest {
 
     @Test
     fun whenFetchPostsFailedRecyclerViewShouldBeGone() {
-        mockWebServerRule.server.dispatcher = MockWebServerDispatcher().ErrorDispatcher(404)
+        mockWebServerRule.server.dispatcher = MockWebServerDispatcher().ErrorDispatcher(403)
 
         onView(withId(R.id.recyclerView))
             .check(matches(not(isDisplayed())))
     }
 
     @Test
-    fun whenServerErrorShouldDisplayToast() {
-        mockWebServerRule.server.dispatcher = MockWebServerDispatcher().ErrorDispatcher(500)
+    fun whenClientErrorShouldDisplaySnackBar() {
+        mockWebServerRule.server.dispatcher = MockWebServerDispatcher().ErrorDispatcher(409)
 
-        val toastMessage = "Server Error"
-        onToast(toastMessage).check(matches(isDisplayed()))
+        val snackBarMessage = "Client Error"
+        assertSnackBarDisplayedByMessage(snackBarMessage)
     }
 
-    private fun checkSnackBarDisplayedByMessage(@StringRes message: Int) {
+    @Test
+    fun whenServerErrorShouldDisplaySnackBar() {
+        mockWebServerRule.server.dispatcher = MockWebServerDispatcher().ErrorDispatcher(500)
+
+        val snackBarMessage = "Server Error"
+        assertSnackBarDisplayedByMessage(snackBarMessage)
+    }
+
+    private fun assertSnackBarDisplayedByMessage(message: String) {
         onView(withText(message))
             .check(matches(withEffectiveVisibility(ViewMatchers.Visibility.VISIBLE)))
     }
