@@ -2,14 +2,14 @@ package io.fajarca.project.apiclient.extension
 
 import io.fajarca.project.apiclient.response.ApiResponse
 
-fun <L, R> ApiResponse<L, R>.getOrElse(value: R): R =
+fun <L, R> ApiResponse<L, R>.getOrNull(): R? =
     when (this) {
-        is ApiResponse.Failure -> value
+        is ApiResponse.Failure -> null
         is ApiResponse.Success -> data
     }
 
-fun <L, R> ApiResponse<L, R>.getErrorOrElse(value: L): L =
+fun <L, R> ApiResponse<L, R>.getErrorOrNull(): L? =
     when (this) {
         is ApiResponse.Failure -> cause
-        is ApiResponse.Success -> value
+        is ApiResponse.Success -> null
     }

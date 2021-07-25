@@ -6,7 +6,6 @@ import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.apiclient.exception.TimeoutException
 import io.fajarca.project.apiclient.exception.UnknownNetworkErrorException
 import io.fajarca.project.apiclient.response.ApiResponse
-import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
@@ -25,26 +24,22 @@ internal class ApiClientImpl @Inject constructor() : ApiClient {
     }
 
     private fun handleError(exception: Exception): ApiResponse<Exception, Nothing> {
+        val clientErrorResponseCode = 400..499
+        val serverErrorResponsecode = 500..599
         return when (exception) {
+
             is HttpException -> {
-                 when (exception.code()) {
-                     in 400..499 -> ApiResponse.Failure(ClientErrorException(exception.code()))
-                     in 500..599 -> ApiResponse.Failure(ServerErrorException(exception.code()))
-                     else -> ApiResponse.Failure(UnknownNetworkErrorException(exception.message ?: "ew"))
+                when (exception.code()) {
+                    in clientErrorResponseCode -> ApiResponse.Failure(ClientErrorException(exception.code()))
+                    in serverErrorResponsecode -> ApiResponse.Failure(ServerErrorException(exception.code()))
+                    else -> ApiResponse.Failure(
+                        UnknownNetworkErrorException("Response code ${exception.code()} is invalid")
+                    )
                 }
             }
             is UnknownHostException -> ApiResponse.Failure(NoInternetConnection())
             is SocketTimeoutException -> ApiResponse.Failure(TimeoutException())
-            is IOException -> ApiResponse.Failure(
-                UnknownNetworkErrorException(
-                    exception.message ?: "Unknown IO Exception error"
-                )
-            )
-            else -> ApiResponse.Failure(
-                UnknownNetworkErrorException(
-                    exception.localizedMessage ?: "Unknown error"
-                )
-            )
+            else -> ApiResponse.Failure(UnknownNetworkErrorException("Undefined error"))
         }
     }
 

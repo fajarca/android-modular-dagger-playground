@@ -5,14 +5,13 @@ import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.apiclient.exception.TimeoutException
 import io.fajarca.project.apiclient.exception.UnknownNetworkErrorException
-import io.fajarca.project.apiclient.extension.getErrorOrElse
-import io.fajarca.project.apiclient.extension.getOrElse
+import io.fajarca.project.apiclient.extension.getErrorOrNull
+import io.fajarca.project.apiclient.extension.getOrNull
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
-import okio.IOException
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import retrofit2.HttpException
@@ -50,7 +49,7 @@ class ApiClientImplTest {
             responseJson.toResponseBody("application/json".toMediaTypeOrNull())
         )
 
-        val actual = apiClient.call { throw HttpException(exception) }.getErrorOrElse(null)
+        val actual = apiClient.call { throw HttpException(exception) }.getErrorOrNull()
 
         assertEquals(expected, actual)
     }
@@ -65,7 +64,22 @@ class ApiClientImplTest {
             responseJson.toResponseBody("application/json".toMediaTypeOrNull())
         )
 
-        val actual = apiClient.call { throw HttpException(exception) }.getErrorOrElse(null)
+        val actual = apiClient.call { throw HttpException(exception) }.getErrorOrNull()
+
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun whenResponseCodeIsInvalidShouldMapToUnknownNetworkErrorException() = runBlocking {
+        val expected = UnknownNetworkErrorException("Response code 600 is invalid")
+
+        val exception: Response<HttpException> = Response.error(
+            600,
+            responseJson.toResponseBody("application/json".toMediaTypeOrNull())
+        )
+
+        val actual = apiClient.call { throw HttpException(exception) }.getErrorOrNull()
 
 
         assertEquals(expected, actual)
@@ -74,31 +88,25 @@ class ApiClientImplTest {
     @Test
     fun whenResponseIsSuccessShouldReturnData() = runBlocking {
         val expected = "Some data"
-        val actual = apiClient.call { "Some data" }.getOrElse(null)
+        val actual = apiClient.call { "Some data" }.getOrNull()
         assertEquals(expected, actual)
     }
 
     @Test
     fun whenRequestIsTimeoutShouldMapToTimeoutException() = runBlocking {
-        val actual = apiClient.call { throw SocketTimeoutException() }.getErrorOrElse(null)
+        val actual = apiClient.call { throw SocketTimeoutException() }.getErrorOrNull()
         assert(actual is TimeoutException)
     }
 
     @Test
     fun whenNoInternetConnectionShouldMapToNoInternetConnectionException() = runBlocking {
-        val actual = apiClient.call { throw UnknownHostException() }.getErrorOrElse(null)
+        val actual = apiClient.call { throw UnknownHostException() }.getErrorOrNull()
         assert(actual is NoInternetConnection)
     }
 
     @Test
-    fun whenIoExceptionOccurredShouldMapToUnknownException() = runBlocking {
-        val actual = apiClient.call { throw IOException() }.getErrorOrElse(null)
-        assertEquals(UnknownNetworkErrorException("Unknown IO Exception error"), actual)
-    }
-
-    @Test
-    fun whenOtherExceptionOccurredShouldMapToUnknownException() = runBlocking {
-        val actual = apiClient.call { throw IllegalArgumentException() }.getErrorOrElse(null)
-        assertEquals(UnknownNetworkErrorException("Unknown error"), actual)
+    fun whenUndefinedExceptionOccurredShouldMapToUnknownException() = runBlocking {
+        val actual = apiClient.call { throw IllegalArgumentException() }.getErrorOrNull()
+        assertEquals(UnknownNetworkErrorException("Undefined error"), actual)
     }
 }
