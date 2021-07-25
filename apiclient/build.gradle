@@ -44,4 +44,10 @@ dependencies {
 
     implementation libraries.hilt
     kapt kaptLibraries.hilt
+
+    //Unit test
+    testImplementation testLibraries.junit4
+    testImplementation testLibraries.mockk
+    testImplementation testLibraries.coroutine
+    testImplementation testLibraries.core
 }

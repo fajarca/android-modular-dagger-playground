@@ -1,7 +1,6 @@
 package io.fajarca.project.apiclient
 
 import io.fajarca.project.apiclient.exception.ClientErrorException
-import io.fajarca.project.apiclient.exception.EmptyResponseException
 import io.fajarca.project.apiclient.exception.NoInternetConnection
 import io.fajarca.project.apiclient.exception.ServerErrorException
 import io.fajarca.project.apiclient.exception.TimeoutException
@@ -12,34 +11,28 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 import javax.inject.Inject
 import javax.inject.Singleton
-import retrofit2.Response
+import retrofit2.HttpException
 
 @Singleton
 internal class ApiClientImpl @Inject constructor() : ApiClient {
 
-    override suspend fun <T> call(apiCall: suspend () -> Response<T>): ApiResponse<Exception, T> {
+    override suspend fun <T> call(apiCall: suspend () -> T): ApiResponse<Exception, T> {
         return try {
-            val response = apiCall()
-            when {
-                response.isSuccessful && response.body() == null -> ApiResponse.Failure(
-                    EmptyResponseException()
-                )
-                response.isSuccessful && response.body() != null -> ApiResponse.Success(response.body()!!)
-                response.code() in 400..499 -> ApiResponse.Failure(ClientErrorException(response.code()))
-                response.code() in 500..599 -> ApiResponse.Failure(ServerErrorException(response.code()))
-                else -> ApiResponse.Failure(
-                    UnknownNetworkErrorException(
-                        response.errorBody().toString()
-                    )
-                )
-            }
+            ApiResponse.Success(apiCall())
         } catch (exception: Exception) {
             handleError(exception)
         }
     }
 
-    private fun <T> handleError(exception: Exception): ApiResponse.Failure<Exception, T> {
+    private fun handleError(exception: Exception): ApiResponse<Exception, Nothing> {
         return when (exception) {
+            is HttpException -> {
+                 when (exception.code()) {
+                     in 400..499 -> ApiResponse.Failure(ClientErrorException(exception.code()))
+                     in 500..599 -> ApiResponse.Failure(ServerErrorException(exception.code()))
+                     else -> ApiResponse.Failure(UnknownNetworkErrorException(exception.message ?: "ew"))
+                }
+            }
             is UnknownHostException -> ApiResponse.Failure(NoInternetConnection())
             is SocketTimeoutException -> ApiResponse.Failure(TimeoutException())
             is IOException -> ApiResponse.Failure(

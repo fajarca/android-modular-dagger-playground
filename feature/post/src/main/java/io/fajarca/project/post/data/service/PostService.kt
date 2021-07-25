@@ -8,8 +8,8 @@ import retrofit2.http.Path
 
 interface PostService {
     @GET("posts")
-    suspend fun getPosts() : Response<List<GetPostsDto>>
+    suspend fun getPosts() : List<GetPostsDto>
 
     @GET("posts/{postId}")
-    suspend fun getPostDetail(@Path("postId") userId : Int) : Response<GetPostDetailDto>
+    suspend fun getPostDetail(@Path("postId") userId : Int) : GetPostDetailDto
 }
